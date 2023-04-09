@@ -12,6 +12,7 @@ public class Athlete {
 	boolean sick = false;
 	
 	public Athlete(String tempName, int oRating, int dRating, int cStamina, String chosenPosition) {
+		// Constructor class to grab each detail about the athlete
 		name = tempName;
 		offenceRating = oRating;
 		defenceRating = dRating;
@@ -57,7 +58,7 @@ public class Athlete {
 	}
 	
 	public boolean isSick() {
-		// create a randomInjury random event method??
+		// create a randomSickness random event method??
 		if (randomSickness() == true) {
 			sick = true;
 		}
@@ -75,6 +76,8 @@ public class Athlete {
 	}
 	
 	public static void main(String[] args) {
+		
+		//Attempted to create an instance of Athlete here to experiment. Not sure where we will store the athletes... Just here?
 		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER");
 	}
 	
