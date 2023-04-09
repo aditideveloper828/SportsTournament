@@ -4,6 +4,9 @@ package SetUp;
 
 public class CalculateScores {
 	
+	public int offenceRating = Athlete.getOffence();
+	public int defenceRating = Athlete.getDefence();
+	public int currentStamina = Athlete.getStamina();
 	public int minOffence;
 	public int maxOffence;
 	public int minDefence;
@@ -15,7 +18,6 @@ public class CalculateScores {
 	// Will round the total score to the nearest 10 at the end?
 	// Instead of rounding it throughout the whole process?
 	
-	// I have not connected the classes as i am not entirely sure how to connect variables between classes.
 	// Also, I guess there will need to be a class/method where we calculate the entire team's score- maybe "Game"?
 	
 	public int pointsScored() {
