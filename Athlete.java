@@ -4,9 +4,9 @@ public class Athlete {
 	
 	String name;
 	String nickname = name;
-	public int offenceRating;
-	public int defenceRating;
-	public int currentStamina = 100;
+	public static int offenceRating;
+	public static int defenceRating;
+	public static int currentStamina = 100;
 	String position;
 	boolean injured = false;
 	boolean sick = false;
@@ -30,23 +30,23 @@ public class Athlete {
 		name = Start.getNickName();
 	}
 	
-	public int getOffence() {
+	public static int getOffence() {
 		// pulls the offence rating of the Athlete. Judged out of 100
-		return this.offenceRating;
+		return offenceRating;
 	}
 	
-	public int getDefence() {
+	public static int getDefence() {
 		// pulls the defence rating of the Athlete. Judged out of 100
-		return this.defenceRating;
+		return defenceRating;
 	}
 	
-	public int getStamina() {
+	public static int getStamina() {
 		// pulls the current stamina of the Athlete
-		return this.currentStamina;
+		return currentStamina;
 	}
 	
 	public String getPosition() {
-		return this.position;
+		return Start.getPosition();
 	}
 	
 	public boolean isInjured() {
