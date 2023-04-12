@@ -1,4 +1,5 @@
-package SetUp;
+package main;
+
 
 public class Athlete {
 	
@@ -31,12 +32,12 @@ public class Athlete {
 	}
 	
 	public static int getOffence() {
-		// pulls the offence rating of the Athlete. Judged out of 100
+		// pulls the offense rating of the Athlete. Judged out of 100
 		return offenceRating;
 	}
 	
 	public static int getDefence() {
-		// pulls the defence rating of the Athlete. Judged out of 100
+		// pulls the defense rating of the Athlete. Judged out of 100
 		return defenceRating;
 	}
 	
@@ -78,7 +79,7 @@ public class Athlete {
 	public static void main(String[] args) {
 		
 		//Attempted to create an instance of Athlete here to experiment. Not sure where we will store the athletes... Just here?
-		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER");
+		//Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER");
 	}
 	
 }
