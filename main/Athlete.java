@@ -26,9 +26,9 @@ public class Athlete {
 		return this.name;
 	}
 	
-	public String chooseNickname() {
-		// pulls the nickname of the athlete (if applied) given by the user
-		name = Start.getNickName();
+	public void chooseNickname(String name) {
+		// sets the nickname of the athlete (if applied) given by the user
+		nickname = name;
 	}
 	
 	public static int getOffence() {
@@ -46,9 +46,6 @@ public class Athlete {
 		return currentStamina;
 	}
 	
-	public String getPosition() {
-		return Start.getPosition();
-	}
 	
 	public boolean isInjured() {
 		// create a randomInjury random event method??
