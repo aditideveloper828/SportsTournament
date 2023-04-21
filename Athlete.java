@@ -1,5 +1,10 @@
 package SetUp;
 
+/**
+ * @author Imogen Keeling
+ *
+ */
+
 public class Athlete {
 	
 	String name;
@@ -49,36 +54,8 @@ public class Athlete {
 		return Start.getPosition();
 	}
 	
-	public boolean isInjured() {
-		// create a randomInjury random event method??
-		if (randomInjury() == true) {
-			injured = true;
-		}
-		return injured;
-	}
-	
-	public boolean isSick() {
-		// create a randomSickness random event method??
-		if (randomSickness() == true) {
-			sick = true;
-		}
-		return injured;
-	}
-	
-	public void status(playerStatus state) {
-		// holds the switch case information for whether or not the Athlete is playing
-		switch(state) {
-			case ACTIVE:
-				break;
-			case RESERVE:
-				break;
-		}
-	}
-	
 	public static void main(String[] args) {
 		
-		//Attempted to create an instance of Athlete here to experiment. Not sure where we will store the athletes... Just here?
-		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER");
 	}
 	
 }
