@@ -4,3 +4,7 @@
 /GameEnvironment.class
 /UserInterface.class
 /Purchase.class
+/ExpectedGame.class
+/Purchasable.class
+/Item.class
+/PurchasableManager.class
