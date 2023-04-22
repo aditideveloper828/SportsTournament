@@ -24,14 +24,20 @@ public final class UserInterface {
 	    int difficulty = getBasics.nextInt();
 	    getBasics.close();
 	    
-	    GameEnvironment game = new GameEnvironment(name, difficulty, weeks);
-	    int check = game.getWeeks();
-	    System.out.println(check);
-	    game.reduceWeek();
-	    check = game.getWeeks();
-	    System.out.println(check);
-	    System.out.println(game.getDifficulty());
-	    System.out.println(game.getTeamName());
+	    @SuppressWarnings("unused")
+		GameEnvironment game = new GameEnvironment(name, difficulty, weeks);
+		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER", 30, 60);
+		new PurchasableManager(theresaWise); //check what this is doing
+
+	    Purchase first = new Purchase("ATHLETES");
+	    //testing
+//	    int check = game.getWeeks();
+//	    System.out.println(check);
+//	    game.reduceWeek();
+//	    check = game.getWeeks();
+//	    System.out.println(check);
+//	    System.out.println(game.getDifficulty());
+//	    System.out.println(game.getTeamName());
 	    
 	    
 	    //Figure out how to select team;

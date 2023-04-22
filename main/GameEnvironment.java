@@ -1,3 +1,4 @@
+package main;
 /**
  * 
  */
@@ -12,6 +13,7 @@ import java.util.*;
 public class GameEnvironment {
 	private ArrayList<Athlete> team;
 	private ArrayList<Athlete> reserves;
+	private ArrayList<Item> items;
 	private int difficulty;
 	private String teamName;
 	private int weeks;	
@@ -23,6 +25,7 @@ public class GameEnvironment {
 		weeks = duration;
 		team = new ArrayList<Athlete>();
 		reserves = new ArrayList<Athlete>();
+		items = new ArrayList<Item>();
 		
 	}
 	
@@ -34,6 +37,9 @@ public class GameEnvironment {
 		reserves.add(athlete);
 	}
 	
+	public void addItem(Item item) {
+		items.add(item);
+	}
 	
 	public ArrayList<Athlete> getTeam() {
 		return team;
@@ -41,6 +47,10 @@ public class GameEnvironment {
 	
 	public ArrayList<Athlete> getReserves() {
 		return reserves;
+	}
+	
+	public ArrayList<Item> getItems() {
+		return items;
 	}
 	
 	
