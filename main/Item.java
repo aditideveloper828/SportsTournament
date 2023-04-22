@@ -3,7 +3,7 @@ package main;
 public class Item implements Purchasable{
 	//change boosts to percentages?
 	//change so that attributes cannot be changed after being set
-	//change input format
+	//change input format to an array
 	String name;
 	public static int offenceBoost;
 	public static int defenceBoost;

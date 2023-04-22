@@ -26,7 +26,10 @@ public final class UserInterface {
 	    
 	    @SuppressWarnings("unused")
 		GameEnvironment game = new GameEnvironment(name, difficulty, weeks);
-	    
+		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER", 30, 60);
+		new PurchasableManager(theresaWise); //check what this is doing
+
+	    Purchase first = new Purchase("ATHLETES");
 	    //testing
 //	    int check = game.getWeeks();
 //	    System.out.println(check);

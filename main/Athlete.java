@@ -3,7 +3,7 @@ package main;
 public class Athlete implements Purchasable{
 	//add in an id system?
 	//have a check stamina class somewhere
-	//change input format
+	//change input format to an array
 	String name;
 	String nickname;
 	public static int offenceRating;
@@ -93,8 +93,8 @@ public class Athlete implements Purchasable{
 	public static void main(String[] args) {
 		
 		//Attempted to create an instance of Athlete here to experiment. Not sure where we will store the athletes... Just here?
-		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER", 30, 60);
-		System.out.println(theresaWise);
+		//Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER", 30, 60);
+		//System.out.println(theresaWise);
 	}
 
 	
