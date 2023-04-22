@@ -1,6 +1,5 @@
-import java.util.Random;
+package main;
 
-package SetUp;
 
 public class CalculateScores {
 	
