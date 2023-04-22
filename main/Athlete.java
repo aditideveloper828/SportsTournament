@@ -1,5 +1,12 @@
 package main;
 
+
+/**
+ * @author Imogen Keeling
+ *
+ */
+
+
 public class Athlete implements Purchasable{
 	//add in an id system?
 	//have a check stamina class somewhere
@@ -58,6 +65,9 @@ public class Athlete implements Purchasable{
 		return currentStamina;
 	}
 	
+	public String getPosition() {
+		return this.position;
+	}
 
 
 	public int getContractPrice() {
