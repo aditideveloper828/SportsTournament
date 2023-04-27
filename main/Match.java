@@ -14,14 +14,14 @@ public class Match {
 	
 	public static int teamTotal=0;
 	
-	public void matchSummary() {
+	public void matchSummary(GameEnvironment game) {
 		// printing the summary of the match (which athletes are playing each other)
 		int i;
-		for (i=0; i<GameEnvironment.getTeam().size(); i++) {
+		for (i=0; i<game.getTeam().size(); i++) {
 			/* Do we need to use the instance of "fight" since I have created it?
 			 * */
 			@SuppressWarnings("unused")
-			PairFight fight = new PairFight(GameEnvironment.getTeam().get(i));
+			PairFight fight = new PairFight(game.getTeam().get(i));
 		}
 			
 	}
@@ -39,4 +39,3 @@ public class Match {
 	}
 	
 }
-
