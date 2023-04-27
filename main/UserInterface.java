@@ -26,7 +26,8 @@ public final class UserInterface {
 	    
 	    @SuppressWarnings("unused")
 		GameEnvironment game = new GameEnvironment(name, difficulty, weeks);
-		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER", 30, 60);
+	    int[] stats = new int[] {8, 5, 100, 30, 60};
+		Athlete theresaWise = new Athlete("Theresa Wise", "CHASER", stats);
 		new PurchasableManager(theresaWise); //check what this is doing
 
 	    Purchase first = new Purchase("ATHLETES");

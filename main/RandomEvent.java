@@ -1,4 +1,4 @@
-package SetUp;
+package main;
 
 import java.util.*;
 
