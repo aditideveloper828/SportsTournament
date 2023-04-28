@@ -1,6 +1,4 @@
-package SetUp;
-
-import java.util.*;
+package main;
 
 /**
  * @author Imogen Keeling
@@ -8,61 +6,36 @@ import java.util.*;
  */
 
 public class Match {
-	private ArrayList<Athlete> offence;
-	private ArrayList<Athlete> defence;
-	private ArrayList<Athlete> seeker;
-	private ArrayList<Athlete> opposeOffence;
-	private ArrayList<Athlete> opposeDefence;
-	private ArrayList<Athlete> opposeSeeker;
+	/* 
+	 * Indicating whether the team has won or lost
+	 * If the team has won: matchResult() will return 1
+	 * If the team has lost: matchResult() will return 0
+	 * */
 	
-	public void addDefence(Athlete athlete) {
-		defence.add(athlete);
-	}
+	public static int teamTotal=0;
 	
-	public void addOffence(Athlete athlete) {
-		offence.add(athlete);
-	}
-	
-	public void addSeeker(Athlete athlete) {
-		seeker.add(athlete);
-	}
-	
-	public ArrayList<Athlete> getOffence() {
-		return offence;
-	}
-	
-	public ArrayList<Athlete> getDefence() {
-		return defence;
-	}
-	
-	public ArrayList<Athlete> getSeeker() {
-		return seeker;
-	}
-	
-	public ArrayList<Athlete> getOpposeOffence() {
-		return opposeOffence;
-	}
-	
-	public ArrayList<Athlete> getOpposeDefence() {
-		return opposeDefence;
-	}
-	
-	public ArrayList<Athlete> getOpposeSeeker() {
-		return opposeSeeker;
-	}
-	
-	public void matchSummary() {
+	public void matchSummary(GameEnvironment game) {
 		// printing the summary of the match (which athletes are playing each other)
 		int i;
-		for (i=0; i<3; i++) {
-			System.out.println(defence.get(i) + " is playing " + opposeOffence.get(i));
-			System.out.println(offence.get(i) + " is playing " + opposeDefence.get(i));
-			/* How do I grab the offence and defence rating of the athletes involved in this match? */
-			
+		for (i=0; i<game.getTeam().size(); i++) {
+			/* Do we need to use the instance of "fight" since I have created it?
+			 * */
+			@SuppressWarnings("unused")
+			PairFight fight = new PairFight(game.getTeam().get(i));
 		}
-		System.out.println(seeker.get(0) + " is playing " + opposeSeeker.get(0));
+			
 	}
 	
+	public static void fightWon() {
+		teamTotal += 1;
+	}
 	
+	public int matchResult() {
+		if (teamTotal >= 3) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
 	
 }
