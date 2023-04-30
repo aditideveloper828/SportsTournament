@@ -7,6 +7,8 @@ public class Athlete {
 	private int offenceRating;
 	private int defenceRating;
 	private int currentStamina = 100;
+	private double randomQuitProb = 1;
+	private boolean injury = false;
 	String position;
 	
 	public Athlete(String tempName, int oRating, int dRating, int cStamina, String chosenPosition) {
@@ -49,7 +51,23 @@ public class Athlete {
 	
 	public void staminaRefill() {
 		currentStamina = 100;
+		injury = false;
 	}
+	
+	public void injured() {
+		if (currentStamina == 0) {
+			randomQuitProb = 1.15;
+			injury = true;
+		}
+	}
+	
+	public double getRandomQuitProb() {
+		if (injury == true) {
+			return randomQuitProb += 0.15;
+		}
+		return randomQuitProb;
+	}
+	
 	
 	
 //	public static void main(String[] args) {

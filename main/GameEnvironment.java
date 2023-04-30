@@ -33,6 +33,10 @@ public class GameEnvironment {
 		team.add(athlete);
 	}
 	
+	public void removeTeamMember(Athlete athlete) {
+		team.remove(athlete);
+	}
+	
 	public void addReserve(Athlete athlete) {
 		reserves.add(athlete);
 	}
