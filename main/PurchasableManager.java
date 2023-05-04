@@ -11,23 +11,39 @@ public class PurchasableManager {
 	//need some sort of text file containing profiles and a 
 	//class that automatically creates athletes by reading from that file
 	
-	private static ArrayList<Athlete> athletes = new ArrayList<Athlete>();
-	private static ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Athlete> athletes;
+	private ArrayList<Item> items;
 	
-	public PurchasableManager(Athlete person) {
-		athletes.add(person);
+	public PurchasableManager() {
+		
+		athletes = new ArrayList<Athlete>();
+		items = new ArrayList<Item>();
+		
 	}
 	
-	public PurchasableManager(Item object) {
+	public void add(Athlete person) {
+		athletes.add(person);
+		
+	}
+	
+	public void add(Item object) {
 		items.add(object);
 	}
 	
-	public static ArrayList<Athlete> getAllAthletes() {
+	public void remove(Athlete person) {
+		athletes.remove(person);
+	}
+	
+	public void remove(Item object) {
+		items.remove(object);
+	}
+	
+	public ArrayList<Athlete> getAllAthletes() {
 		//pulls all athletes available
 		return athletes;
 	}
 	
-	public static ArrayList<Item> getAllItems() {
+	public ArrayList<Item> getAllItems() {
 		//pulls all items available
 		return items;
 	}
