@@ -8,10 +8,25 @@ package main;
  *
  */
 import java.util.Scanner;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
 //have to complete comments
 public final class UserInterface {
+	
+	
+	
+	
+	
+	private static void setUp() {
+		//make athletes and items
+		//make opposition teams
+		
+		
+	}
 
 	public static void main(String[] args) {
+		setUp();
+		
 		Scanner getBasics = new Scanner(System.in);
 
 	    System.out.println("Enter Team Name:");
@@ -27,7 +42,7 @@ public final class UserInterface {
 	    @SuppressWarnings("unused")
 		GameEnvironment game = new GameEnvironment(name, difficulty, weeks);
 	    int[] stats = new int[] {8, 5, 100, 30, 60};
-		Athlete theresaWise = new Athlete("Theresa Wise", "CHASER", stats);
+		Athlete theresaWise = new Athlete("Theresa Wise", stats);
 		new PurchasableManager(theresaWise); //check what this is doing
 
 	    Purchase first = new Purchase("ATHLETES");

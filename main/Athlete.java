@@ -23,18 +23,19 @@ public class Athlete implements Purchasable{
 	private int sellBackPrice;
 	private int probRandomEvent = 10;
 	
-	public Athlete(String tempName, String position, int[] stats) {
+	public Athlete(String tempName, int[] stats) {
 		// Constructor class to grab each detail about the athlete
 		name = tempName;
 		nickname = name;
 		offenceRating = stats[0];
 		defenceRating = stats[1];
 		currentStamina = stats[2];
-		this.position = position;
 		contractCost = stats[3];
 		sellBackPrice = stats[4];
 		
 	}
+	
+	//add setter method choosing position && change display to not include position
 	
 	public void setPosition(String position) {
 		// pulls the position of the athlete
