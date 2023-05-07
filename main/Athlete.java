@@ -122,15 +122,6 @@ public class Athlete implements Purchasable{
 		return sick;
 	}
 	
-	
-	
-	public static void main(String[] args) {
-		
-		//Attempted to create an instance of Athlete here to experiment. Not sure where we will store the athletes... Just here?
-		//int[] stats = new int[] {8, 5, 100, 30, 60};
-		//Athlete theresaWise = new Athlete("Theresa Wise", "CHASER", stats);
-		//System.out.println(theresaWise);
-	}
 
 	
 	
