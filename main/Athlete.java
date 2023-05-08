@@ -7,15 +7,16 @@ public class Athlete {
 	private int offenceRating;
 	private int defenceRating;
 	private int currentStamina = 100;
+	private double randomQuitProb = 1;
+	private boolean injury = false;
 	String position;
 	
-	public Athlete(String tempName, int oRating, int dRating, int cStamina, String chosenPosition) {
+	public Athlete(String tempName, int oRating, int dRating, int cStamina) {
 		// Constructor class to grab each detail about the athlete
 		name = tempName;
 		offenceRating = oRating;
 		defenceRating = dRating;
 		currentStamina = cStamina;
-		position = chosenPosition;
 	}
 	
 	public String getName() {
@@ -42,6 +43,10 @@ public class Athlete {
 		return position;
 	}
 	
+	public void staminaDecrease() {
+		currentStamina -= 10;
+	}
+	
 	public void statIncrease() {
 		offenceRating += 1;
 		defenceRating += 1;
@@ -49,13 +54,14 @@ public class Athlete {
 	
 	public void staminaRefill() {
 		currentStamina = 100;
+		injury = false;
 	}
 	
-	
-//	public static void main(String[] args) {
-//		
-//		//Attempted to create an instance of Athlete here to experiment. Not sure where we will store the athletes... Just here?
-//		Athlete theresaWise = new Athlete("Theresa Wise", 8, 5, 100, "CHASER");
-//	}
+	public boolean injured() {
+		if (currentStamina == 0) {
+			injury = true;
+		}
+		return injury;
+	}
 	
 }
