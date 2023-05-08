@@ -1,6 +1,5 @@
 package main;
 
-
 /**
  * @author Imogen Keeling
  *
@@ -40,25 +39,22 @@ public class Athlete implements Purchasable{
 	public void setPosition(String position) {
 		// pulls the position of the athlete
 		this.position = position;
+
 	}
 	
 	public String getName() {
 		// pulls the name of the athlete
-		return this.name;
-	}
-	
-	public void chooseNickname(String name) {
-		// sets the nickname of the athlete (if applied) given by the user
-		nickname = name;
+		return nickname;
 	}
 	
 	public int getOffence() {
-		// pulls the offense rating of the Athlete. Judged out of 100
+		// pulls the offence rating of the Athlete. Judged out of 100
+
 		return offenceRating;
 	}
 	
 	public int getDefence() {
-		// pulls the defense rating of the Athlete. Judged out of 100
+		// pulls the defence rating of the Athlete. Judged out of 100
 		return defenceRating;
 	}
 	
@@ -68,18 +64,11 @@ public class Athlete implements Purchasable{
 	}
 	
 	public String getPosition() {
-		return this.position;
-	}
-
-
-	public int getContractPrice() {
-		// pulls cost of item
-		return contractCost;
+		return position;
 	}
 	
-	public int getSellBackPrice() {
-		// pulls cost of selling item
-		return sellBackPrice;
+	public void staminaDecrease() {
+		currentStamina -= 10;
 	}
 	
 	public void changeRandEventProb(int change) {
@@ -122,7 +111,12 @@ public class Athlete implements Purchasable{
 		return sick;
 	}
 	
-
 	
+	public boolean injured() {
+		if (currentStamina == 0) {
+			injury = true;
+		}
+		return injury;
+	}
 	
 }

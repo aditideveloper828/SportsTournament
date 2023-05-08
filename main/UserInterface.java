@@ -135,7 +135,6 @@ public final class UserInterface {
 	    System.out.println("Your Final Status!!!");
 	    viewGame();
 	    
-	    
 
 	}
 
