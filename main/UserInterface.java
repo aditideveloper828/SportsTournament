@@ -123,7 +123,9 @@ public final class UserInterface {
 		    	goToMarket();
 		    }
 		    //check if you want to play match or have a buy -- then use items
-	    	Match thisWeek = new Match();
+		    //replace opteam with the chosen opposition team.
+		    OppositionTeam opteam = new OppositionTeam(market);
+	    	Match thisWeek = new Match(thisGame, opteam);
 	    	//have a random event
 	    	//find out win or loss, display results, then add money
 	    	

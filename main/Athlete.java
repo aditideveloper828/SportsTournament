@@ -16,7 +16,7 @@ public class Athlete implements Purchasable{
 	private int defenceRating;
 	private int currentStamina = 100;
 	private String position;
-	private boolean injured = false;
+	private boolean injury = false;
 	private boolean sick = false;
 	private int contractCost;
 	private int sellBackPrice;
@@ -106,6 +106,18 @@ public class Athlete implements Purchasable{
 			injury = true;
 		}
 		return injury;
+	}
+
+	@Override
+	public int getContractPrice() {
+		// TODO Auto-generated method stub
+		return contractCost;
+	}
+
+	@Override
+	public int getSellBackPrice() {
+		// TODO Auto-generated method stub
+		return sellBackPrice;
 	}
 	
 }
