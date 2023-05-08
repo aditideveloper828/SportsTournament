@@ -114,6 +114,7 @@ public final class UserInterface {
 	    while (thisGame.getWeeks() > 0) {
 	    	viewGame();
 	    	thisGame.reduceWeek();
+	    	
 	    	System.out.println("Would you like to visit the market? (y/n)");
 		    String choice = input.nextLine();
 		    choice = choice.trim();
@@ -121,14 +122,15 @@ public final class UserInterface {
 		    if (choice == "y") {
 		    	goToMarket();
 		    }
-		    
+		    //check if you want to play match or have a buy -- then use items
 	    	Match thisWeek = new Match();
 	    	//have a random event
 	    	//find out win or loss, display results, then add money
 	    	
 	    	
-	    	
 	    }
+	    
+	    
 	    play();
 	    input.close();
 	    
