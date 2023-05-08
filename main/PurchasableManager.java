@@ -22,7 +22,7 @@ public class PurchasableManager {
 		items.add(object);
 	}
 	
-	public static ArrayList<Athlete> getAllAthletes() {
+	public ArrayList<Athlete> getAllAthletes() {
 		//pulls all athletes available
 		return athletes;
 	}

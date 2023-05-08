@@ -14,6 +14,9 @@ public class PairFight {
 		if (player.getPosition() == "CHASER" || player.getPosition() == "SEEKER") {
 			if (player.getOffence() - opPlayer.getDefence() >=0) {
 				Match.fightWon();
+			} else {
+				// decreases the stamina of the player if they lose their face-off
+				player.staminaDecrease();
 			}
 		}
 	}
@@ -22,6 +25,9 @@ public class PairFight {
 		if (player.getPosition() == "BEATER") {
 			if (player.getDefence() - opPlayer.getOffence() >=0) {
 				Match.fightWon();
+			} else {
+				// decreases the stamina of the player if they lose their face-off
+				player.staminaDecrease();
 			}
 		}
 	}
