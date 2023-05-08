@@ -37,7 +37,7 @@ public class PurchasableManager {
 	public void remove(Item object) {
 		items.remove(object);
 	}
-	
+
 	public ArrayList<Athlete> getAllAthletes() {
 		//pulls all athletes available
 		return athletes;
