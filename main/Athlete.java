@@ -92,26 +92,15 @@ public class Athlete implements Purchasable{
 		return this.getDescription();
 	}
 	
-	public boolean isInjured() {
-		return injured;
+	public void statIncrease() {
+		offenceRating += 1;
+		defenceRating += 1;
 	}
-	
-	public void setInjury(boolean injury) {
-		//add in something about creating an injury (random event)?
-		injured = injury;
+
+	public void staminaRefill() {
+		currentStamina = 100;
+		injury = false;
 	}
-	
-	public void setSickness(boolean sickness) {
-		//add in something about creating a sickness (random event)?
-		sick = sickness;
-	}
-	
-	
-	public boolean isSick() {
-		return sick;
-	}
-	
-	
 	public boolean injured() {
 		if (currentStamina == 0) {
 			injury = true;
