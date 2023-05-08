@@ -11,13 +11,13 @@ public class Item implements Purchasable{
 	int contractCost;
 	int sellBackPrice;
 	
-	public Item(String itemName, int offence, int defence, int stamina, int buyCost, int sellCost) {
+	public Item(String itemName, int[] stats) {
 		name = itemName;
-		defenceBoost = defence;
-		offenceBoost = offence;
-		staminaBoost = stamina;
-		contractCost = buyCost;
-		sellBackPrice = sellCost;
+		defenceBoost = stats[0];
+		offenceBoost = stats[1];
+		staminaBoost = stats[2];
+		contractCost = stats[3];
+		sellBackPrice = stats[4];
 		
 	}
 	
