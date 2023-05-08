@@ -1,22 +1,45 @@
 package main;
 
-public class Athlete {
-	
-	String name;
-	String nickname = name;
+/**
+ * @author Imogen Keeling
+ *
+ */
+
+
+public class Athlete implements Purchasable{
+	//add in an id system?
+	//have a check stamina class somewhere
+	//change input format to an array
+	private String name;
+	private String nickname;
 	private int offenceRating;
 	private int defenceRating;
 	private int currentStamina = 100;
-	private double randomQuitProb = 1;
-	private boolean injury = false;
-	String position;
+	private String position;
+	private boolean injured = false;
+	private boolean sick = false;
+	private int contractCost;
+	private int sellBackPrice;
+	private int probRandomEvent = 10;
 	
-	public Athlete(String tempName, int oRating, int dRating, int cStamina) {
+	public Athlete(String tempName, int[] stats) {
 		// Constructor class to grab each detail about the athlete
 		name = tempName;
-		offenceRating = oRating;
-		defenceRating = dRating;
-		currentStamina = cStamina;
+		nickname = name;
+		offenceRating = stats[0];
+		defenceRating = stats[1];
+		currentStamina = stats[2];
+		contractCost = stats[3];
+		sellBackPrice = stats[4];
+		
+	}
+	
+	//add setter method choosing position && change display to not include position
+	
+	public void setPosition(String position) {
+		// pulls the position of the athlete
+		this.position = position;
+
 	}
 	
 	public String getName() {
@@ -26,6 +49,7 @@ public class Athlete {
 	
 	public int getOffence() {
 		// pulls the offence rating of the Athlete. Judged out of 100
+
 		return offenceRating;
 	}
 	
@@ -47,16 +71,36 @@ public class Athlete {
 		currentStamina -= 10;
 	}
 	
+	public void changeRandEventProb(int change) {
+		//changes probability of a random event
+		probRandomEvent += change;
+		
+	}
+	
+	public int getRandEventProb() {
+		//changes probability of a random event
+		return probRandomEvent;
+		
+	}
+	
+	public String getDescription(){
+        //returns description
+        return  "Athlete: "+name+"\nNickname: "+nickname+"\nOffence: "+offenceRating+"\nDefence: "+defenceRating+"\nPosition: "+position+" \nContract Cost: "+contractCost;
+    }
+	
+	public String toString() {
+		return this.getDescription();
+	}
+	
 	public void statIncrease() {
 		offenceRating += 1;
 		defenceRating += 1;
 	}
-	
+
 	public void staminaRefill() {
 		currentStamina = 100;
 		injury = false;
 	}
-	
 	public boolean injured() {
 		if (currentStamina == 0) {
 			injury = true;

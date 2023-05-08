@@ -16,12 +16,13 @@ public class GameEnvironment {
 	private ArrayList<Item> items;
 	private int difficulty;
 	private String teamName;
-	private int weeks;	
+	private int weeks;
+	private int balance = 100;
 	
-	//Change different types of players to team and reserves;
-	public GameEnvironment(String name, int difficulty, int duration) {
+	//add in throw errors if there are too many members in team or reserves;
+	
+	public GameEnvironment(String name, int duration) {
 		teamName = name;
-		this.difficulty = difficulty;
 		weeks = duration;
 		team = new ArrayList<Athlete>();
 		reserves = new ArrayList<Athlete>();
@@ -37,13 +38,28 @@ public class GameEnvironment {
 		team.remove(athlete);
 	}
 	
+	public void removeReserve(Athlete athlete) {
+		reserves.remove(athlete);
+	}
+	
 	public void addReserve(Athlete athlete) {
 		reserves.add(athlete);
+	}	
+	
+	
+	public void swap(Athlete activeMember, Athlete reserveMember) {
+		this.addTeamMember(reserveMember);
+		this.addReserve(activeMember);
+		this.removeTeamMember(activeMember);
+		this.removeReserve(reserveMember);
 	}
+	
+	
 	
 	public void addItem(Item item) {
 		items.add(item);
 	}
+	
 	
 	public ArrayList<Athlete> getTeam() {
 		return team;
@@ -62,6 +78,10 @@ public class GameEnvironment {
 		return difficulty;
 	}
 	
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+	
 	public int getWeeks() {
 		return weeks;
 	}
@@ -73,6 +93,43 @@ public class GameEnvironment {
 	public void reduceWeek() {
 		weeks -= 1;
 	}
+	
+	public int getBalance() {
+		return balance;
+		
+	}
+	
+	public void increaseBalance(int increase) {
+		balance += increase;
+		
+	}
+	
+	public void reduceBalance(int decrease) {
+		balance -= decrease;
+		
+	}
+
+	public void displayTeam() {
+		
+		System.out.println("Active Members: ");
+		for (int i = 0; i < team.size(); i++) {
+			System.out.println(team.get(i));
+		}
+		
+		System.out.println("Reserve Members: ");
+		for (int i = 0; i < reserves.size(); i++) {
+			System.out.println(reserves.get(i));
+		}
+		
+	}
+	
+	public void displayItems() {
+		for (int i = 0; i < items.size(); i++) {
+			System.out.println(items.get(i));
+		}
+		
+	}
+	
 	
 	
 

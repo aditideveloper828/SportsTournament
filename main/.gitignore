@@ -10,5 +10,10 @@
 /PurchasableManager.class
 /Match.class
 /RandomEvent.class
+/Club.class
+/Market.class
+/ReadFile.class
+/Reader.class
+/FileRead.class
 /PairFight.class
 /OppositionTeam.class

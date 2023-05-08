@@ -1,4 +1,5 @@
 package main;
+import java.util.*;
 
 /**
  * @author Imogen Keeling
@@ -6,11 +7,13 @@ package main;
  */
 
 public class Match {
+
 	/* 
 	 * Indicating whether the team has won or lost
 	 * If the team has won: matchResult() will return 1
 	 * If the team has lost: matchResult() will return 0
 	 * */
+
 	
 	private static int teamTotal=0;
 	
