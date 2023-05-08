@@ -47,4 +47,8 @@ public class Match {
 		}
 	}
 	
+	public int getTeamTotal() {
+		return this.teamTotal;
+	}
+	
 }

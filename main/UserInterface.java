@@ -3,7 +3,7 @@
  */
 package main;
 
-import java.util.ArrayList;
+import java.util.*;
 /**
  * @author Aditi Sharma
  *
@@ -60,6 +60,10 @@ public final class UserInterface {
 	}
 	private static void goToMarket() {
 		//make purchases / sell;
+		System.out.println("Welcome to the market");
+		Purchase athletes = new Purchase("ATHLETE", market, thisGame);
+		Purchase items = new Purchase("ITEM", market, thisGame);
+		
 	}
 	
 	
@@ -105,6 +109,7 @@ public final class UserInterface {
 	    
 	    System.out.println("Enter Diffuculty (must be 1 or 2):");
 	    int difficulty = input.nextInt();
+	    String x = input.nextLine();
 	    thisGame.setDifficulty(difficulty);
 	    
 	   
@@ -126,14 +131,16 @@ public final class UserInterface {
 		    //replace opteam with the chosen opposition team.
 		    OppositionTeam opteam = new OppositionTeam(market);
 	    	Match thisWeek = new Match(thisGame, opteam);
-	    	//have a random event
-	    	//find out win or loss, display results, then add money
-	    	
-	    	
+	    	boolean result = thisWeek.matchWon();
+	    	if (result) {
+	    		System.out.println("Congratulations! You won this weeks's match!");
+	    		thisGame.increaseBalance(50*thisWeek.getTeamTotal()); 
+	    	}
+	    	else {
+	    		System.out.println("You l0st. Better luck next time!");
+	    	}
+	    	RandomEvent event = new RandomEvent(thisGame);
 	    }
-	    
-	    
-	    play();
 	    input.close();
 	    
 	    System.out.println("Your Final Status!!!");

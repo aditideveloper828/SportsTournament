@@ -8,7 +8,7 @@ public class RandomEvent {
 	private GameEnvironment event;
 	private ArrayList<Athlete> randPlayers;
 	
-	public RandomEvent(GameEnvironment game, Athlete athlete) {
+	public RandomEvent(GameEnvironment game) {
 		event = game;
 		
 		int methodNum;

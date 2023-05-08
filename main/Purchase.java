@@ -11,8 +11,9 @@ public class Purchase {
 	
 	public Purchase(String type, PurchasableManager purchasable, GameEnvironment game) {
 		this.type = type;
-		this.displayOptions(purchasable);
 		this.purchasable = purchasable;
+		this.displayOptions(purchasable);
+		
 		this.game = game;
 			
 	}
