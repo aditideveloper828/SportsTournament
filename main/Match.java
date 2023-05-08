@@ -15,6 +15,10 @@ public class Match {
 	private ArrayList<Athlete> opposeDefence;
 	private ArrayList<Athlete> opposeSeeker;
 	
+	public Match() {
+		//empty contructor
+	}
+	
 	public void addDefence(Athlete athlete) {
 		defence.add(athlete);
 	}

@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 //have to complete comments
+///////////////add in method for taking input to avoid repeating code
 public final class UserInterface {
 	private static PurchasableManager market = new PurchasableManager();
 	private static GameEnvironment thisGame;
@@ -20,7 +21,8 @@ public final class UserInterface {
 	
 	private static void setUp() {
 		//make athletes and items
-		
+		//make athletes
+		//change this method to remove duplicate code
 		FileRead athleteFile = new FileRead("AthleteProfiles");
 		ArrayList<String> athleteProfiles = athleteFile.getData();
 		for (int i = 1; i < athleteProfiles.size(); i++) {
@@ -35,10 +37,9 @@ public final class UserInterface {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
-		
+		//making items
 		FileRead itemFile = new FileRead("ItemDetails");
 		ArrayList<String> itemDetails = itemFile.getData();
 		for (int i = 1; i < itemDetails.size(); i++) {
@@ -57,48 +58,83 @@ public final class UserInterface {
 		
 		
 	}
+	private static void goToMarket() {
+		//make purchases / sell;
+	}
+	
+	
+	
+	private static void viewGame() {
+		//view club stats;
+		
+		System.out.println("Welcome to the Club Room!");
+		System.out.println("Team Name: "+thisGame.getTeamName());
+		System.out.println("Balance: "+thisGame.getBalance());
+		System.out.println("Weeks Remaining in Season: "+thisGame.getWeeks());
+		System.out.println();
+		System.out.println("Your Team: ");
+		thisGame.displayTeam();	    
+	    System.out.println("Your Items: ");
+	    thisGame.displayItems();
+	    
+		
+	}
+	
+	
+	private static void play() {
+		
+		
+	}
 	
 
 	public static void main(String[] args) {
 		setUp();
 		
-		Scanner getBasics = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 
 	    System.out.println("Enter Team Name:");
-	    String name = getBasics.nextLine();
+	    String name = input.nextLine();
 	    
 	    System.out.println("Enter Season Duration:");
-	    int weeks = getBasics.nextInt();
+	    int weeks = input.nextInt();
+	    
+	    thisGame = new GameEnvironment(name, weeks);
+	    
+	    System.out.println("It's Time To Make Your Team!");
+	    goToMarket();
 	    
 	    System.out.println("Enter Diffuculty (must be 1 or 2):");
-	    int difficulty = getBasics.nextInt();
-	    getBasics.close();
+	    int difficulty = input.nextInt();
+	    thisGame.setDifficulty(difficulty);
 	    
-	    thisGame = new GameEnvironment(name, difficulty, weeks);
+	   
+	    System.out.println("Let's Play!");
 	    
+	    //Start playing
+	    while (thisGame.getWeeks() > 0) {
+	    	viewGame();
+	    	thisGame.reduceWeek();
+	    	System.out.println("Would you like to visit the market? (y/n)");
+		    String choice = input.nextLine();
+		    choice = choice.trim();
+		    choice = choice.toLowerCase();
+		    if (choice == "y") {
+		    	goToMarket();
+		    }
+		    
+	    	Match thisWeek = new Match();
+	    	//have a random event
+	    	//find out win or loss, display results, then add money
+	    	
+	    	
+	    	
+	    }
+	    play();
+	    input.close();
 	    
+	    System.out.println("Your Final Status!!!");
+	    viewGame();
 	    
-	    @SuppressWarnings("unused")
-		
-		Athlete theresaWise = new Athlete("Theresa Wise",new int[] {8, 5, 100, 30, 60});
-		PurchasableManager purchasable = new PurchasableManager();
-		purchasable.add(theresaWise);
-		//check what this is doing
-	    Purchase first = new Purchase("ATHLETES", purchasable);
-	    
-	    //testing
-//	    int check = game.getWeeks();
-//	    System.out.println(check);
-//	    game.reduceWeek();
-//	    check = game.getWeeks();
-//	    System.out.println(check);
-//	    System.out.println(game.getDifficulty());
-//	    System.out.println(game.getTeamName());
-	    
-	    
-	    //Figure out how to select team;
-
-	    // Figure out how to start a game
 	    
 
 	}
