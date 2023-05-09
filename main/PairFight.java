@@ -10,10 +10,10 @@ public class PairFight {
 		opPlayer = opAthlete;
 	}
 	
-	public void playOffence(GameEnvironment game) {
+	public void playOffence(GameEnvironment game, Match match) {
 		if (player.getPosition() == "CHASER" || player.getPosition() == "SEEKER") {
 			if (player.getOffence() - opPlayer.getDefence() >=0) {
-				Match.fightWon();
+				match.fightWon();
 			} else {
 				// decreases the stamina of the player if they lose their face-off
 				player.staminaDecrease();
@@ -21,10 +21,10 @@ public class PairFight {
 		}
 	}
 	
-	public void playDefence(GameEnvironment game) {
+	public void playDefence(GameEnvironment game, Match match) {
 		if (player.getPosition() == "BEATER") {
 			if (player.getDefence() - opPlayer.getOffence() >=0) {
-				Match.fightWon();
+				match.fightWon();
 			} else {
 				// decreases the stamina of the player if they lose their face-off
 				player.staminaDecrease();
