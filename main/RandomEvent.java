@@ -8,7 +8,7 @@ public class RandomEvent {
 	private GameEnvironment event;
 	private ArrayList<Athlete> randPlayers;
 	
-	public RandomEvent(GameEnvironment game, Athlete athlete) {
+	public RandomEvent(GameEnvironment game) {
 		event = game;
 		
 		int methodNum;
@@ -26,14 +26,7 @@ public class RandomEvent {
 		}
 	}
 	
-	public void randomArray() {
-		randPlayers.add(new Athlete("name0",new int[] {8,5,100}));
-		randPlayers.add(new Athlete("name1",new int[] {5,6,100}));
-		randPlayers.add(new Athlete("name2",new int[] {9,2,100}));
-		randPlayers.add(new Athlete("name3",new int[] {1,8,100}));
-		randPlayers.add(new Athlete("name4",new int[] {4,5,100}));
-		randPlayers.add(new Athlete("name5",new int[] {3,9,100}));
-	}
+// create a method to pull from the freeAthletes database for random new players
 	
 	private Athlete selectAthlete() {
 		Random randIdx = new Random();
