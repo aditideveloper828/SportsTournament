@@ -27,7 +27,9 @@ public final class UserInterface {
 		ArrayList<String> athleteProfiles = athleteFile.getData();
 		for (int i = 1; i < athleteProfiles.size(); i++) {
 			String[] characterData = athleteProfiles.get(i).split(";",0);
+//			System.out.println(characterData);
 			int [] stats = new int[5];
+			// System.out.println(i);
 			for (int j = 0; j < 5; j++){
 				stats[j] = 	 Integer.parseInt(characterData[j+2]);
 			}
@@ -90,6 +92,38 @@ public final class UserInterface {
 		
 	}
 	
+	
+	public static void chooseOpTeam() {
+		OppositionTeam team1 = new OppositionTeam(market, "Team 1");
+		OppositionTeam team2 = new OppositionTeam(market, "Team 2");
+		OppositionTeam team3 = new OppositionTeam(market, "Team 3");
+		
+		Scanner input2 = new Scanner(System.in);
+		
+		// insert a dropdown here for selecting a team
+		System.out.println("Choose your opponent:");
+		System.out.println(team1.getOpTeamName());
+		System.out.println(team2.getOpTeamName());
+		System.out.println(team3.getOpTeamName());
+		System.out.println("Take a BYE"); 
+	    String opTeamSelect = input2.nextLine();
+	    
+	    // currently just calling team2, but will change to a dropdown select with GUI
+	    Match newMatch = new Match(thisGame, team2);
+	}
+		
+		// create 3 opTeams in UserInterface
+			// Ask who to play (e.g team1, team2, etc.)
+			// Create, display, ask, OR bye?
+			// if play, make a new instance of match
+		
+		private void byeWeek() {
+			// show items available to use while the team is resting
+			thisGame.displayItems();
+			thisGame.teamStaminaRefill();
+			thisGame.reduceWeek();
+		}
+	
 
 	public static void main(String[] args) {
 		setUp();
@@ -100,6 +134,7 @@ public final class UserInterface {
 	    String name = input.nextLine();
 	    
 	    System.out.println("Enter Season Duration:");
+	    // insert a number select or slider here to reduce potential for errors
 	    int weeks = input.nextInt();
 	    
 	    thisGame = new GameEnvironment(name, weeks);
@@ -111,6 +146,9 @@ public final class UserInterface {
 	    int difficulty = input.nextInt();
 	    String x = input.nextLine();
 	    thisGame.setDifficulty(difficulty);
+	    
+	    
+	    chooseOpTeam();
 	    
 	   
 	    System.out.println("Let's Play!");
@@ -127,6 +165,7 @@ public final class UserInterface {
 		    if (choice == "y") {
 		    	goToMarket();
 		    }
+
 		    //check if you want to play match or have a buy -- then use items
 		    //replace opteam with the chosen opposition team.
 		    OppositionTeam opteam = new OppositionTeam(market);
@@ -140,6 +179,13 @@ public final class UserInterface {
 	    		System.out.println("You lost. Better luck next time!");
 	    	}
 	    	RandomEvent event = new RandomEvent(thisGame);
+
+		    
+//	    	Match thisWeek = new Match(thisGame);
+	    	//have a random event
+	    	//find out win or loss, display results, then add money
+	    	
+	    // change so includes byes and opposing teams
 	    }
 	    input.close();
 	    

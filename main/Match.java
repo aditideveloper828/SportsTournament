@@ -13,15 +13,12 @@ public class Match {
 	 * If the team has won: matchResult() will return 1
 	 * If the team has lost: matchResult() will return 0
 	 * */
-
 	
 	private int teamTotal=0;
 	public Match(GameEnvironment game, OppositionTeam opposition) {
 		matchSummary(game, opposition);
 
 	}
-	
-	
 	
 	public void matchSummary(GameEnvironment game, OppositionTeam opposition) {
 		// printing the summary of the match (which athletes are playing each other)

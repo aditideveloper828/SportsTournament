@@ -17,7 +17,6 @@ public class Athlete implements Purchasable{
 	private int currentStamina = 100;
 	private String position;
 	private boolean injury = false;
-	private boolean sick = false;
 	private int contractCost;
 	private int sellBackPrice;
 	private int probRandomEvent = 10;
@@ -66,6 +65,8 @@ public class Athlete implements Purchasable{
 	public String getPosition() {
 		return position;
 	}
+	
+
 	
 	public void staminaDecrease() {
 		currentStamina -= 10;

@@ -94,6 +94,13 @@ public class GameEnvironment {
 		weeks -= 1;
 	}
 	
+	public void teamStaminaRefill() {
+		int i;
+		for (i=0; i <= team.size(); i++) {
+			team.get(i).staminaRefill();
+		}
+	}
+	
 	public int getBalance() {
 		return balance;
 		
