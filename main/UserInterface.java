@@ -137,7 +137,7 @@ public final class UserInterface {
 	    		thisGame.increaseBalance(50*thisWeek.getTeamTotal()); 
 	    	}
 	    	else {
-	    		System.out.println("You l0st. Better luck next time!");
+	    		System.out.println("You lost. Better luck next time!");
 	    	}
 	    	RandomEvent event = new RandomEvent(thisGame);
 	    }
