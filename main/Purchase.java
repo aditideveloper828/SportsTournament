@@ -20,7 +20,7 @@ public class Purchase {
 	
 	public void displayOptions(PurchasableManager purchasable) {
 		System.out.println("These are your options:");
-		if (type == "ATHLETES") {
+		if (type == "ATHLETE") {
 			ArrayList<Athlete> athletes = purchasable.getAllAthletes();
 			for (int i = 0; i < athletes.size(); i++){
 				System.out.println(athletes.get(i));
