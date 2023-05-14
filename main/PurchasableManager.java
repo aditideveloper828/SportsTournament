@@ -9,6 +9,10 @@ import java.util.Random;
  *
  */
 public class PurchasableManager extends IncorrectInput {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Athlete> athletes;
 	private ArrayList<Item> items;
 	private int availableAthletes = 0;
