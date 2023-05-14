@@ -22,11 +22,11 @@ public class Athlete implements Purchasable{
 	
 	public Athlete(String tempName, int[] stats) {
 		// Constructor class to grab each detail about the athlete
+		///if there's time, remove current stamina from athlete profiles.
 		name = tempName;
 		nickname = name;
 		offenceRating = stats[0];
 		defenceRating = stats[1];
-		currentStamina = stats[2];
 		contractCost = stats[3];
 		sellBackPrice = stats[4];
 		
@@ -87,11 +87,11 @@ public class Athlete implements Purchasable{
 	public void statIncrease() {
 		offenceRating += 1;
 		defenceRating += 1;
-		if (offenceRating > 100){
-			offenceRating = 100;
+		if (offenceRating > 10){
+			offenceRating = 10;
 		}
-		if (defenceRating > 100){
-			defenceRating = 100;
+		if (defenceRating > 10){
+			defenceRating = 10;
 		}
 	}
 

@@ -8,8 +8,6 @@ package main;
  *
  */
 import java.util.*;
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
 //have to complete comments
 ///////////////add in method for taking input to avoid repeating code
 public final class UserInterface {
@@ -20,8 +18,7 @@ public final class UserInterface {
 	
 	
 	private static void setUp() {
-		//make athletes and items
-		//make athletes
+		//Move this to game environment
 		//change this method to remove duplicate code
 		FileRead athleteFile = new FileRead("AthleteProfiles");
 		ArrayList<String> athleteProfiles = athleteFile.getData();
@@ -62,6 +59,7 @@ public final class UserInterface {
 	}
 	private static void goToMarket() {
 		//make purchases / sell;
+		//
 		System.out.println("Welcome to the market");
 		Purchase athletes = new Purchase("ATHLETE", market, thisGame);
 		Purchase items = new Purchase("ITEM", market, thisGame);
@@ -86,44 +84,6 @@ public final class UserInterface {
 		
 	}
 	
-	
-	public static boolean chooseOpTeam() {
-		OppositionTeam team1 = new OppositionTeam(market, "Team 1");
-		OppositionTeam team2 = new OppositionTeam(market, "Team 2");
-		OppositionTeam team3 = new OppositionTeam(market, "Team 3");
-		
-		Scanner input2 = new Scanner(System.in);
-		
-		// insert a dropdown here for selecting a team
-		System.out.println("Choose your opponent:");
-		System.out.println(team1.getOpTeamName());
-		System.out.println(team2.getOpTeamName());
-		System.out.println(team3.getOpTeamName());
-		System.out.println("Take a BYE"); 
-	    String opTeamSelect = input2.nextLine();
-	    
-	    // currently just calling team2, but will change to a dropdown select with GUI
-	    if (opTeamSelect != "BYE" && thisGame.getTeam().size() == 7){
-	    	if (opTeamSelect == team1.getOpTeamName()) {
-	    		thisMatch = new Match(thisGame, team1);
-	    		
-	    	}
-	    	else if (opTeamSelect == team2.getOpTeamName()){
-	    		thisMatch = new Match(thisGame, team2);
-	    	}
-	    	else {
-	    		thisMatch = new Match(thisGame, team3);
-	    	}
-	    	
-	    	return true;	
-	    }
-	    byeWeek();
-	    return false;
-	    
-	    
-	    
-	}
-		
 	private static void byeWeek() {
 		// show items available to use while the team is resting
 		thisGame.displayItems();
@@ -132,7 +92,61 @@ public final class UserInterface {
 	}
 	
 
-	public static void main(String[] args) {
+	
+	
+	public static boolean chooseOpTeam() throws IncorrectInput {
+		OppositionTeam team1 = new OppositionTeam(market, "Team 1");
+		OppositionTeam team2 = new OppositionTeam(market, "Team 2");
+		OppositionTeam team3 = new OppositionTeam(market, "Team 3");
+		
+		Scanner chosingOpposition = new Scanner(System.in);
+		
+		// insert a dropdown here for selecting a team
+		System.out.println("Choose your opponent: (enter in number)");
+		System.out.println("1 " + team1.getOpTeamName());
+		System.out.println("2 " + team2.getOpTeamName());
+		System.out.println("3 " + team3.getOpTeamName());
+		System.out.println("4 OR Take a BYE"); 
+		
+		int opTeamSelect = 4;
+		
+		
+		try {
+			opTeamSelect = chosingOpposition.nextInt();
+		}
+		catch (Exception e){
+			System.out.println(e);
+			
+		}
+		
+		chosingOpposition.close();
+		boolean cannotPlay = false;
+	    if (thisGame.getTeam().size() < 7){
+	    	cannotPlay = true;
+	    	
+	    }
+	    if (cannotPlay || opTeamSelect == 4) {
+	    	///add in check if game needs to end due to low balance
+	    	byeWeek();
+	    	return false;
+	    }
+    	if (opTeamSelect == 1) {
+    		thisMatch = new Match(thisGame, team1);
+    		
+    	}
+    	else if (opTeamSelect == 2){
+    		thisMatch = new Match(thisGame, team2);
+    	}
+    	else {
+    		thisMatch = new Match(thisGame, team3);
+    	}
+	    	
+    	return true;	
+
+	}
+		
+	
+	public static void main(String[] args) throws IncorrectInput {
 		setUp();
 		
 		Scanner input = new Scanner(System.in);
@@ -140,19 +154,34 @@ public final class UserInterface {
 	    System.out.println("Enter Team Name:");
 	    String name = input.nextLine();
 	    
-	    System.out.println("Enter Season Duration:");
 	    // insert a number select or slider here to reduce potential for errors
-	    int weeks = input.nextInt();
+	    System.out.println("Enter duration of game (weeks): ");
+	    int weeks = 0;
+	    try {
+	    	weeks = input.nextInt();
+	    }
+	    catch (Exception e) {
+	    	System.out.println(e);
+	    	System.exit(0);
+	    }
 	    
 	    thisGame = new GameEnvironment(name, weeks);
 	    
-	    System.out.println("It's Time To Make Your Team!");
-	    goToMarket();
 	    
 	    System.out.println("Enter Diffuculty (must be 1 or 2):");
 	    int difficulty = input.nextInt();
 	    String x = input.nextLine();
+	    if (difficulty < 1 || difficulty > 2) {
+	    	input.close();
+	    	throw new IncorrectInput("You did not enter a valid difficulty value");
+	    }
+	    
+	    
 	    thisGame.setDifficulty(difficulty);
+	    
+	    
+	    System.out.println("It's Time To Make Your Team!");
+	    goToMarket();
 	   
 	    System.out.println("Let's Play!");
 	    
@@ -172,7 +201,6 @@ public final class UserInterface {
 		    //check if you want to play match or have a buy -- then use items
 		    //replace opteam with the chosen opposition team.
 		    boolean playedGame = chooseOpTeam();
-		    Random randInt = new Random();
 		    if (playedGame) {
 		    	boolean result = thisMatch.matchWon();
 		    	if (result) {
@@ -185,7 +213,6 @@ public final class UserInterface {
 		    	
 		    	
 		    }
-	    	
 			Random randomEvent = new Random();
 			int eventOccurs = randomEvent.nextInt(100);
 			if (eventOccurs < 100/thisGame.getDifficulty()) {
