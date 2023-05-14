@@ -18,6 +18,7 @@ public class GameEnvironment {
 	private String teamName;
 	private int weeks;
 	private int balance = 100;
+	private int points = 0;
 	
 	//add in throw errors if there are too many members in team or reserves;
 	
@@ -44,7 +45,16 @@ public class GameEnvironment {
 	
 	public void addReserve(Athlete athlete) {
 		reserves.add(athlete);
-	}	
+	}
+	
+	public void increasePoints(int addition) {
+		points += addition;
+	}
+	
+	public int getPoints() {
+		return points;
+		
+	}
 	
 	
 	public void swap(Athlete activeMember, Athlete reserveMember) {

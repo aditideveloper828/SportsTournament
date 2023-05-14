@@ -48,7 +48,6 @@ public class Athlete implements Purchasable{
 	
 	public int getOffence() {
 		// pulls the offence rating of the Athlete. Judged out of 100
-
 		return offenceRating;
 	}
 	

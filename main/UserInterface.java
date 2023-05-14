@@ -3,12 +3,11 @@
  */
 package main;
 
-import java.util.*;
 /**
  * @author Aditi Sharma
  *
  */
-import java.util.Scanner;
+import java.util.*;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 //have to complete comments
@@ -16,6 +15,7 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 public final class UserInterface {
 	private static PurchasableManager market = new PurchasableManager();
 	private static GameEnvironment thisGame;
+	private static Match thisMatch;
 	
 	
 	
@@ -87,13 +87,7 @@ public final class UserInterface {
 	}
 	
 	
-	private static void play() {
-		
-		
-	}
-	
-	
-	public static void chooseOpTeam() {
+	public static boolean chooseOpTeam() {
 		OppositionTeam team1 = new OppositionTeam(market, "Team 1");
 		OppositionTeam team2 = new OppositionTeam(market, "Team 2");
 		OppositionTeam team3 = new OppositionTeam(market, "Team 3");
@@ -109,20 +103,33 @@ public final class UserInterface {
 	    String opTeamSelect = input2.nextLine();
 	    
 	    // currently just calling team2, but will change to a dropdown select with GUI
-	    Match newMatch = new Match(thisGame, team2);
+	    if (opTeamSelect != "BYE"){
+	    	if (opTeamSelect == team1.getOpTeamName()) {
+	    		thisMatch = new Match(thisGame, team1);
+	    		
+	    	}
+	    	else if (opTeamSelect == team2.getOpTeamName()){
+	    		thisMatch = new Match(thisGame, team2);
+	    	}
+	    	else {
+	    		thisMatch = new Match(thisGame, team3);
+	    	}
+	    	
+	    	return true;	
+	    }
+	    byeWeek();
+	    return false;
+	    
+	    
+	    
 	}
 		
-		// create 3 opTeams in UserInterface
-			// Ask who to play (e.g team1, team2, etc.)
-			// Create, display, ask, OR bye?
-			// if play, make a new instance of match
-		
-		private void byeWeek() {
-			// show items available to use while the team is resting
-			thisGame.displayItems();
-			thisGame.teamStaminaRefill();
-			thisGame.reduceWeek();
-		}
+	private static void byeWeek() {
+		// show items available to use while the team is resting
+		thisGame.displayItems();
+		thisGame.teamStaminaRefill();
+		thisGame.reduceWeek();
+	}
 	
 
 	public static void main(String[] args) {
@@ -146,10 +153,6 @@ public final class UserInterface {
 	    int difficulty = input.nextInt();
 	    String x = input.nextLine();
 	    thisGame.setDifficulty(difficulty);
-	    
-	    
-	    chooseOpTeam();
-	    
 	   
 	    System.out.println("Let's Play!");
 	    
@@ -160,9 +163,9 @@ public final class UserInterface {
 	    	
 	    	System.out.println("Would you like to visit the market? (y/n)");
 		    String choice = input.nextLine();
-		    choice = choice.trim();
-		    choice = choice.toLowerCase();
-		    if (choice == "y") {
+		    choice = choice.toUpperCase();
+		    if (choice == "Y") {
+		    	//This check is not currently working
 		    	goToMarket();
 		    }
 
@@ -183,6 +186,26 @@ public final class UserInterface {
 		    
 //	    	Match thisWeek = new Match(thisGame);
 	    	//have a random event
+		    boolean playedGame = chooseOpTeam();
+		    Random randInt = new Random();
+		    if (playedGame) {
+		    	boolean result = thisMatch.matchWon();
+		    	if (result) {
+		    		System.out.println("Congratulations! You won this weeks's match!");
+		    		thisGame.increaseBalance(50*thisMatch.getTeamTotal()/thisGame.getDifficulty()); 
+		    	}
+		    	else {
+		    		System.out.println("You lost. Better luck next time!");
+		    	}
+		    	
+		    	
+		    }
+	    	
+			Random randomEvent = new Random();
+			int eventOccurs = randomEvent.nextInt(100);
+			if (eventOccurs < 100/thisGame.getDifficulty()) {
+				RandomEvent event = new RandomEvent(thisGame);
+			}
 	    	//find out win or loss, display results, then add money
 	    	
 	    // change so includes byes and opposing teams
