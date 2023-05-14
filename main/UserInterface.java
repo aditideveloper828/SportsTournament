@@ -169,7 +169,7 @@ public final class UserInterface {
 		    //check if you want to play match or have a buy -- then use items
 		    //replace opteam with the chosen opposition team.
 		    OppositionTeam opteam = new OppositionTeam(market);
-	    	Match thisWeek = new Match(thisGame, opteam);
+	    	Match thisWeek = new Match(thisGame, opTeam);
 	    	boolean result = thisWeek.matchWon();
 	    	if (result) {
 	    		System.out.println("Congratulations! You won this weeks's match!");
