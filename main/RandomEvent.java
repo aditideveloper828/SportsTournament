@@ -3,6 +3,7 @@ package main;
 import java.util.*;
 
 public class RandomEvent {
+	//change so chances of new athlete and athlete quits are low and are affected by current status.
 	
 	private int athleteIdx;
 	private GameEnvironment event;
@@ -29,6 +30,7 @@ public class RandomEvent {
 // create a method to pull from the freeAthletes database for random new players
 	
 	private Athlete selectAthlete() {
+		//why only picking from the first 7 athletes???????????????
 		Random randIdx = new Random();
 		athleteIdx = randIdx.nextInt(7);
 		return event.getTeam().get(athleteIdx);

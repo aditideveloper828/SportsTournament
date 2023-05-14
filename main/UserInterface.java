@@ -103,7 +103,7 @@ public final class UserInterface {
 	    String opTeamSelect = input2.nextLine();
 	    
 	    // currently just calling team2, but will change to a dropdown select with GUI
-	    if (opTeamSelect != "BYE"){
+	    if (opTeamSelect != "BYE" && thisGame.getTeam().size() == 7){
 	    	if (opTeamSelect == team1.getOpTeamName()) {
 	    		thisMatch = new Match(thisGame, team1);
 	    		
