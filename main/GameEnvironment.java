@@ -45,7 +45,16 @@ public class GameEnvironment {
 	
 	public void addReserve(Athlete athlete) {
 		reserves.add(athlete);
-	}	
+	}
+	
+	public void increasePoints(int addition) {
+		points += addition;
+	}
+	
+	public int getPoints() {
+		return points;
+		
+	}
 	
 	
 	public void swap(Athlete activeMember, Athlete reserveMember) {

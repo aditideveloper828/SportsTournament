@@ -3,12 +3,11 @@
  */
 package main;
 
-import java.util.*;
 /**
  * @author Aditi Sharma
  *
  */
-import java.util.Scanner;
+import java.util.*;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 //have to complete comments
@@ -173,23 +172,26 @@ public final class UserInterface {
 		    //check if you want to play match or have a buy -- then use items
 		    //replace opteam with the chosen opposition team.
 		    boolean playedGame = chooseOpTeam();
+		    Random randInt = new Random();
 		    if (playedGame) {
 		    	boolean result = thisMatch.matchWon();
 		    	if (result) {
 		    		System.out.println("Congratulations! You won this weeks's match!");
-		    		thisGame.increaseBalance(50*thisMatch.getTeamTotal()); 
+		    		thisGame.increaseBalance(50*thisMatch.getTeamTotal()/thisGame.getDifficulty()); 
 		    	}
 		    	else {
 		    		System.out.println("You lost. Better luck next time!");
 		    	}
 		    	
+		    	
 		    }
 	    	
-	    	RandomEvent event = new RandomEvent(thisGame);
-
-		    
-//	    	Match thisWeek = new Match(thisGame);
-	    	//have a random event
+			Random randomEvent = new Random();
+			int eventOccurs = randomEvent.nextInt(100);
+			if (eventOccurs < 100/thisGame.getDifficulty()) {
+				RandomEvent event = new RandomEvent(thisGame);
+			}
+	    	
 	    	//find out win or loss, display results, then add money
 	    	
 	    // change so includes byes and opposing teams
