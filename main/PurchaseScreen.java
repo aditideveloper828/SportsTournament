@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -19,31 +17,17 @@ import java.lang.invoke.MethodHandles.Lookup.ClassOption;
 public class PurchaseScreen {
 
 	private JFrame frame;
-	
+	private static ScreenManager manager;
 	private PurchasableManager freeAthletes;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PurchaseScreen window = new PurchaseScreen();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public PurchaseScreen(PurchasableManager data) {
+	public PurchaseScreen(PurchasableManager data, ScreenManager incomingManager) {
 		freeAthletes = data;
+		manager = incomingManager;
 		initialize();
+		frame.setVisible(true);
 		
 	}
 
@@ -52,54 +36,58 @@ public class PurchaseScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel marketTitle = new JLabel("Market");
-		marketTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		marketTitle.setBounds(278, 6, 122, 40);
+		marketTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		marketTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		marketTitle.setBounds(168, 6, 105, 25);
 		frame.getContentPane().add(marketTitle);
 		
 		JLabel welcomeMarketMsg2 = new JLabel("Here, you can buy and sell Athletes, and purchase power-up items for your team!");
-		welcomeMarketMsg2.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-		welcomeMarketMsg2.setBounds(6, 30, 438, 16);
+		welcomeMarketMsg2.setBounds(81, 58, 519, 16);
+		welcomeMarketMsg2.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		frame.getContentPane().add(welcomeMarketMsg2);
 		
 		JComboBox buyAthleteDropdown = new JComboBox();
-		buyAthleteDropdown.setBounds(16, 80, 141, 27);
+		buyAthleteDropdown.setBounds(42, 167, 199, 33);
 		frame.getContentPane().add(buyAthleteDropdown);
 		
 		JLabel buyAthleteLbl = new JLabel("Athletes on the Market...");
-		buyAthleteLbl.setBounds(16, 53, 163, 16);
+		buyAthleteLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		buyAthleteLbl.setBounds(42, 138, 215, 17);
 		frame.getContentPane().add(buyAthleteLbl);
 		
 		JButton buyAthleteBtn = new JButton("Buy Athlete!");
-		buyAthleteBtn.setBounds(16, 237, 117, 29);
+		buyAthleteBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		buyAthleteBtn.setBounds(69, 402, 142, 40);
 		frame.getContentPane().add(buyAthleteBtn);
 		
 		JTextPane athleteDetailTxt = new JTextPane();
+		athleteDetailTxt.setBounds(42, 219, 199, 152);
 		athleteDetailTxt.setText("Athlete details here");
-		athleteDetailTxt.setBounds(16, 119, 141, 105);
 		frame.getContentPane().add(athleteDetailTxt);
 		
 		JLabel itemMarketLbl = new JLabel("Items to buy...");
-		itemMarketLbl.setBounds(268, 53, 117, 16);
+		itemMarketLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		itemMarketLbl.setBounds(435, 136, 117, 20);
 		frame.getContentPane().add(itemMarketLbl);
 		
 		JComboBox buyItemsDropdown = new JComboBox();
+		buyItemsDropdown.setBounds(435, 163, 199, 40);
 		buyItemsDropdown.setToolTipText("");
-		buyItemsDropdown.setBounds(268, 80, 141, 27);
 		frame.getContentPane().add(buyItemsDropdown);
 		
 		JTextPane itemDetailTxt = new JTextPane();
+		itemDetailTxt.setBounds(435, 219, 199, 152);
 		itemDetailTxt.setText("item description here");
-		itemDetailTxt.setBounds(268, 119, 141, 105);
 		frame.getContentPane().add(itemDetailTxt);
 		
 		JButton buyItemBtn = new JButton("Buy Item!");
-		buyItemBtn.setBounds(278, 237, 117, 29);
+		buyItemBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		buyItemBtn.setBounds(466, 402, 130, 40);
 		frame.getContentPane().add(buyItemBtn);
 		
 	}

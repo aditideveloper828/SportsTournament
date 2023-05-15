@@ -171,7 +171,7 @@ public final class UserInterface {
 
 		    //check if you want to play match or have a buy -- then use items
 		    //replace opteam with the chosen opposition team.
-		    OppositionTeam opteam = new OppositionTeam(market);
+		    OppositionTeam opTeam = new OppositionTeam(market, "randomTeam");
 	    	Match thisWeek = new Match(thisGame, opTeam);
 	    	boolean result = thisWeek.matchWon();
 	    	if (result) {
@@ -189,8 +189,8 @@ public final class UserInterface {
 		    boolean playedGame = chooseOpTeam();
 		    Random randInt = new Random();
 		    if (playedGame) {
-		    	boolean result = thisMatch.matchWon();
-		    	if (result) {
+		    	boolean result1 = thisMatch.matchWon();
+		    	if (result1) {
 		    		System.out.println("Congratulations! You won this weeks's match!");
 		    		thisGame.increaseBalance(50*thisMatch.getTeamTotal()/thisGame.getDifficulty()); 
 		    	}
@@ -204,7 +204,7 @@ public final class UserInterface {
 			Random randomEvent = new Random();
 			int eventOccurs = randomEvent.nextInt(100);
 			if (eventOccurs < 100/thisGame.getDifficulty()) {
-				RandomEvent event = new RandomEvent(thisGame);
+				RandomEvent event1 = new RandomEvent(thisGame);
 			}
 	    	//find out win or loss, display results, then add money
 	    	
