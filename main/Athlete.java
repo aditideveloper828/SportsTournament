@@ -19,15 +19,14 @@ public class Athlete implements Purchasable{
 	private boolean injury = false;
 	private int contractCost;
 	private int sellBackPrice;
-	private int probRandomEvent = 10;
 	
 	public Athlete(String tempName, int[] stats) {
 		// Constructor class to grab each detail about the athlete
+		///if there's time, remove current stamina from athlete profiles.
 		name = tempName;
 		nickname = name;
 		offenceRating = stats[0];
 		defenceRating = stats[1];
-		currentStamina = stats[2];
 		contractCost = stats[3];
 		sellBackPrice = stats[4];
 		
@@ -44,6 +43,10 @@ public class Athlete implements Purchasable{
 	public String getName() {
 		// pulls the name of the athlete
 		return nickname;
+	}
+	
+	public void setNickname(String name) {
+		nickname = name;
 	}
 	
 	public int getOffence() {
@@ -69,17 +72,6 @@ public class Athlete implements Purchasable{
 	
 	public void staminaDecrease() {
 		currentStamina -= 10;
-	}
-	
-	public void changeRandEventProb(int change) {
-		//changes probability of a random event
-		probRandomEvent += change;
-		
-	}
-	
-	public int getRandEventProb() {
-		//changes probability of a random event
-		return probRandomEvent;
 		
 	}
 	
@@ -95,6 +87,12 @@ public class Athlete implements Purchasable{
 	public void statIncrease() {
 		offenceRating += 1;
 		defenceRating += 1;
+		if (offenceRating > 10){
+			offenceRating = 10;
+		}
+		if (defenceRating > 10){
+			defenceRating = 10;
+		}
 	}
 
 	public void staminaRefill() {

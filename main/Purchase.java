@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Purchase {
 	//return what?
-	//make purchasable manager superclass
 	//add in try and except around if statements
 	private String type;
 	private PurchasableManager purchasable;
