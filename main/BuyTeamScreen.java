@@ -13,32 +13,41 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class BuyTeam {
+public class BuyTeamScreen {
 
 	private JFrame frame;
 	private static PurchasableManager athletes;
-	private ArrayList<Athlete> freeAthletes = athletes.getAllAthletes();
+//	private ArrayList<Athlete> freeAthletes = athletes.getAllAthletes();
+	private static ScreenManager manager;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuyTeam window = new BuyTeam(athletes);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					BuyTeamScreen window = new BuyTeamScreen(athletes, manager);
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	
 	
 	/**
 	 * Create the application.
 	 */
-	public BuyTeam(PurchasableManager data) {
+	public BuyTeamScreen(PurchasableManager data, ScreenManager incomingManager) {
 		athletes = data;
+		manager = incomingManager;
 		initialize();
+		frame.setVisible(true);
+		
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
 	}
 
 	/**
@@ -150,13 +159,13 @@ public class BuyTeam {
 		selectAthleteDrpdwn.setToolTipText("");
 		selectAthleteDrpdwn.setModel(new DefaultComboBoxModel(new String[] {"Select Athlete..."}));
 		
-		for (int i=0; i<athletes.getAllAthletes().size(); i++) {
-			// Adding the name of the Athlete and their contract price to the dropdown
-			selectAthleteDrpdwn.addItem(freeAthletes.get(i).getName()+ " " + freeAthletes.get(i).getContractPrice());
-		}
+//		for (int i=0; i<athletes.getAllAthletes().size(); i++) {
+//			// Adding the name of the Athlete and their contract price to the dropdown
+//			selectAthleteDrpdwn.addItem(freeAthletes.get(i).getName()+ " " + freeAthletes.get(i).getContractPrice());
+//		}
 		selectAthleteDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		selectAthleteDrpdwn.setMaximumRowCount(20);
-		selectAthleteDrpdwn.setBounds(38, 97, 290, 36);
+		selectAthleteDrpdwn.setBounds(41, 122, 290, 36);
 		frame.getContentPane().add(selectAthleteDrpdwn);
 		
 		JLabel priceLbl = new JLabel("Total Cost: $");
@@ -164,13 +173,22 @@ public class BuyTeam {
 		priceLbl.setBounds(488, 410, 117, 27);
 		frame.getContentPane().add(priceLbl);
 		
-		JLabel totalCostCalcLbl = new JLabel("0");
-		totalCostCalcLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		totalCostCalcLbl.setBounds(591, 410, 61, 27);
-		frame.getContentPane().add(totalCostCalcLbl);
-		
 		JButton purchaseTeamBtn = new JButton("Purchase Team!");
+		purchaseTeamBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
 		purchaseTeamBtn.setBounds(475, 437, 142, 29);
 		frame.getContentPane().add(purchaseTeamBtn);
+		
+		JLabel initialBalanceLbl = new JLabel("Starting Balance: $750");
+		initialBalanceLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		initialBalanceLbl.setBounds(50, 97, 178, 27);
+		frame.getContentPane().add(initialBalanceLbl);
+	}
+	
+	public void finishedWindow() {
+		manager.closeBuyTeamScreen(this);
 	}
 }

@@ -95,9 +95,9 @@ public final class UserInterface {
 	
 	
 	public static boolean chooseOpTeam() throws IncorrectInput {
-		OppositionTeam team1 = new OppositionTeam(market, "Team 1");
-		OppositionTeam team2 = new OppositionTeam(market, "Team 2");
-		OppositionTeam team3 = new OppositionTeam(market, "Team 3");
+		OppositionTeam team1 = new OppositionTeam(market);
+		OppositionTeam team2 = new OppositionTeam(market);
+		OppositionTeam team3 = new OppositionTeam(market);
 		
 		Scanner chosingOpposition = new Scanner(System.in);
 		
@@ -200,7 +200,7 @@ public final class UserInterface {
 
 		    //check if you want to play match or have a buy -- then use items
 		    //replace opteam with the chosen opposition team.
-		    OppositionTeam opTeam = new OppositionTeam(market, "randomTeam");
+		    OppositionTeam opTeam = new OppositionTeam(market);
 	    	Match thisWeek = new Match(thisGame, opTeam);
 	    	boolean result = thisWeek.matchWon();
 	    	if (result) {

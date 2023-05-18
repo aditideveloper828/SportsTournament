@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JSlider;
 import java.awt.Color;
 import javax.swing.JComboBox;
@@ -16,7 +19,7 @@ import java.lang.invoke.MethodHandles.Lookup.ClassOption;
 
 public class PurchaseScreen {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private static ScreenManager manager;
 	private PurchasableManager freeAthletes;
 
@@ -29,6 +32,10 @@ public class PurchaseScreen {
 		initialize();
 		frame.setVisible(true);
 		
+	}
+	
+	public static void closeWindow() {
+		frame.dispose();
 	}
 
 	/**
@@ -89,6 +96,15 @@ public class PurchaseScreen {
 		buyItemBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		buyItemBtn.setBounds(466, 402, 130, 40);
 		frame.getContentPane().add(buyItemBtn);
+		
+		JButton homeBtn = new JButton("HOME");
+		homeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.goHome(ScreenCase.PURCHASESCREEN);
+			}
+		});
+		homeBtn.setBounds(6, 6, 69, 29);
+		frame.getContentPane().add(homeBtn);
 		
 	}
 }

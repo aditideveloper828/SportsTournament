@@ -128,6 +128,7 @@ public class SetUpScreen {
 		createTeamBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		createTeamBtn.setBounds(184, 289, 160, 35);
 		frame.getContentPane().add(createTeamBtn);
+		
 	}
 	
 	public void finishedWindow() {
