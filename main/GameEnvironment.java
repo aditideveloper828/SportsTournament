@@ -18,7 +18,7 @@ public class GameEnvironment {
 	private int difficulty;
 	private String teamName;
 	private int weeks;
-	private int balance = 1000;
+	private int balance = 750;
 	private int points = 0;
 	
 	//add in throw errors if there are too many members in team or reserves;
@@ -190,12 +190,13 @@ public class GameEnvironment {
 		
 		System.out.println("Active Members: ");
 		for (int i = 0; i < team.size(); i++) {
-			System.out.println("ID");
+			System.out.println("ID " + (i+1));
 			System.out.println(team.get(i));
 		}
 		
 		System.out.println("Reserve Members: ");
-		for (int i = 0; i < reserves.size(); i++) {
+		for (int i = 0; i < reserves.size(); i++){
+			System.out.println("ID " + (i+1));
 			System.out.println(reserves.get(i));
 		}
 		
@@ -204,6 +205,7 @@ public class GameEnvironment {
 	
 	public void displayItems() {
 		for (int i = 0; i < items.size(); i++) {
+			System.out.println("ID " + (i+1));
 			System.out.println(items.get(i));
 		}
 		
