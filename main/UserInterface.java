@@ -264,7 +264,6 @@ public final class UserInterface {
 	   
 	    System.out.println("Let's Play!");
 
-
 	    while (thisGame.getWeeks() > 0) {
 	    	Scanner loopInput = new Scanner(System.in);
 	    	System.out.println("What would you like to do? (Enter in number)");
