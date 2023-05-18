@@ -23,6 +23,7 @@ public class PurchaseScreen {
 	private static ScreenManager manager;
 	private PurchasableManager freeAthletes;
 
+
 	/**
 	 * Create the application.
 	 */

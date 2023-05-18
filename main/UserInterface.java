@@ -10,11 +10,11 @@ package main;
 import java.util.*;
 //have to complete comments
 ///////////////add in method for taking input to avoid repeating code
+////////////////fix scanner names
 public final class UserInterface {
 	private static PurchasableManager market = new PurchasableManager();
 	private static GameEnvironment thisGame;
 	private static Match thisMatch;
-	
 	
 	
 	private static void setUp() {
@@ -24,9 +24,7 @@ public final class UserInterface {
 		ArrayList<String> athleteProfiles = athleteFile.getData();
 		for (int i = 1; i < athleteProfiles.size(); i++) {
 			String[] characterData = athleteProfiles.get(i).split(";",0);
-//			System.out.println(characterData);
 			int [] stats = new int[5];
-			// System.out.println(i);
 			for (int j = 0; j < 5; j++){
 				stats[j] = 	 Integer.parseInt(characterData[j+2]);
 			}
@@ -57,20 +55,114 @@ public final class UserInterface {
 		
 		
 	}
-	private static void goToMarket() {
-		//make purchases / sell;
-		//
-		System.out.println("Welcome to the market");
-		Purchase athletes = new Purchase("ATHLETE", market, thisGame);
-		Purchase items = new Purchase("ITEM", market, thisGame);
+	
+	private static void sell(String type) {
+		Purchase sale = new Purchase(type, market, thisGame);
+		Scanner picking = new Scanner(System.in);
+		if (type == "ATHLETE"){
+			thisGame.displayTeam();
+			int sellType;
+			int picked = 0;
+			do {
+				System.out.println("Enter 1 if you want to sell an active member and 2 if you want sell a reserve or -1 if you want to go home");
+				sellType = picking.nextInt();
+				if (sellType != -1){
+					System.out.println("Choose your item to sell! (Enter in ID or -1 if you do not want to pick an item)");
+					picked = picking.nextInt();
+					if (picked != -1) {
+						if (sellType == 1) {
+							sale.sell(thisGame.getTeamMember(picked-1));
+						}
+						else {
+							sale.sell(thisGame.getReserve(picked-1));
+						}
+					}
+				}
+				
+			} while (picked != -1 && sellType != -1);
+		}
+		else {
+			thisGame.displayItems();
+			int picked;
+			do {
+								
+				System.out.println("Choose your item to sell! (Enter in ID or -1 if you do not want to pick an item)");
+				picked = picking.nextInt();
+				if (picked != -1) {
+					Item item = thisGame.getItem(picked-1);
+					sale.sell(item);				
+				}
+			} while (picked != -1);
+		}
+
 		
+	}
+	
+	private static void buy(String type) {
+		Purchase object = new Purchase(type, market,thisGame);
+		object.displayOptions();
+		Scanner picking = new Scanner(System.in);
+		if (type == "ATHLETE"){
+			String[] positions = new String[] {"Seeker", "Keeper", "Beater", "Beater", "Chaser", "Chaser", "Chaser"};
+			for (int i = 0; i < 7; i++) {
+				System.out.println("Choose your "+positions[i]+"! (Enter in ID or -1 if you do not want to pick a player)");
+				int pickedID = -1;
+				try {
+			    	pickedID = picking.nextInt();
+			    }
+			    catch (Exception e) {
+			    	System.out.println(e);
+			    
+			    }
+				if (pickedID != -1) {
+					Athlete athlete = market.getAthlete(pickedID-1);
+					object.buy(athlete);
+					///change the position of an athletes when they are bought
+					thisGame.addTeamMember(athlete);
+					
+				}
+			}
+		}
+		else {
+			int picked;
+			do  {
+				System.out.println("Choose your item! (Enter in ID or -1 if you do not want to pick an item)");
+				picked = picking.nextInt();
+				if (picked != -1) {
+					object.buy(market.getItem(picked-1));	
+				}
+			} while (picked != -1);
+		}
+	}
+
+	
+	private static void goToMarket() {
+		System.out.println("Welcome to the market");
+		Scanner todo = new Scanner(System.in);
+		System.out.println("What would you like to do? (Enter in number)");
+		System.out.println("1 Buy Athletes");
+		System.out.println("2 Buy Items");
+		System.out.println("3 Sell Athletes");
+		System.out.println("4 Sell Items");
+		System.out.println("5 Go to Home");
+		int nextStep = todo.nextInt();
+		if (nextStep == 1) {
+			buy("ATHLETE");
+		}
+		else if (nextStep == 2) {
+			buy("ITEM");
+		}
+		else if (nextStep == 3) {
+			sell("ATHLETE");
+		}
+		else if (nextStep == 4) {
+			sell("ITEM");
+		}
 	}
 	
 	
 	
 	private static void viewGame() {
-		//view club stats;
-		
 		System.out.println("Welcome to the Club Room!");
 		System.out.println("Team Name: "+thisGame.getTeamName());
 		System.out.println("Balance: "+thisGame.getBalance());
@@ -81,14 +173,14 @@ public final class UserInterface {
 	    System.out.println("Your Items: ");
 	    thisGame.displayItems();
 	    
+	    //add in swapping
+	    
 		
 	}
 	
 	private static void byeWeek() {
-		// show items available to use while the team is resting
-		thisGame.displayItems();
+		// add in special training
 		thisGame.teamStaminaRefill();
-		thisGame.reduceWeek();
 	}
 	
 
@@ -101,7 +193,6 @@ public final class UserInterface {
 		
 		Scanner chosingOpposition = new Scanner(System.in);
 		
-		// insert a dropdown here for selecting a team
 		System.out.println("Choose your opponent: (enter in number)");
 		System.out.println("1 " + team1.getOpTeamName());
 		System.out.println("2 " + team2.getOpTeamName());
@@ -116,14 +207,12 @@ public final class UserInterface {
 		}
 		catch (Exception e){
 			System.out.println(e);
-			
 		}
 		
 		chosingOpposition.close();
 		boolean cannotPlay = false;
 	    if (thisGame.getTeam().size() < 7){
 	    	cannotPlay = true;
-	    	
 	    }
 	    if (cannotPlay || opTeamSelect == 4) {
 	    	///add in check if game needs to end due to low balance
@@ -131,16 +220,14 @@ public final class UserInterface {
 	    	return false;
 	    }
     	if (opTeamSelect == 1) {
-    		thisMatch = new Match(thisGame, team1);
-    		
+    		thisMatch = new Match(thisGame, team1);	
     	}
     	else if (opTeamSelect == 2){
     		thisMatch = new Match(thisGame, team2);
     	}
     	else {
     		thisMatch = new Match(thisGame, team3);
-    	}
-	    	
+    	}	
     	return true;	
 
 	}
@@ -148,13 +235,10 @@ public final class UserInterface {
 	
 	public static void main(String[] args) throws IncorrectInput {
 		setUp();
-		
 		Scanner input = new Scanner(System.in);
-
+		
 	    System.out.println("Enter Team Name:");
 	    String name = input.nextLine();
-	    
-	    // insert a number select or slider here to reduce potential for errors
 	    System.out.println("Enter duration of game (weeks): ");
 	    int weeks = 0;
 	    try {
@@ -164,7 +248,6 @@ public final class UserInterface {
 	    	System.out.println(e);
 	    	System.exit(0);
 	    }
-	    
 	    thisGame = new GameEnvironment(name, weeks);
 	    
 	    
@@ -175,69 +258,51 @@ public final class UserInterface {
 	    	input.close();
 	    	throw new IncorrectInput("You did not enter a valid difficulty value");
 	    }
-	    
-	    
-	    thisGame.setDifficulty(difficulty);
-	    
-	    
+	    thisGame.setDifficulty(difficulty);	    
 	    System.out.println("It's Time To Make Your Team!");
-	    goToMarket();
+	    buy("ATHLETE");
 	   
 	    System.out.println("Let's Play!");
-	    
-	    //Start playing
-	    while (thisGame.getWeeks() > 0) {
-	    	viewGame();
-	    	thisGame.reduceWeek();
-	    	
-	    	System.out.println("Would you like to visit the market? (y/n)");
-		    String choice = input.nextLine();
-		    choice = choice.toUpperCase();
-		    if (choice == "Y") {
-		    	//This check is not currently working
-		    	goToMarket();
-		    }
 
-		    //check if you want to play match or have a buy -- then use items
-		    //replace opteam with the chosen opposition team.
-		    OppositionTeam opTeam = new OppositionTeam(market);
-	    	Match thisWeek = new Match(thisGame, opTeam);
-	    	boolean result = thisWeek.matchWon();
-	    	if (result) {
-	    		System.out.println("Congratulations! You won this weeks's match!");
-	    		thisGame.increaseBalance(50*thisWeek.getTeamTotal()); 
+
+	    while (thisGame.getWeeks() > 0) {
+	    	Scanner loopInput = new Scanner(System.in);
+	    	System.out.println("What would you like to do? (Enter in number)");
+	    	System.out.println("1 View Club");
+			System.out.println("2 Go To Market" );
+			System.out.println("3 Play Game");	
+	    	int goTo = loopInput.nextInt();
+	    	
+	    	if (goTo == 1) {
+	    		viewGame();
+	    		
+	    	}
+	    	else if (goTo == 2) {
+	    		goToMarket();
+
 	    	}
 	    	else {
-	    		System.out.println("You lost. Better luck next time!");
+	    		thisGame.reduceWeek();
+	    		chooseOpTeam();
+	    		boolean playedGame = chooseOpTeam();
+			    if (playedGame) {
+			    	boolean result = thisMatch.matchWon();
+			    	if (result) {
+			    		System.out.println("Congratulations! You won this weeks's match!");
+			    		thisGame.increaseBalance(50*thisMatch.getTeamTotal()/thisGame.getDifficulty()); 
+			    	}
+			    	else {
+			    		System.out.println("You lost. Better luck next time!");
+			    	}
+			    }
+			    Random randomEvent = new Random();
+				int eventOccurs = randomEvent.nextInt(100);
+				if (eventOccurs < 50*thisGame.getDifficulty()) {
+					RandomEvent event = new RandomEvent(thisGame);
+				}	
 	    	}
-	    	RandomEvent event = new RandomEvent(thisGame);
-
-		    
-//	    	Match thisWeek = new Match(thisGame);
-	    	//have a random event
-		    boolean playedGame = chooseOpTeam();
-		    if (playedGame) {
-		    	boolean result1 = thisMatch.matchWon();
-		    	if (result1) {
-		    		System.out.println("Congratulations! You won this weeks's match!");
-		    		thisGame.increaseBalance(50*thisMatch.getTeamTotal()/thisGame.getDifficulty()); 
-		    	}
-		    	else {
-		    		System.out.println("You lost. Better luck next time!");
-		    	}
-		    	
-		    	
-		    }
-			Random randomEvent = new Random();
-			int eventOccurs = randomEvent.nextInt(100);
-			if (eventOccurs < 100/thisGame.getDifficulty()) {
-				RandomEvent event1 = new RandomEvent(thisGame);
-			}
-	    	//find out win or loss, display results, then add money
-	    	
-	    // change so includes byes and opposing teams
 	    }
-	    input.close();
+
 	    
 	    System.out.println("Your Final Status!!!");
 	    viewGame();
