@@ -195,9 +195,9 @@ public final class UserInterface {
 	
 	
 	public static boolean chooseOpTeam() throws IncorrectInput {
-		OppositionTeam team1 = new OppositionTeam(market, "Team 1");
-		OppositionTeam team2 = new OppositionTeam(market, "Team 2");
-		OppositionTeam team3 = new OppositionTeam(market, "Team 3");
+		OppositionTeam team1 = new OppositionTeam(market);
+		OppositionTeam team2 = new OppositionTeam(market);
+		OppositionTeam team3 = new OppositionTeam(market);
 		
 		Scanner chosingOpposition = new Scanner(System.in);
 		
@@ -272,6 +272,7 @@ public final class UserInterface {
 	   
 	    System.out.println("Let's Play!");
 
+
 	    while (thisGame.getWeeks() > 0) {
 	    	Scanner loopInput = new Scanner(System.in);
 	    	System.out.println("What would you like to do? (Enter in number)");
@@ -286,6 +287,7 @@ public final class UserInterface {
 	    	}
 	    	else if (goTo == 2) {
 	    		goToMarket();
+
 	    	}
 	    	else {
 	    		thisGame.reduceWeek();

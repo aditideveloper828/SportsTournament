@@ -28,6 +28,7 @@ public class SetUpScreen {
 	String errorMessageLbl;
 	String teamName = "Unoriginal Name";
 	public int seasonDuration;
+	private static GameEnvironment game;
 	
 
 	/**
@@ -122,12 +123,16 @@ public class SetUpScreen {
                 }
 				
 				finishedWindow();
+				game = new GameEnvironment(teamName, seasonDuration);
+				game.setUp();
+				manager.setGame(game);
 			}
 		});
 		createTeamBtn.setBackground(new Color(169, 170, 169));
 		createTeamBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		createTeamBtn.setBounds(184, 289, 160, 35);
 		frame.getContentPane().add(createTeamBtn);
+		
 	}
 	
 	public void finishedWindow() {
