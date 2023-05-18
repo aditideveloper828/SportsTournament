@@ -11,17 +11,17 @@ public class Purchase {
 	public Purchase(String type, PurchasableManager purchasable, GameEnvironment game) {
 		this.type = type;
 		this.purchasable = purchasable;
-		this.displayOptions(purchasable);
-		
 		this.game = game;
 			
 	}
 	
-	public void displayOptions(PurchasableManager purchasable) {
+	
+	public void displayOptions() {
 		System.out.println("These are your options:");
 		if (type == "ATHLETE") {
-			ArrayList<Athlete> athletes = purchasable.getAllAthletes();
+			ArrayList<Athlete> athletes = purchasable.getSomeAthletes(14);
 			for (int i = 0; i < athletes.size(); i++){
+				System.out.println("ID: "+(i+1));
 				System.out.println(athletes.get(i));
 				System.out.println();
 			}
@@ -29,6 +29,7 @@ public class Purchase {
 		else {
 			ArrayList<Item> items = purchasable.getAllItems();
 			for (int i = 0; i < items.size(); i++){
+				System.out.println("ID: "+(i+1));
 				System.out.println(items.get(i));
 				System.out.println();
 			}
@@ -63,15 +64,19 @@ public class Purchase {
 	}
 	
 	public void sell(Athlete chosen) {
+		chosen.setPosition(null);
 		purchasable.add(chosen);
 		game.increaseBalance(chosen.getSellBackPrice());
+		
 		
 		
 	}
 	
+	
 	public void sell(Item chosen) {
 		purchasable.add(chosen);
 		game.increaseBalance(chosen.getSellBackPrice());
+		game.removeItem(chosen);
 		
 	}
 

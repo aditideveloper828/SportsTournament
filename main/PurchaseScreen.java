@@ -20,7 +20,7 @@ public class PurchaseScreen {
 
 	private JFrame frame;
 	
-	private PurchasableManager freeAthletes;
+	private static PurchasableManager freeAthletes;
 
 	/**
 	 * Launch the application.
@@ -29,7 +29,7 @@ public class PurchaseScreen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PurchaseScreen window = new PurchaseScreen();
+					PurchaseScreen window = new PurchaseScreen(freeAthletes);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

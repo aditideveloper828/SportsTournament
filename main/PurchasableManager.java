@@ -38,6 +38,15 @@ public class PurchasableManager extends IncorrectInput {
 		availableItems += 1;
 	}
 	
+	public Athlete getAthlete(int id) {
+		return athletes.get(id);
+		
+	}
+	
+	public Item getItem(int id) {
+		return items.get(id);
+	}
+	
 	public void remove(Athlete person) {
 		athletes.remove(person);
 		availableAthletes -= 1;
