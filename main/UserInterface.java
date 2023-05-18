@@ -103,7 +103,7 @@ public final class UserInterface {
 		object.displayOptions();
 		Scanner picking = new Scanner(System.in);
 		if (type == "ATHLETE"){
-			String[] positions = new String[] {"Seeker", "Keeper", "Beater", "Beater", "Chaser", "Chaser", "Chaser"};
+			String[] positions = new String[] {"SEEKER", "KEEPER", "BEATER", "BEATER", "CHASER", "CHASER", "CHASER"};
 			for (int i = 0; i < 7; i++) {
 				System.out.println("Choose your "+positions[i]+"! (Enter in ID or -1 if you do not want to pick a player)");
 				int pickedID = -1;
@@ -116,12 +116,20 @@ public final class UserInterface {
 			    }
 				if (pickedID != -1) {
 					Athlete athlete = market.getAthlete(pickedID-1);
-					object.buy(athlete);
-					///change the position of an athletes when they are bought
-					thisGame.addTeamMember(athlete);
-					
+					object.buy(athlete, positions[i]);			
 				}
 			}
+			int reserve;
+			do  {
+				System.out.println("Choose a reserve! (Enter in ID or -1 if you do not want to pick a reserve)");
+				reserve = picking.nextInt();
+				if (reserve != -1) {
+					Athlete athlete = market.getAthlete(reserve-1);
+					object.buy(athlete, "RESERVE");
+				}
+			} while (reserve != -1);
+			
+			
 		}
 		else {
 			int picked;

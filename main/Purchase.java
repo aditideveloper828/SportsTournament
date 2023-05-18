@@ -37,10 +37,19 @@ public class Purchase {
 		
 	}
 	
-	public void buy(Athlete chosen) {
+	
+	public void buy(Athlete chosen, String position) {
 		//deal with too many teams
 		if (game.getBalance() >= chosen.getContractPrice()){
 			purchasable.remove(chosen);
+			chosen.setPosition(position);
+			if (chosen.getPosition() == "RESERVE") {
+				game.addReserve(chosen);
+			}
+			else {
+				game.addTeamMember(chosen);
+			}
+				
 			game.reduceBalance(chosen.getContractPrice());			
 		}
 		else {
@@ -54,7 +63,8 @@ public class Purchase {
 	public void buy(Item chosen) {
 		if (game.getBalance() >= chosen.getContractPrice()){
 			purchasable.remove(chosen);
-			game.reduceBalance(chosen.getContractPrice());			
+			game.reduceBalance(chosen.getContractPrice());
+			game.addItem(chosen);
 		}
 		else {
 			System.out.println("You do not have enough points for this purchase.");
@@ -64,11 +74,15 @@ public class Purchase {
 	}
 	
 	public void sell(Athlete chosen) {
+		if (chosen.getPosition() == "RESERVE") {
+			game.removeReserve(chosen);
+		}
+		else {
+			game.removeTeamMember(chosen);
+		}
 		chosen.setPosition(null);
 		purchasable.add(chosen);
 		game.increaseBalance(chosen.getSellBackPrice());
-		
-		
 		
 	}
 	
