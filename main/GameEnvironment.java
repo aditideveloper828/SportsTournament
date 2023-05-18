@@ -39,9 +39,7 @@ public class GameEnvironment {
 		ArrayList<String> athleteProfiles = athleteFile.getData();
 		for (int i = 1; i < athleteProfiles.size(); i++) {
 			String[] characterData = athleteProfiles.get(i).split(";",0);
-//			System.out.println(characterData);
 			int [] stats = new int[5];
-			// System.out.println(i);
 			for (int j = 0; j < 5; j++){
 				stats[j] = 	 Integer.parseInt(characterData[j+2]);
 			}

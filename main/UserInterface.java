@@ -218,10 +218,11 @@ public final class UserInterface {
 			System.out.println(e);
 		}
 		
-		chosingOpposition.close();
 		boolean cannotPlay = false;
 	    if (thisGame.getTeam().size() < 7){
 	    	cannotPlay = true;
+	    	//add in check for reserves and move reserve to team 
+	    	System.out.println("Your team does not have enough members, you have to take a buy this week");
 	    }
 	    if (cannotPlay || opTeamSelect == 4) {
 	    	///add in check if game needs to end due to low balance
@@ -237,6 +238,9 @@ public final class UserInterface {
     	else {
     		thisMatch = new Match(thisGame, team3);
     	}	
+    	team1.disposeOpTeam();
+    	team2.disposeOpTeam();
+    	team3.disposeOpTeam();
     	return true;	
 
 	}
@@ -292,7 +296,6 @@ public final class UserInterface {
 	    	}
 	    	else if (goTo == 3){
 	    		thisGame.reduceWeek();
-	    		chooseOpTeam();
 	    		boolean playedGame = chooseOpTeam();
 			    if (playedGame) {
 			    	boolean result = thisMatch.matchWon();
@@ -303,12 +306,13 @@ public final class UserInterface {
 			    	else {
 			    		System.out.println("You lost. Better luck next time!");
 			    	}
+			    	///should random events happen whenever?????????????? or just after games.
+			    	Random randomEvent = new Random();
+					int eventOccurs = randomEvent.nextInt(100);
+					if (eventOccurs < 50/thisGame.getDifficulty()) {
+						RandomEvent event = new RandomEvent(thisGame, market);
+					}
 			    }
-			    Random randomEvent = new Random();
-				int eventOccurs = randomEvent.nextInt(100);
-				if (eventOccurs < 50*thisGame.getDifficulty()) {
-					RandomEvent event = new RandomEvent(thisGame);
-				}	
 	    	}
 	    }
 
