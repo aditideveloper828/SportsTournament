@@ -4,9 +4,9 @@ import java.util.*;
 
 public class OppositionTeam {
 	
-	public ArrayList<Athlete> opTeam;
+	public ArrayList<Athlete> opTeam = new ArrayList<Athlete>();
 	public ArrayList<String> opTeamNames= new ArrayList<String>();
-	private PurchasableManager freeAthletes;
+	private static PurchasableManager freeAthletes;
 	private int selectIdx;
 	public String opTeamName;
 	
@@ -40,7 +40,7 @@ public class OppositionTeam {
 	public void createOpTeam() {
 //		PurchasableManager.getAllAthletes();
 		int i;
-		for (i=0; i<=6; i++) {
+		for (i=0; i<=7; i++) {
 			Random randSelect = new Random();
 			selectIdx = randSelect.nextInt(freeAthletes.getAllAthletes().size());
 			Athlete x = freeAthletes.getAllAthletes().get(i);
@@ -69,6 +69,12 @@ public class OppositionTeam {
 	
 	public ArrayList <Athlete> getOpTeam() {
 		return opTeam;
+	}
+	
+	
+	public static void main(String[] args) {
+		OppositionTeam newTeam = new OppositionTeam(freeAthletes);
+		newTeam.displayOpTeam();
 	}
 	
 }

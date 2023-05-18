@@ -2,10 +2,16 @@ package main;
 
 public class ScreenManager {
 	
-	public static PurchasableManager data;
+	private static PurchasableManager data;
+	private static GameEnvironment game;
 	
-	public ScreenManager(PurchasableManager incomingData) {
-		data = incomingData;
+	public ScreenManager() {
+		
+	}
+	
+	public void setGame(GameEnvironment game) {
+		this.game = game;
+		this.data = game.getMarket();
 	}
 	
 	public void launchWelcomeScreen() {
@@ -71,7 +77,7 @@ public class ScreenManager {
 	}
 	
 	public static void main(String[] args) {
-		ScreenManager manager = new ScreenManager(data);
+		ScreenManager manager = new ScreenManager();
 		manager.launchWelcomeScreen();
 		
 	}
