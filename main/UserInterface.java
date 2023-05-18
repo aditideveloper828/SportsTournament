@@ -194,9 +194,9 @@ public final class UserInterface {
 		Scanner chosingOpposition = new Scanner(System.in);
 		
 		System.out.println("Choose your opponent: (enter in number)");
-		System.out.println("1 " + team1.getOpTeamName());
-		System.out.println("2 " + team2.getOpTeamName());
-		System.out.println("3 " + team3.getOpTeamName());
+		System.out.println("1 " + team1.getName());
+		System.out.println("2 " + team2.getName());
+		System.out.println("3 " + team3.getName());
 		System.out.println("4 OR Take a BYE"); 
 		
 		int opTeamSelect = 4;
