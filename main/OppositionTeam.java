@@ -40,7 +40,7 @@ public class OppositionTeam {
 	public void createOpTeam() {
 //		PurchasableManager.getAllAthletes();
 		int i;
-		for (i=0; i<=7; i++) {
+		for (i=0; i<7; i++) {
 			Random randSelect = new Random();
 			selectIdx = randSelect.nextInt(freeAthletes.getAllAthletes().size());
 			Athlete x = freeAthletes.getAllAthletes().get(i);

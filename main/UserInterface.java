@@ -202,9 +202,9 @@ public final class UserInterface {
 		Scanner chosingOpposition = new Scanner(System.in);
 		
 		System.out.println("Choose your opponent: (enter in number)");
-		System.out.println("1 " + team1.getOpTeamName());
-		System.out.println("2 " + team2.getOpTeamName());
-		System.out.println("3 " + team3.getOpTeamName());
+		System.out.println("1 team 1");
+		System.out.println("2 team 2");
+		System.out.println("3 team 3");
 		System.out.println("4 OR Take a BYE"); 
 		
 		int opTeamSelect = 4;
@@ -289,7 +289,7 @@ public final class UserInterface {
 	    		goToMarket();
 
 	    	}
-	    	else {
+	    	else if (goTo == 3){
 	    		thisGame.reduceWeek();
 	    		chooseOpTeam();
 	    		boolean playedGame = chooseOpTeam();
