@@ -15,6 +15,7 @@ public final class UserInterface {
 	private static PurchasableManager market = new PurchasableManager();
 	private static GameEnvironment thisGame;
 	private static Match thisMatch;
+	private static InitiateMatchScreen initiateMatch;
 	
 	
 	private static void setUp() {
@@ -187,16 +188,16 @@ public final class UserInterface {
 	
 	
 	public static boolean chooseOpTeam() throws IncorrectInput {
-		OppositionTeam team1 = new OppositionTeam(market);
-		OppositionTeam team2 = new OppositionTeam(market);
-		OppositionTeam team3 = new OppositionTeam(market);
+		OppositionTeam team1 = new OppositionTeam(market, initiateMatch);
+		OppositionTeam team2 = new OppositionTeam(market, initiateMatch);
+		OppositionTeam team3 = new OppositionTeam(market, initiateMatch);
 		
 		Scanner chosingOpposition = new Scanner(System.in);
 		
 		System.out.println("Choose your opponent: (enter in number)");
-		System.out.println("1 " + team1.getName());
-		System.out.println("2 " + team2.getName());
-		System.out.println("3 " + team3.getName());
+		System.out.println("1 team1");
+		System.out.println("2 team2");
+		System.out.println("3 team3");
 		System.out.println("4 OR Take a BYE"); 
 		
 		int opTeamSelect = 4;
