@@ -14,6 +14,7 @@ import javax.swing.JTree;
 import javax.swing.JSpinner;
 import javax.swing.JScrollBar;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 
 public class BuyTeamScreen {
 
@@ -44,7 +45,7 @@ public class BuyTeamScreen {
 	public ArrayList<String> generateAthleteNames() {
 		ArrayList<String> athleteNames = new ArrayList<String>();
 		for (int i=0; i<athletes.getAllAthletes().size(); i++) {
-			athleteNames.add(athletes.getAllAthletes().get(i).getName());
+			athleteNames.add(String.valueOf(athletes.getAllAthletes().get(i).getName()));
 		}
 		return athleteNames;
 	}
@@ -64,112 +65,13 @@ public class BuyTeamScreen {
 		buyTeamLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(buyTeamLbl);
 		
-		JButton Player1 = new JButton("SEEKER");
-		Player1.setForeground(new Color(108, 108, 108));
-		Player1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player1.setText("");
-			}
-		});
-		Player1.setBounds(417, 66, 117, 51);
-		frame.getContentPane().add(Player1);
-		
-		JButton Player2 = new JButton("KEEPER");
-		Player2.setForeground(new Color(108, 108, 108));
-		Player2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player2.setText("");
-			}
-		});
-		Player2.setBounds(546, 66, 117, 51);
-		frame.getContentPane().add(Player2);
-		
-		JButton Player3 = new JButton("BEATER #1");
-		Player3.setForeground(new Color(108, 108, 108));
-		Player3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player3.setText("");
-			}
-		});
-		Player3.setBounds(417, 122, 117, 51);
-		frame.getContentPane().add(Player3);
-		
-		JButton Player4 = new JButton("BEATER #2");
-		Player4.setForeground(new Color(108, 108, 108));
-		Player4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player4.setText("");
-			}
-		});
-		Player4.setBounds(546, 122, 117, 51);
-		frame.getContentPane().add(Player4);
-		
-		JButton Player5 = new JButton("CHASER #1");
-		Player5.setForeground(new Color(108, 108, 108));
-		Player5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player5.setText("");
-			}
-		});
-		Player5.setBounds(417, 178, 117, 51);
-		frame.getContentPane().add(Player5);
-		
-		JButton Player6 = new JButton("CHASER #2");
-		Player6.setForeground(new Color(108, 108, 108));
-		Player6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player6.setText("");
-			}
-		});
-		Player6.setBounds(546, 178, 117, 51);
-		frame.getContentPane().add(Player6);
-		
-		JButton Player7 = new JButton("CHASER #3");
-		Player7.setForeground(new Color(108, 108, 108));
-		Player7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player7.setText("");
-			}
-		});
-		Player7.setBounds(417, 234, 117, 51);
-		frame.getContentPane().add(Player7);
-		
-		JButton Player8 = new JButton("RESERVE");
-		Player8.setForeground(new Color(108, 108, 108));
-		Player8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player8.setText("");
-			}
-		});
-		Player8.setBounds(546, 234, 117, 51);
-		frame.getContentPane().add(Player8);
-		
-		JButton Player9 = new JButton("RESERVE");
-		Player9.setForeground(new Color(108, 108, 108));
-		Player9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player9.setText("");
-			}
-		});
-		Player9.setBounds(417, 288, 117, 51);
-		frame.getContentPane().add(Player9);
-		
-		JButton Player10 = new JButton("RESERVE");
-		Player10.setForeground(new Color(108, 108, 108));
-		Player10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Player10.setText("");
-			}
-		});
-		Player10.setBounds(546, 288, 117, 51);
-		frame.getContentPane().add(Player10);
-		
-		JComboBox selectAthleteDrpdwn = new JComboBox();
-		selectAthleteDrpdwn.setToolTipText("");
-		selectAthleteDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		selectAthleteDrpdwn.setMaximumRowCount(20);
-		selectAthleteDrpdwn.setBounds(50, 137, 290, 36);
-		frame.getContentPane().add(selectAthleteDrpdwn);
+		JComboBox selectSeekerDrpdwn = new JComboBox();
+		String[] values = {"hello", "how", "are", "you"};
+		selectSeekerDrpdwn.setModel(new DefaultComboBoxModel(new String[] {"hello", "how", "are", "you"}));
+		selectSeekerDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectSeekerDrpdwn.setMaximumRowCount(20);
+		selectSeekerDrpdwn.setBounds(92, 95, 240, 27);
+		frame.getContentPane().add(selectSeekerDrpdwn);
 		
 		JLabel priceLbl = new JLabel("Total Cost: $");
 		priceLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -186,14 +88,140 @@ public class BuyTeamScreen {
 		frame.getContentPane().add(purchaseTeamBtn);
 		
 		JLabel initialBalanceLbl = new JLabel("Starting Balance: $750");
-		initialBalanceLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		initialBalanceLbl.setBounds(50, 97, 203, 27);
+		initialBalanceLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		initialBalanceLbl.setBounds(488, 385, 169, 27);
 		frame.getContentPane().add(initialBalanceLbl);
 		
-		JButton Player11 = new JButton("RESERVE");
-		Player11.setForeground(new Color(108, 108, 108));
-		Player11.setBounds(488, 347, 117, 51);
-		frame.getContentPane().add(Player11);
+		JLabel seekerLbl = new JLabel("SEEKER: ");
+		seekerLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		seekerLbl.setBounds(30, 98, 67, 19);
+		frame.getContentPane().add(seekerLbl);
+		
+		JLabel beater2Lbl = new JLabel("BEATER: ");
+		beater2Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		beater2Lbl.setBounds(30, 160, 67, 19);
+		frame.getContentPane().add(beater2Lbl);
+		
+		JLabel beater1Lbl = new JLabel("BEATER: ");
+		beater1Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		beater1Lbl.setBounds(30, 129, 67, 19);
+		frame.getContentPane().add(beater1Lbl);
+		
+		JLabel chaser1Lbl = new JLabel("CHASER: ");
+		chaser1Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		chaser1Lbl.setBounds(30, 191, 67, 19);
+		frame.getContentPane().add(chaser1Lbl);
+		
+		JLabel chaser2Lbl = new JLabel("CHASER: ");
+		chaser2Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		chaser2Lbl.setBounds(30, 222, 67, 19);
+		frame.getContentPane().add(chaser2Lbl);
+		
+		JLabel chaser3Lbl = new JLabel("CHASER:");
+		chaser3Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		chaser3Lbl.setBounds(30, 253, 67, 19);
+		frame.getContentPane().add(chaser3Lbl);
+		
+		JLabel keeperLbl = new JLabel("KEEPER: ");
+		keeperLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		keeperLbl.setBounds(30, 284, 67, 19);
+		frame.getContentPane().add(keeperLbl);
+		
+		JLabel reserve1Lbl = new JLabel("RESERVE:");
+		reserve1Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		reserve1Lbl.setBounds(30, 315, 67, 19);
+		frame.getContentPane().add(reserve1Lbl);
+		
+		JLabel reserve2Lbl = new JLabel("RESERVE:");
+		reserve2Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		reserve2Lbl.setBounds(30, 346, 67, 19);
+		frame.getContentPane().add(reserve2Lbl);
+		
+		JLabel reserve3Lbl = new JLabel("RESERVE:");
+		reserve3Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		reserve3Lbl.setBounds(30, 377, 67, 19);
+		frame.getContentPane().add(reserve3Lbl);
+		
+		JLabel reserve4Lbl = new JLabel("RESERVE:");
+		reserve4Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		reserve4Lbl.setBounds(30, 410, 67, 19);
+		frame.getContentPane().add(reserve4Lbl);
+		
+		JLabel reserve5Lbl = new JLabel("RESERVE:");
+		reserve5Lbl.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		reserve5Lbl.setBounds(30, 440, 67, 19);
+		frame.getContentPane().add(reserve5Lbl);
+		
+		JComboBox selectBeater1Drpdwn = new JComboBox();
+		selectBeater1Drpdwn.setMaximumRowCount(20);
+		selectBeater1Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectBeater1Drpdwn.setBounds(92, 127, 240, 27);
+		frame.getContentPane().add(selectBeater1Drpdwn);
+		
+		JComboBox selectBeater2Drpdwn = new JComboBox();
+		selectBeater2Drpdwn.setMaximumRowCount(20);
+		selectBeater2Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectBeater2Drpdwn.setBounds(92, 158, 240, 27);
+		frame.getContentPane().add(selectBeater2Drpdwn);
+		
+		JComboBox selectChaser1Drpdwn = new JComboBox();
+		selectChaser1Drpdwn.setMaximumRowCount(20);
+		selectChaser1Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectChaser1Drpdwn.setBounds(92, 189, 240, 27);
+		frame.getContentPane().add(selectChaser1Drpdwn);
+		
+		JComboBox selectChaser2Drpdwn = new JComboBox();
+		selectChaser2Drpdwn.setMaximumRowCount(20);
+		selectChaser2Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectChaser2Drpdwn.setBounds(92, 220, 240, 27);
+		frame.getContentPane().add(selectChaser2Drpdwn);
+		
+		JComboBox selectChaser3Drpdwn = new JComboBox();
+		selectChaser3Drpdwn.setMaximumRowCount(20);
+		selectChaser3Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectChaser3Drpdwn.setBounds(92, 251, 240, 27);
+		frame.getContentPane().add(selectChaser3Drpdwn);
+		
+		JComboBox selectKeeperDrpdwn = new JComboBox();
+		selectKeeperDrpdwn.setMaximumRowCount(20);
+		selectKeeperDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectKeeperDrpdwn.setBounds(92, 282, 240, 27);
+		frame.getContentPane().add(selectKeeperDrpdwn);
+		
+		JComboBox selectReserve1Drpdwn = new JComboBox();
+		selectReserve1Drpdwn.setMaximumRowCount(20);
+		selectReserve1Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectReserve1Drpdwn.setBounds(92, 313, 240, 27);
+		frame.getContentPane().add(selectReserve1Drpdwn);
+		
+		JComboBox selectReserve2Drpdwn = new JComboBox();
+		selectReserve2Drpdwn.setMaximumRowCount(20);
+		selectReserve2Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectReserve2Drpdwn.setBounds(92, 344, 240, 27);
+		frame.getContentPane().add(selectReserve2Drpdwn);
+		
+		JComboBox selectReserve3Drpdwn = new JComboBox();
+		selectReserve3Drpdwn.setMaximumRowCount(20);
+		selectReserve3Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectReserve3Drpdwn.setBounds(92, 375, 240, 27);
+		frame.getContentPane().add(selectReserve3Drpdwn);
+		
+		JComboBox selectReserve4Drpdwn = new JComboBox();
+		selectReserve4Drpdwn.setMaximumRowCount(20);
+		selectReserve4Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectReserve4Drpdwn.setBounds(92, 408, 240, 27);
+		frame.getContentPane().add(selectReserve4Drpdwn);
+		
+		JComboBox selectReserve5Drpdwn = new JComboBox();
+		selectReserve5Drpdwn.setMaximumRowCount(20);
+		selectReserve5Drpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		selectReserve5Drpdwn.setBounds(92, 438, 240, 27);
+		frame.getContentPane().add(selectReserve5Drpdwn);
+		
+		JLabel lblNewLabel = new JLabel("An Athlete may only have one position assigned to them");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		lblNewLabel.setBounds(30, 64, 284, 16);
+		frame.getContentPane().add(lblNewLabel);
 		
 //		JList list = new JList(generateAthleteNames().toArray());
 //		list.setBounds(60, 194, 134, 128);
