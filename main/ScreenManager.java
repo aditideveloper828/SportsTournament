@@ -23,7 +23,7 @@ public class ScreenManager {
 	}
 	
 	public void launchBuyTeamScreen() {
-		BuyTeamScreen screen = new BuyTeamScreen(data, this);
+		BuyTeamScreen screen = new BuyTeamScreen(data, this,  game);
 	}
 	
 	public void launchPurchaseScreen() {
@@ -31,7 +31,7 @@ public class ScreenManager {
 	}
 	
 	public void launchClubScreen() {
-		ClubScreen screen =  new ClubScreen(data, this);
+		ClubScreen screen =  new ClubScreen(data, game, this);
 	}
 	
 	public void launchMainScreen() {
@@ -39,7 +39,11 @@ public class ScreenManager {
 	}
 	
 	public void launchInitiateMatchScreen() {
-		InitiateMatchScreen screen = new InitiateMatchScreen(data, this);
+		InitiateMatchScreen screen = new InitiateMatchScreen(data, this, game);
+	}
+	
+	public void launchResultScreen() {
+		ResultScreen screen = new ResultScreen(this);
 	}
 	
 	public void closeWelcomeScreen(WelcomeScreen screen) {
@@ -61,6 +65,11 @@ public class ScreenManager {
 		screen.closeWindow();
 	}
 	
+	public void closeInitiateMatchScreen() {
+		InitiateMatchScreen.closeWindow();
+		launchResultScreen();
+	}
+	
 	public void goHome(ScreenCase state) {
 		switch (state) {
         case PURCHASESCREEN:
@@ -74,6 +83,18 @@ public class ScreenManager {
 		}
 		
 		launchMainScreen();
+	}
+	
+	public void goBack(ScreenCase state) {
+		switch (state) {
+		case CHOOSEOPTEAMSCREEN:
+			InitiateMatchScreen.closeWindow();
+			launchMainScreen();
+		default:
+			break;
+		}
+		
+		
 	}
 	
 	public static void main(String[] args) {

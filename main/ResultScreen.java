@@ -10,28 +10,15 @@ import java.awt.Font;
 public class ResultScreen {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ResultScreen window = new ResultScreen();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private ScreenManager manager;
 
 	/**
 	 * Create the application.
 	 */
-	public ResultScreen() {
+	public ResultScreen(ScreenManager incomingManager) {
+		manager = incomingManager;
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -43,11 +30,11 @@ public class ResultScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel resultScreenTitle = new JLabel("Final Results");
-		resultScreenTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		resultScreenTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		resultScreenTitle.setBounds(268, 37, 135, 25);
-		frame.getContentPane().add(resultScreenTitle);
+		JLabel finalResultTitle = new JLabel("CONGRATS! YOU WON YOUR GAME");
+		finalResultTitle.setBounds(33, 37, 634, 51);
+		finalResultTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		finalResultTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.getContentPane().add(finalResultTitle);
 	}
 
 }
