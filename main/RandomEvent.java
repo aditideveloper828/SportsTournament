@@ -7,11 +7,9 @@ public class RandomEvent {
 	
 	private int athleteIdx;
 	private GameEnvironment event;
-	private ArrayList<Athlete> randPlayers;
 	
-	public RandomEvent(GameEnvironment game, PurchasableManager market) {
+	public RandomEvent(GameEnvironment game) {
 		event = game;
-		randPlayers = market.getAllAthletes();
 		
 		int methodNum;
 		Random randInt = new Random();
