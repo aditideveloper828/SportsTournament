@@ -6,7 +6,6 @@ public class OppositionTeam {
 	
 	public ArrayList<Athlete> opTeam = new ArrayList<Athlete>();
 	private static PurchasableManager freeAthletes;
-	private int selectIdx;
 	private InitiateMatchScreen name;
 	public String teamName;
 	
@@ -18,17 +17,13 @@ public class OppositionTeam {
 		createOpTeam();
 	}
 		
-	public void createOpTeam() {
+	private void createOpTeam() {
 //		PurchasableManager.getAllAthletes();
 		int i;
 		for (i=0; i<7; i++) {
-			Random randSelect = new Random();
-			selectIdx = randSelect.nextInt(freeAthletes.getAllAthletes().size());
-			Athlete x = freeAthletes.getAllAthletes().get(i);
+			Athlete x = freeAthletes.getRandAthlete();
 			opTeam.add(x);
-			freeAthletes.remove(x);
 		}
-		
 	}
 	
 	public String getName() {

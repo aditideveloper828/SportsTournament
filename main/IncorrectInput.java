@@ -2,6 +2,8 @@ package main;
 
 public class IncorrectInput extends IllegalArgumentException{
 	
+	
+
 	public IncorrectInput() {
 		super();
 	}

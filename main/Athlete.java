@@ -71,7 +71,7 @@ public class Athlete implements Purchasable{
 
 	
 	public void staminaDecrease() {
-		currentStamina -= 10;
+		currentStamina -= 20;
 		
 	}
 	

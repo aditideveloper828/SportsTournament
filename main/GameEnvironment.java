@@ -187,6 +187,11 @@ public class GameEnvironment {
 		for (i=0; i < team.size(); i++) {
 			team.get(i).staminaRefill();
 		}
+		for (i=0; i < reserves.size(); i++) {
+			reserves.get(i).staminaRefill();
+		}
+		
+		
 	}
 	
 	public int getBalance() {

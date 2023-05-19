@@ -1,5 +1,4 @@
 package main;
-import java.util.*;
 
 /**
  * @author Imogen Keeling
@@ -21,22 +20,22 @@ public class Match {
 	}
 	
 	public void matchSummary(GameEnvironment game, OppositionTeam opposition) {
-		// printing the summary of the match (which athletes are playing each other)
-		//does not print anything at the moment
 		int i;
-		for (i=0; i<game.getTeam().size(); i++) {
-			PairFight fight = new PairFight(game.getTeam().get(i), opposition.getOpTeam().get(i));
+		for (i=0; i < 7; i++) {
+			PairFight fight = new PairFight(game.getTeamMember(i), opposition.getOpTeam().get(i));
 			fight.playOffence(game, this);
 			fight.playDefence(game, this);
-		}
-			
+		}	
 	}
 	
-	public void fightWon() {
-		teamTotal += 1;
+	public void fightWon(Athlete player) {
+		if (player.injured() == false) {
+			teamTotal += 1;
+		}
 	}
 	
 	public boolean matchWon() {
+		
 		if (teamTotal >= 3) {
 			return true;
 		} else {
