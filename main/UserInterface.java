@@ -100,6 +100,9 @@ public final class UserInterface {
 	}
 	
 	private static void buy(String type) {
+		//making team had more options while market only has 3-5 options
+		//making team should not cost money
+		//change nickname of athlete <---fix this when the athlete is drafted back to purchasable
 		Purchase object = new Purchase(type, market,thisGame);
 		object.displayOptions();
 		Scanner picking = new Scanner(System.in);
@@ -183,10 +186,9 @@ public final class UserInterface {
 	    System.out.println("Your Items: ");
 	    thisGame.displayItems();
 	    
-	    //add in swapping
+	    //add in swapping (only have to do swapping and using item <--- do not have to change position of athletes in team)
 	    System.out.println("Would you like to: (Enter in number or -1 to go to home)");
-	    System.out.println("1 Change the position of an athlete?");
-	    System.out.println("2 Swap the positions of 2 athletes?");
+	    System.out.println("1 Swap the position of an active team member and a reserve?");
 	    System.out.println("3 Use an item for an athlete");
 	    
 	    
@@ -194,7 +196,6 @@ public final class UserInterface {
 	}
 	
 	private static void byeWeek() {
-		// add in special training
 		Scanner specialTraining = new Scanner(System.in);
 		thisGame.teamStaminaRefill();
 		System.out.println("You can give one of your athletes special training!");
@@ -206,10 +207,16 @@ public final class UserInterface {
 			System.out.println("Enter the ID of the athelete you want to train");
 			int chosenAthlete = specialTraining.nextInt();
 			if (athleteType == 1) {
-				thisGame.getTeamMember(chosenAthlete-1).statIncrease();
+				for (int i = 0; i < 3; i++) {
+					thisGame.getTeamMember((chosenAthlete-1)).statIncrease();
+				}
 			}
 			else {
-				thisGame.getReserve(chosenAthlete-1).statIncrease();
+				////doent handle input error (if neither 1, 2 or -1 are entered)
+				for (int i = 0; i < 3; i++) {
+					thisGame.getReserve(chosenAthlete-1).statIncrease();
+				}
+				
 			}
 		}
 	}
@@ -244,6 +251,7 @@ public final class UserInterface {
 	    if (thisGame.getTeam().size() < 7){
 	    	cannotPlay = true;
 	    	//add in check for reserves and move reserve to team 
+	    	//add in check for athlete being injured and not being able to play
 	    	System.out.println("Your team does not have enough members, you have to take a buy this week");
 	    }
 	    if (cannotPlay || opTeamSelect == 4) {
@@ -333,7 +341,7 @@ public final class UserInterface {
 			    	Random randomEvent = new Random();
 					int eventOccurs = randomEvent.nextInt(100);
 					if (eventOccurs < 50/thisGame.getDifficulty()) {
-						RandomEvent event = new RandomEvent(thisGame, market);
+						RandomEvent event = new RandomEvent(thisGame);
 					}
 			    }
 	    	}
@@ -341,6 +349,9 @@ public final class UserInterface {
 
 	    
 	    System.out.println("Your Final Status!!!");
+	    //have to display selected season duration
+	    //have to display team name
+	    
 		System.out.println("Final Balance: "+thisGame.getBalance());
 		System.out.println("Total Points: "+thisGame.getPoints());
 	    

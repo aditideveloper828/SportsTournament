@@ -20,6 +20,9 @@ public class GameEnvironment {
 	private int weeks;
 	private int balance = 750;
 	private int points = 0;
+	private int teamSize = 0;
+	private int reserveSize = 0;
+	private int itemSize = 0;
 	
 	//add in throw errors if there are too many members in team or reserves;
 	
@@ -75,6 +78,7 @@ public class GameEnvironment {
 	
 	public void addTeamMember(Athlete athlete) {
 		team.add(athlete);
+		teamSize += 1;
 	}
 	
 	public Item getItem(int id) {
@@ -91,18 +95,22 @@ public class GameEnvironment {
 	
 	public void removeTeamMember(Athlete athlete) {
 		team.remove(athlete);
+		teamSize -= 1;
 	}
 	
 	public void removeItem(Item item) {
 		items.remove(item);
+		itemSize -= 1;
 	}
 	
 	public void removeReserve(Athlete athlete) {
 		reserves.remove(athlete);
+		reserveSize -= 1;
 	}
 	
 	public void addReserve(Athlete athlete) {
 		reserves.add(athlete);
+		reserveSize += 1;
 	}
 	
 	public void increasePoints(int addition) {
@@ -114,6 +122,17 @@ public class GameEnvironment {
 		
 	}
 	
+	public int getItemSize(){
+		return itemSize;
+	}
+	
+	public int getTeamSize() {
+		return teamSize;
+	}
+	
+	public int getReserveSize() {
+		return reserveSize;
+	}
 	
 	public void swap(Athlete activeMember, Athlete reserveMember) {
 		this.addTeamMember(reserveMember);
@@ -126,6 +145,7 @@ public class GameEnvironment {
 	
 	public void addItem(Item item) {
 		items.add(item);
+		itemSize += 1;
 	}
 	
 	
