@@ -66,12 +66,14 @@ public class SetUpScreen {
 		frame.getContentPane().add(teamNameLbl);
 		
 		teamNameInput = new JTextField();
+		teamNameInput.setForeground(new Color(82, 82, 82));
+		teamNameInput.setText("Default Team");
 		teamNameInput.setBounds(181, 112, 227, 35);
 		frame.getContentPane().add(teamNameInput);
 		teamNameInput.setColumns(10);
 		
 		JLabel seasonDurationLbl = new JLabel("Season Duration: ");
-		seasonDurationLbl.setBounds(35, 173, 139, 27);
+		seasonDurationLbl.setBounds(35, 249, 139, 27);
 		seasonDurationLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		frame.getContentPane().add(seasonDurationLbl);
 		
@@ -80,7 +82,7 @@ public class SetUpScreen {
 		seasonSlider.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		seasonSlider.setValue(5);
 		seasonSlider.setSnapToTicks(true);
-		seasonSlider.setBounds(181, 171, 227, 41);
+		seasonSlider.setBounds(181, 251, 227, 41);
 		seasonSlider.setPaintTicks(true);
 		seasonSlider.setPaintLabels(true);
 		seasonSlider.setMinorTickSpacing(1);
@@ -90,11 +92,11 @@ public class SetUpScreen {
 		
 		JRadioButton easyRdBtn = new JRadioButton("Easy");
 		easyRdBtn.setSelected(true);
-		easyRdBtn.setBounds(181, 234, 70, 23);
+		easyRdBtn.setBounds(181, 331, 70, 23);
 		frame.getContentPane().add(easyRdBtn);
 		
 		JRadioButton hardRdBtn = new JRadioButton("Hard");
-		hardRdBtn.setBounds(253, 234, 70, 23);
+		hardRdBtn.setBounds(253, 331, 70, 23);
 		frame.getContentPane().add(hardRdBtn);
 		
 		ButtonGroup G1 = new ButtonGroup();
@@ -103,12 +105,23 @@ public class SetUpScreen {
 		
 		JLabel difficultyLbl = new JLabel("Difficulty: ");
 		difficultyLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		difficultyLbl.setBounds(93, 232, 81, 27);
+		difficultyLbl.setBounds(94, 329, 81, 27);
 		frame.getContentPane().add(difficultyLbl);
+		
+		JLabel errorLbl = new JLabel("");
+		errorLbl.setForeground(new Color(184, 12, 0));
+		errorLbl.setBounds(181, 189, 513, 16);
+		frame.getContentPane().add(errorLbl);
 		
 		JButton createTeamBtn = new JButton("Create Team");
 		createTeamBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (teamNameInput.getText().length() < 3 || teamNameInput.getText().length() > 15) {
+					errorLbl.setText("Error! Your team name must have 3-15 characters");
+					throw new IncorrectInput("Error! Your team name must have 3-15 characters");
+				}
+				
+				// create an if statement for special characters in the team name
 				
 				teamName = teamNameInput.getText();
 				seasonDuration = seasonSlider.getValue();
@@ -130,8 +143,18 @@ public class SetUpScreen {
 		});
 		createTeamBtn.setBackground(new Color(169, 170, 169));
 		createTeamBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		createTeamBtn.setBounds(184, 289, 160, 35);
+		createTeamBtn.setBounds(181, 391, 160, 35);
 		frame.getContentPane().add(createTeamBtn);
+		
+		JLabel teamNameDescriptionLbl = new JLabel("Choose a team name. The length must be between 3 and 15");
+		teamNameDescriptionLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		teamNameDescriptionLbl.setBounds(181, 149, 444, 16);
+		frame.getContentPane().add(teamNameDescriptionLbl);
+		
+		JLabel teamNameDescriptionLbl_1 = new JLabel("characters, and must not include special characters.");
+		teamNameDescriptionLbl_1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		teamNameDescriptionLbl_1.setBounds(181, 166, 283, 16);
+		frame.getContentPane().add(teamNameDescriptionLbl_1);
 		
 	}
 	

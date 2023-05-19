@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -9,30 +7,20 @@ import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.JTree;
+import javax.swing.JSpinner;
+import javax.swing.JScrollBar;
+import java.awt.Color;
 
 public class BuyTeamScreen {
 
 	private JFrame frame;
 	private static PurchasableManager athletes;
-//	private ArrayList<Athlete> freeAthletes = athletes.getAllAthletes();
 	private static ScreenManager manager;
 	
-	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					BuyTeamScreen window = new BuyTeamScreen(athletes, manager);
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 	
 	
 	/**
@@ -48,6 +36,14 @@ public class BuyTeamScreen {
 	
 	public void closeWindow() {
 		frame.dispose();
+	}
+	
+	public ArrayList<String> generateAthleteNames() {
+		ArrayList<String> athleteNames = new ArrayList<String>();
+		for (int i=0; i<athletes.getAllAthletes().size(); i++) {
+			athleteNames.add(athletes.getAllAthletes().get(i).getName());
+		}
+		return athleteNames;
 	}
 
 	/**
@@ -65,107 +61,111 @@ public class BuyTeamScreen {
 		buyTeamLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(buyTeamLbl);
 		
-		JButton Player1 = new JButton("");
+		JButton Player1 = new JButton("SEEKER");
+		Player1.setForeground(new Color(108, 108, 108));
 		Player1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player1.setText("");
 			}
 		});
-		Player1.setBounds(417, 95, 117, 51);
+		Player1.setBounds(417, 66, 117, 51);
 		frame.getContentPane().add(Player1);
 		
-		JButton Player2 = new JButton("");
+		JButton Player2 = new JButton("KEEPER");
+		Player2.setForeground(new Color(108, 108, 108));
 		Player2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player2.setText("");
 			}
 		});
-		Player2.setBounds(546, 95, 117, 51);
+		Player2.setBounds(546, 66, 117, 51);
 		frame.getContentPane().add(Player2);
 		
-		JButton Player3 = new JButton("");
+		JButton Player3 = new JButton("BEATER #1");
+		Player3.setForeground(new Color(108, 108, 108));
 		Player3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player3.setText("");
 			}
 		});
-		Player3.setBounds(417, 158, 117, 51);
+		Player3.setBounds(417, 122, 117, 51);
 		frame.getContentPane().add(Player3);
 		
-		JButton Player4 = new JButton("");
+		JButton Player4 = new JButton("BEATER #2");
+		Player4.setForeground(new Color(108, 108, 108));
 		Player4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player4.setText("");
 			}
 		});
-		Player4.setBounds(546, 158, 117, 51);
+		Player4.setBounds(546, 122, 117, 51);
 		frame.getContentPane().add(Player4);
 		
-		JButton Player5 = new JButton("");
+		JButton Player5 = new JButton("CHASER #1");
+		Player5.setForeground(new Color(108, 108, 108));
 		Player5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player5.setText("");
 			}
 		});
-		Player5.setBounds(417, 221, 117, 51);
+		Player5.setBounds(417, 178, 117, 51);
 		frame.getContentPane().add(Player5);
 		
-		JButton Player6 = new JButton("");
+		JButton Player6 = new JButton("CHASER #2");
+		Player6.setForeground(new Color(108, 108, 108));
 		Player6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player6.setText("");
 			}
 		});
-		Player6.setBounds(546, 221, 117, 51);
+		Player6.setBounds(546, 178, 117, 51);
 		frame.getContentPane().add(Player6);
 		
-		JButton Player7 = new JButton("");
+		JButton Player7 = new JButton("CHASER #3");
+		Player7.setForeground(new Color(108, 108, 108));
 		Player7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player7.setText("");
 			}
 		});
-		Player7.setBounds(417, 284, 117, 51);
+		Player7.setBounds(417, 234, 117, 51);
 		frame.getContentPane().add(Player7);
 		
-		JButton Player8 = new JButton("");
+		JButton Player8 = new JButton("RESERVE");
+		Player8.setForeground(new Color(108, 108, 108));
 		Player8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player8.setText("");
 			}
 		});
-		Player8.setBounds(546, 284, 117, 51);
+		Player8.setBounds(546, 234, 117, 51);
 		frame.getContentPane().add(Player8);
 		
-		JButton Player9 = new JButton("");
+		JButton Player9 = new JButton("RESERVE");
+		Player9.setForeground(new Color(108, 108, 108));
 		Player9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player9.setText("");
 			}
 		});
-		Player9.setBounds(417, 347, 117, 51);
+		Player9.setBounds(417, 288, 117, 51);
 		frame.getContentPane().add(Player9);
 		
-		JButton Player10 = new JButton("");
+		JButton Player10 = new JButton("RESERVE");
+		Player10.setForeground(new Color(108, 108, 108));
 		Player10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Player10.setText("");
 			}
 		});
-		Player10.setBounds(546, 347, 117, 51);
+		Player10.setBounds(546, 288, 117, 51);
 		frame.getContentPane().add(Player10);
 		
 		JComboBox selectAthleteDrpdwn = new JComboBox();
 		selectAthleteDrpdwn.setToolTipText("");
-		selectAthleteDrpdwn.setModel(new DefaultComboBoxModel(new String[] {"Select Athlete..."}));
-		
-//		for (int i=0; i<athletes.getAllAthletes().size(); i++) {
-//			// Adding the name of the Athlete and their contract price to the dropdown
-//			selectAthleteDrpdwn.addItem(freeAthletes.get(i).getName()+ " " + freeAthletes.get(i).getContractPrice());
-//		}
 		selectAthleteDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		selectAthleteDrpdwn.setMaximumRowCount(20);
-		selectAthleteDrpdwn.setBounds(41, 122, 290, 36);
+		selectAthleteDrpdwn.setBounds(50, 137, 290, 36);
 		frame.getContentPane().add(selectAthleteDrpdwn);
 		
 		JLabel priceLbl = new JLabel("Total Cost: $");
@@ -184,8 +184,17 @@ public class BuyTeamScreen {
 		
 		JLabel initialBalanceLbl = new JLabel("Starting Balance: $750");
 		initialBalanceLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		initialBalanceLbl.setBounds(50, 97, 178, 27);
+		initialBalanceLbl.setBounds(50, 97, 203, 27);
 		frame.getContentPane().add(initialBalanceLbl);
+		
+		JButton Player11 = new JButton("RESERVE");
+		Player11.setForeground(new Color(108, 108, 108));
+		Player11.setBounds(488, 347, 117, 51);
+		frame.getContentPane().add(Player11);
+		
+		JList list = new JList(generateAthleteNames().toArray());
+		list.setBounds(60, 194, 134, 128);
+		frame.getContentPane().add(list);
 	}
 	
 	public void finishedWindow() {
