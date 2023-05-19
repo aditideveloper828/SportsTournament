@@ -5,6 +5,7 @@ import java.util.*;
 public class OppositionTeam {
 	
 	public ArrayList<Athlete> opTeam = new ArrayList<Athlete>();
+	public ArrayList<String> nameString = new ArrayList<String>();
 	private static PurchasableManager freeAthletes;
 	private int selectIdx;
 	private InitiateMatchScreen name;
@@ -29,6 +30,13 @@ public class OppositionTeam {
 			freeAthletes.remove(x);
 		}
 		
+	}
+	
+	public ArrayList<String> getNames() {
+		for (int i=0; i < opTeam.size(); i++) {
+			nameString.add(String.valueOf(opTeam.get(i).getName()));
+		}
+		return nameString;
 	}
 	
 	public String getName() {
