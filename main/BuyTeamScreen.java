@@ -17,22 +17,8 @@ public class BuyTeamScreen {
 
 	private JFrame frame;
 	private static PurchasableManager athletes;
-//	private ArrayList<Athlete> freeAthletes = athletes.getAllAthletes();
 	private static ScreenManager manager;
 	
-	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					BuyTeamScreen window = new BuyTeamScreen(athletes, manager);
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 	
 	
 	/**
@@ -159,10 +145,10 @@ public class BuyTeamScreen {
 		selectAthleteDrpdwn.setToolTipText("");
 		selectAthleteDrpdwn.setModel(new DefaultComboBoxModel(new String[] {"Select Athlete..."}));
 		
-//		for (int i=0; i<athletes.getAllAthletes().size(); i++) {
-//			// Adding the name of the Athlete and their contract price to the dropdown
-//			selectAthleteDrpdwn.addItem(freeAthletes.get(i).getName()+ " " + freeAthletes.get(i).getContractPrice());
-//		}
+		for (int i=0; i<athletes.getAllAthletes().size(); i++) {
+			// Adding the name of the Athlete and their contract price to the dropdown
+			selectAthleteDrpdwn.addItem(athletes.getAllAthletes().get(i).getName()+ " " + athletes.getAllAthletes().get(i).getContractPrice());
+		}
 		selectAthleteDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		selectAthleteDrpdwn.setMaximumRowCount(20);
 		selectAthleteDrpdwn.setBounds(41, 122, 290, 36);
