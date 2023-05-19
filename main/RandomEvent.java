@@ -15,48 +15,59 @@ public class RandomEvent {
 		
 		int methodNum;
 		Random randInt = new Random();
-		methodNum = randInt.nextInt(3);
+		methodNum = randInt.nextInt(100);
 		
-		if (methodNum == 0) {
+		if (methodNum < 60) {
 			statIncrease();
 		} 
-		else if (methodNum == 1) {
+		
+		else if (methodNum < 80) {
 			randomQuit();
 		}
 		else {
 			newAthlete();
 		}
 	}
-	
-// create a method to pull from the freeAthletes database for random new players
-	
+		
 	private Athlete selectAthlete() {
-		//why only picking from the first 7 athletes???????????????
 		Random randIdx = new Random();
 		athleteIdx = randIdx.nextInt(event.getTeam().size());
-		return event.getTeam().get(athleteIdx);
+		return event.getTeamMember(athleteIdx);
 	}
 	
 	public void statIncrease() {
-		System.out.println("Exciting News!!" + selectAthlete().getName() + " has had a Stat increase!");
-		selectAthlete().statIncrease();
+		Athlete randTeamMember = selectAthlete();
+		System.out.println("Exciting News!!" + randTeamMember.getName() + " has had a Stat increase!");
+		randTeamMember.statIncrease();
 		
 	}
 	
 	public void randomQuit() {
-		event.removeTeamMember(selectAthlete());
-		System.out.println(selectAthlete().getName() + " has quit your team! \n Please make sure you have 6 active players before you play another match");
+		Random randQuit = new Random();
+		int quittingProb = randQuit.nextInt(100);
+		Athlete randAthlete = selectAthlete();
+		int barrier = 50;
+		if (randAthlete.injured()) {
+			barrier /= 2;
+		}
+		if (quittingProb > barrier) {
+			event.removeTeamMember(randAthlete);
+			System.out.println(randAthlete.getName() + " has quit your team! \n Please make sure you have 6 active players before you play another match");
+		}
+			
 	}
 	
 	public void newAthlete() {
-		// creating a potential random event of an athlete being added to the reserves
-		if (randPlayers.size() > 0 ) {
-			Athlete randPlayer = randPlayers.get(0);
+		Random randJoin = new Random();
+		int joiningProb = randJoin.nextInt(100); 
+		int barrier = 25 * event.getReserveSize();
+		if (joiningProb > barrier) {
+			Athlete randPlayer = event.getMarket().getRandAthlete();
 			randPlayer.setPosition("RESERVE");
 			event.addReserve(randPlayer);
 			System.out.println(randPlayer.getName() + " has randomly joined your team! \n They are currently in your reserves");
-			randPlayers.remove(0);
 		}
+			
 	}
 	
 }

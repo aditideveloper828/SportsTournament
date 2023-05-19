@@ -43,9 +43,20 @@ public class PurchasableManager extends IncorrectInput {
 		
 	}
 	
+	public Athlete getRandAthlete(){
+		Random randInt = new Random();
+		int chosen = randInt.nextInt(availableAthletes);
+		Athlete chosenAthlete = this.getAthlete(chosen);
+		this.remove(chosenAthlete);
+		return chosenAthlete;
+		
+	}
+	
 	public Item getItem(int id) {
 		return items.get(id);
 	}
+	
+	
 	
 	public void remove(Athlete person) {
 		athletes.remove(person);

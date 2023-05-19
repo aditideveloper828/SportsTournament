@@ -194,7 +194,6 @@ public final class UserInterface {
 	}
 	
 	private static void byeWeek() {
-		// add in special training
 		Scanner specialTraining = new Scanner(System.in);
 		thisGame.teamStaminaRefill();
 		System.out.println("You can give one of your athletes special training!");
@@ -209,6 +208,7 @@ public final class UserInterface {
 				thisGame.getTeamMember(chosenAthlete-1).statIncrease();
 			}
 			else {
+				////doent handle input error (if neither 1, 2 or -1 are entered)
 				thisGame.getReserve(chosenAthlete-1).statIncrease();
 			}
 		}
