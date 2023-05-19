@@ -20,15 +20,18 @@ public class BuyTeamScreen {
 	private JFrame frame;
 	private static PurchasableManager athletes;
 	private static ScreenManager manager;
+	private static GameEnvironment game;
 	
 	
 	
 	/**
 	 * Create the application.
 	 */
-	public BuyTeamScreen(PurchasableManager data, ScreenManager incomingManager) {
+	public BuyTeamScreen(PurchasableManager data, ScreenManager incomingManager, GameEnvironment incomingGame) {
+		game = incomingGame;
 		athletes = data;
 		manager = incomingManager;
+		// manager.setGame(game);
 		initialize();
 		frame.setVisible(true);
 		
@@ -192,9 +195,9 @@ public class BuyTeamScreen {
 		Player11.setBounds(488, 347, 117, 51);
 		frame.getContentPane().add(Player11);
 		
-		JList list = new JList(generateAthleteNames().toArray());
-		list.setBounds(60, 194, 134, 128);
-		frame.getContentPane().add(list);
+//		JList list = new JList(generateAthleteNames().toArray());
+//		list.setBounds(60, 194, 134, 128);
+//		frame.getContentPane().add(list);
 	}
 	
 	public void finishedWindow() {

@@ -23,7 +23,7 @@ public class ScreenManager {
 	}
 	
 	public void launchBuyTeamScreen() {
-		BuyTeamScreen screen = new BuyTeamScreen(data, this);
+		BuyTeamScreen screen = new BuyTeamScreen(data, this,  game);
 	}
 	
 	public void launchPurchaseScreen() {
@@ -31,7 +31,7 @@ public class ScreenManager {
 	}
 	
 	public void launchClubScreen() {
-		ClubScreen screen =  new ClubScreen(data, this);
+		ClubScreen screen =  new ClubScreen(data, game, this);
 	}
 	
 	public void launchMainScreen() {

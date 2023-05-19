@@ -26,7 +26,7 @@ public class SetUpScreen {
 	String dif;
 	public int numDif;
 	String errorMessageLbl;
-	String teamName = "Unoriginal Name";
+	String teamName;
 	public int seasonDuration;
 	private static GameEnvironment game;
 	
@@ -161,4 +161,5 @@ public class SetUpScreen {
 	public void finishedWindow() {
 		manager.closeSetUpScreen(this);
 	}
+	
 }
