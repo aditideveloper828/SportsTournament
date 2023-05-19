@@ -65,10 +65,10 @@ public final class UserInterface {
 			int sellType;
 			int picked = 0;
 			do {
-				System.out.println("Enter 1 if you want to sell an active member and 2 if you want sell a reserve or -1 if you want to go home");
+				System.out.println("Enter 1 if you want to sell an active member and 2 if you want to sell a reserve or -1 if you want to go home");
 				sellType = picking.nextInt();
 				if (sellType != -1){
-					System.out.println("Choose your item to sell! (Enter in ID or -1 if you do not want to pick an item)");
+					System.out.println("Choose your athlete to sell! (Enter in ID or -1 if you do not want to pick an item)");
 					picked = picking.nextInt();
 					if (picked != -1) {
 						if (sellType == 1) {
@@ -175,6 +175,7 @@ public final class UserInterface {
 		System.out.println("Welcome to the Club Room!");
 		System.out.println("Team Name: "+thisGame.getTeamName());
 		System.out.println("Balance: "+thisGame.getBalance());
+		System.out.println("Points: "+thisGame.getPoints());
 		System.out.println("Weeks Remaining in Season: "+thisGame.getWeeks());
 		System.out.println();
 		System.out.println("Your Team: ");
@@ -183,13 +184,34 @@ public final class UserInterface {
 	    thisGame.displayItems();
 	    
 	    //add in swapping
+	    System.out.println("Would you like to: (Enter in number or -1 to go to home)");
+	    System.out.println("1 Change the position of an athlete?");
+	    System.out.println("2 Swap the positions of 2 athletes?");
+	    System.out.println("3 Use an item for an athlete");
+	    
 	    
 		
 	}
 	
 	private static void byeWeek() {
 		// add in special training
+		Scanner specialTraining = new Scanner(System.in);
 		thisGame.teamStaminaRefill();
+		System.out.println("You can give one of your athletes special training!");
+		System.out.println("Here are your athletes!");
+		thisGame.displayTeam();
+		System.out.println("Enter 1 if you want to train an active member and 2 if you want to train a reserve or -1 if you want to go to home");
+		int athleteType = specialTraining.nextInt();
+		if (athleteType != -1) {
+			System.out.println("Enter the ID of the athelete you want to train");
+			int chosenAthlete = specialTraining.nextInt();
+			if (athleteType == 1) {
+				thisGame.getTeamMember(chosenAthlete-1).statIncrease();
+			}
+			else {
+				thisGame.getReserve(chosenAthlete-1).statIncrease();
+			}
+		}
 	}
 	
 
@@ -218,10 +240,11 @@ public final class UserInterface {
 			System.out.println(e);
 		}
 		
-		chosingOpposition.close();
 		boolean cannotPlay = false;
 	    if (thisGame.getTeam().size() < 7){
 	    	cannotPlay = true;
+	    	//add in check for reserves and move reserve to team 
+	    	System.out.println("Your team does not have enough members, you have to take a buy this week");
 	    }
 	    if (cannotPlay || opTeamSelect == 4) {
 	    	///add in check if game needs to end due to low balance
@@ -237,6 +260,9 @@ public final class UserInterface {
     	else {
     		thisMatch = new Match(thisGame, team3);
     	}	
+    	team1.disposeOpTeam();
+    	team2.disposeOpTeam();
+    	team3.disposeOpTeam();
     	return true;	
 
 	}
@@ -290,31 +316,35 @@ public final class UserInterface {
 	    		goToMarket();
 
 	    	}
-	    	else {
+	    	else if (goTo == 3){
 	    		thisGame.reduceWeek();
-	    		chooseOpTeam();
 	    		boolean playedGame = chooseOpTeam();
 			    if (playedGame) {
 			    	boolean result = thisMatch.matchWon();
 			    	if (result) {
 			    		System.out.println("Congratulations! You won this weeks's match!");
 			    		thisGame.increaseBalance(50*thisMatch.getTeamTotal()/thisGame.getDifficulty()); 
+			    		thisGame.increasePoints(10*thisMatch.getTeamTotal()/thisGame.getDifficulty());
 			    	}
 			    	else {
 			    		System.out.println("You lost. Better luck next time!");
 			    	}
+			    	///should random events happen whenever?????????????? or just after games.
+			    	Random randomEvent = new Random();
+					int eventOccurs = randomEvent.nextInt(100);
+					if (eventOccurs < 50/thisGame.getDifficulty()) {
+						RandomEvent event = new RandomEvent(thisGame, market);
+					}
 			    }
-			    Random randomEvent = new Random();
-				int eventOccurs = randomEvent.nextInt(100);
-				if (eventOccurs < 50*thisGame.getDifficulty()) {
-					RandomEvent event = new RandomEvent(thisGame);
-				}	
 	    	}
 	    }
 
 	    
 	    System.out.println("Your Final Status!!!");
-	    viewGame();
+		System.out.println("Final Balance: "+thisGame.getBalance());
+		System.out.println("Total Points: "+thisGame.getPoints());
+	    
+	    input.close();
 	    
 
 	}

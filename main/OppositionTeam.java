@@ -50,4 +50,12 @@ public class OppositionTeam {
 		return opTeam;
 	}
 	
+	public void disposeOpTeam() {
+		for (int i = 0; i < opTeam.size(); i++) {
+			freeAthletes.add(opTeam.get(i));
+		}
+		
+		
+	}
+	
 }

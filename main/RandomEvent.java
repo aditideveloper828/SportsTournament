@@ -9,8 +9,9 @@ public class RandomEvent {
 	private GameEnvironment event;
 	private ArrayList<Athlete> randPlayers;
 	
-	public RandomEvent(GameEnvironment game) {
+	public RandomEvent(GameEnvironment game, PurchasableManager market) {
 		event = game;
+		randPlayers = market.getAllAthletes();
 		
 		int methodNum;
 		Random randInt = new Random();
@@ -32,7 +33,7 @@ public class RandomEvent {
 	private Athlete selectAthlete() {
 		//why only picking from the first 7 athletes???????????????
 		Random randIdx = new Random();
-		athleteIdx = randIdx.nextInt(7);
+		athleteIdx = randIdx.nextInt(event.getTeam().size());
 		return event.getTeam().get(athleteIdx);
 	}
 	
@@ -49,9 +50,11 @@ public class RandomEvent {
 	
 	public void newAthlete() {
 		// creating a potential random event of an athlete being added to the reserves
-		if (randPlayers.size() > 0) {
-			event.addReserve(randPlayers.get(0));
-			System.out.println(randPlayers.get(0) + " has randomly joined your team! \n They are currently in your reserves");
+		if (randPlayers.size() > 0 ) {
+			Athlete randPlayer = randPlayers.get(0);
+			randPlayer.setPosition("RESERVE");
+			event.addReserve(randPlayer);
+			System.out.println(randPlayer.getName() + " has randomly joined your team! \n They are currently in your reserves");
 			randPlayers.remove(0);
 		}
 	}
