@@ -67,13 +67,13 @@ public class SetUpScreen {
 		
 		teamNameInput = new JTextField();
 		teamNameInput.setForeground(new Color(82, 82, 82));
-		teamNameInput.setText("Default Team");
+		teamNameInput.setText("Default Name");
 		teamNameInput.setBounds(181, 112, 227, 35);
 		frame.getContentPane().add(teamNameInput);
 		teamNameInput.setColumns(10);
 		
 		JLabel seasonDurationLbl = new JLabel("Season Duration: ");
-		seasonDurationLbl.setBounds(35, 249, 139, 27);
+		seasonDurationLbl.setBounds(35, 227, 139, 27);
 		seasonDurationLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		frame.getContentPane().add(seasonDurationLbl);
 		
@@ -82,7 +82,7 @@ public class SetUpScreen {
 		seasonSlider.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		seasonSlider.setValue(5);
 		seasonSlider.setSnapToTicks(true);
-		seasonSlider.setBounds(181, 251, 227, 41);
+		seasonSlider.setBounds(181, 227, 227, 41);
 		seasonSlider.setPaintTicks(true);
 		seasonSlider.setPaintLabels(true);
 		seasonSlider.setMinorTickSpacing(1);
@@ -108,22 +108,41 @@ public class SetUpScreen {
 		difficultyLbl.setBounds(94, 329, 81, 27);
 		frame.getContentPane().add(difficultyLbl);
 		
-		JLabel errorLbl = new JLabel("");
-		errorLbl.setForeground(new Color(184, 12, 0));
-		errorLbl.setBounds(181, 189, 513, 16);
-		frame.getContentPane().add(errorLbl);
+		JLabel stringLenErrorLbl = new JLabel("");
+		stringLenErrorLbl.setForeground(new Color(184, 12, 0));
+		stringLenErrorLbl.setBounds(181, 206, 513, 16);
+		frame.getContentPane().add(stringLenErrorLbl);
+		
+		JLabel specCharErrorLbl = new JLabel("");
+		specCharErrorLbl.setForeground(new Color(184, 12, 0));
+		specCharErrorLbl.setBounds(181, 189, 513, 16);
+		frame.getContentPane().add(specCharErrorLbl);
 		
 		JButton createTeamBtn = new JButton("Create Team");
 		createTeamBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (teamNameInput.getText().length() < 3 || teamNameInput.getText().length() > 15) {
-					errorLbl.setText("Error! Your team name must have 3-15 characters");
+				stringLenErrorLbl.setText("");
+				specCharErrorLbl.setText("");
+				String inputText = teamNameInput.getText();
+				if (inputText.length() < 3 || inputText.length() > 15) {
+					stringLenErrorLbl.setText("Error! Your team name must have 3-15 characters");
 					throw new IncorrectInput("Error! Your team name must have 3-15 characters");
 				}
 				
+		        String specialCharactersString = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
+		        for (int i=0; i < inputText.length() ; i++)
+		        {
+		            char ch = inputText.charAt(i);
+		            
+		            if(specialCharactersString.contains(Character.toString(ch))) {
+		            	specCharErrorLbl.setText("Error! Your team name must not have any special characters!");
+		            	throw new IncorrectInput("Error! Your team name must not have any special characters!");
+		            }
+		        }
+				
 				// create an if statement for special characters in the team name
 				
-				teamName = teamNameInput.getText();
+				teamName = inputText;
 				seasonDuration = seasonSlider.getValue();
 				
 				if (easyRdBtn.isSelected()) {
