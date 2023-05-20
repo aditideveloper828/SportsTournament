@@ -17,7 +17,7 @@ public final class UserInterface {
 	private static Match thisMatch;
 	private static InitiateMatchScreen initiateMatch;
 	private static Scanner userInput = new Scanner(System.in);
-	
+	private static int selectedSeasonDuration;
 	
 	private static void setUp() {
 		//Move this to game environment
@@ -247,17 +247,17 @@ public final class UserInterface {
 	    }
 	    
 	    int playersInjured = 0;
-	    for (int i = 0; i < 7; i++) {
+	    for (int i = 0; i < thisGame.getTeamSize(); i++) {
     		if (thisGame.getTeamMember(i).injured()) {
     			playersInjured += 1;
     		}
     	}
-	    for (int i = 0; i < 5; i++) {
+	    for (int i = 0; i < thisGame.getReserveSize(); i++) {
     		if (thisGame.getReserve(i).injured()) {
     			playersInjured += 1;
     		}
     	}
-	    if (playersInjured == 12) {
+	    if (playersInjured == thisGame.getReserveSize() + thisGame.getTeamSize()) {
 	    	System.out.println("All of players are injured. You have to take a bye to heal.");
 	    }
 	    
@@ -286,27 +286,23 @@ public final class UserInterface {
 	
 	public static void main(String[] args) throws IncorrectInput {
 		setUp();
-		Scanner input = new Scanner(System.in);
 		
 	    System.out.println("Enter Team Name:");
 	    String name = userInput.nextLine();
 	    System.out.println("Enter duration of game (weeks): ");
-	    int weeks = 0;
 	    try {
-	    	weeks = userInput.nextInt();
+	    	selectedSeasonDuration = userInput.nextInt();
 	    }
 	    catch (Exception e) {
 	    	System.out.println(e);
 	    	System.exit(0);
 	    }
-	    thisGame = new GameEnvironment(name, weeks);
+	    thisGame = new GameEnvironment(name, selectedSeasonDuration);
 	    
 	    
 	    System.out.println("Enter Diffuculty (must be 1 or 2):");
 	    int difficulty = userInput.nextInt();
-	    //String x = userInput.nextLine();
 	    if (difficulty < 1 || difficulty > 2) {
-	    	input.close();
 	    	throw new IncorrectInput("You did not enter a valid difficulty value");
 	    }
 	    thisGame.setDifficulty(difficulty);	    
@@ -344,28 +340,23 @@ public final class UserInterface {
 			    	else {
 			    		System.out.println("You lost. Better luck next time!");
 			    	}
-			    	///should random events happen whenever?????????????? or just after games.
-			    	Random randomEvent = new Random();
-					int eventOccurs = randomEvent.nextInt(100);
-					if (eventOccurs < 100/(thisGame.getDifficulty()*5)) {
-						@SuppressWarnings("unused")
-						RandomEvent event = new RandomEvent(thisGame);
-					}
 			    }
 	    	}
+	    	Random randomEvent = new Random();
+			int eventOccurs = randomEvent.nextInt(100);
+			if (eventOccurs < 100/(thisGame.getDifficulty()*10)) {
+				@SuppressWarnings("unused")
+				RandomEvent event = new RandomEvent(thisGame);
+			}
 	    }
 
 	    
 	    System.out.println("Your Final Status!!!");
-	    //have to display selected season duration
-	    //have to display team name
-	    
+	    System.out.println("Team Name"+thisGame.getTeamName());
+	    System.out.println("Selected Season Duration"+selectedSeasonDuration);
 		System.out.println("Final Balance: "+thisGame.getBalance());
 		System.out.println("Total Points: "+thisGame.getPoints());
 	    
-	    input.close();
-	    
-
+	    userInput.close();
 	}
-
 }
