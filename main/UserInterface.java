@@ -11,7 +11,7 @@ import java.util.*;
 //have to complete comments
 ///////////////add in method for taking input to avoid repeating code
 ////////////////fix scanner names
-public final class UserInterface {
+public final class UserInterface{
 	private static PurchasableManager market = new PurchasableManager();
 	private static GameEnvironment thisGame;
 	private static Match thisMatch;
@@ -218,7 +218,7 @@ public final class UserInterface {
 
 	
 	
-	public static boolean chooseOpTeam() throws IncorrectInput {
+	public static boolean chooseOpTeam() throws CannotPlay{
 		OppositionTeam team1 = new OppositionTeam(market, initiateMatch);
 		OppositionTeam team2 = new OppositionTeam(market, initiateMatch);
 		OppositionTeam team3 = new OppositionTeam(market, initiateMatch);
@@ -260,10 +260,14 @@ public final class UserInterface {
 	    if (playersInjured == thisGame.getReserveSize() + thisGame.getTeamSize()) {
 	    	System.out.println("All of players are injured. You have to take a bye to heal.");
 	    }
-	    
+	    if (insufficientPlayers && thisGame.getReserveSize() == 0) {
+	    	if (market.minimumContractPrice() > thisGame.getBalance()) {
+	    		throw new CannotPlay("You cannot buy any more players", thisGame, selectedSeasonDuration);
+	    	}
+    		
+    	}
 	    
 	    if (insufficientPlayers || opTeamSelect == 4) {
-	    	///add in check if game needs to end due to low balance
 	    	byeWeek();
 	    	return false;
 	    }
@@ -284,7 +288,7 @@ public final class UserInterface {
 	}
 		
 	
-	public static void main(String[] args) throws IncorrectInput {
+	public static void main(String[] args) throws IncorrectInput, CannotPlay {
 		setUp();
 		
 	    System.out.println("Enter Team Name:");
@@ -352,8 +356,8 @@ public final class UserInterface {
 
 	    
 	    System.out.println("Your Final Status!!!");
-	    System.out.println("Team Name"+thisGame.getTeamName());
-	    System.out.println("Selected Season Duration"+selectedSeasonDuration);
+	    System.out.println("Team Name: "+thisGame.getTeamName());
+	    System.out.println("Selected Season Duration: "+selectedSeasonDuration);
 		System.out.println("Final Balance: "+thisGame.getBalance());
 		System.out.println("Total Points: "+thisGame.getPoints());
 	    

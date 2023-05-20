@@ -12,7 +12,6 @@ public class PurchasableManager extends IncorrectInput {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private ArrayList<Athlete> athletes;
 	private ArrayList<Item> items;
 	private int availableAthletes = 0;
@@ -106,6 +105,16 @@ public class PurchasableManager extends IncorrectInput {
 		return availableItems;
 	}
 	
+	public int minimumContractPrice() {
+		int minimum = athletes.get(0).getContractPrice();
+		for (int i = 1; i < availableAthletes; i++) {
+			int price = athletes.get(i).getContractPrice();
+			if (minimum > price) {
+				minimum = price;
+			}
+		}
+		return minimum;
+	}
 	
 	
 	
