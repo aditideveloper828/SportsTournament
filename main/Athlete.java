@@ -5,7 +5,7 @@ package main;
  *
  */
 
-///add in limitor method
+///remove nicknames
 
 public class Athlete implements Purchasable{
 	private String name;
@@ -62,7 +62,7 @@ public class Athlete implements Purchasable{
 	
 	public String getName() {
 		// pulls the name of the athlete
-		return name + " aka " + nickname;
+		return name;
 	}
 	
 	public void setNickname(String name) {
@@ -102,7 +102,7 @@ public class Athlete implements Purchasable{
     }
 	
 	public String toString() {
-		return this.getDescription();
+		return name + " Offence: " + offenceRating + " Defence: " + defenceRating + " Cost: $" + contractCost + " Sell back: $" + sellBackPrice;
 	}
 	
 	public void statIncrease() {

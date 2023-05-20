@@ -132,9 +132,8 @@ public class SetUpScreen {
                     dif = "Hard";
                     numDif = 2;
                 }
-				
-				finishedWindow();
 				manager.makeGame(teamName, seasonDuration, numDif);
+				finishedWindow();
 			}
 		});
 		createTeamBtn.setBackground(new Color(169, 170, 169));

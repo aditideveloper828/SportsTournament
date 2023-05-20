@@ -54,7 +54,6 @@ public class Interaction {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 	}
 	
@@ -67,13 +66,26 @@ public class Interaction {
 		game.setDifficulty(difficulty);
 	}
 	
-	public void initializeTeam(Athlete[] athletes) {
+	public void initializeTeam(ArrayList<Athlete> athletes) {
+		Purchase initialize = new Purchase("ATHLETE", market, game);
 		for (int i = 0; i < 7; i++) {
-			game.addTeamMember(athletes[i]);
+			initialize.buy(athletes.get(i), athletes.get(i).getPosition());
 		}
+		game.resetBalance();
 	}
 	
-	public 
+	public ArrayList<Athlete> getAthleteOptions(boolean initializing) {
+		int toGet = 5;
+		if (initializing) {
+			toGet = 14;
+		}
+		return market.getSomeAthletes(toGet);
+	}
+	
+	public ArrayList<Item> getItemOptions(){
+		return market.getAllItems();
+	}
+	
 	
 	
 	

@@ -113,7 +113,7 @@ public final class UserInterface{
 		    }
 			if (pickedID != -1) {
 				Athlete athlete = market.getAthlete(pickedID-1);
-				object.buy(athlete, positions[i], "Default");
+				object.buy(athlete, positions[i]);
 			}
 		}
 		thisGame.resetBalance();
@@ -140,7 +140,7 @@ public final class UserInterface{
 				position = userInput.nextInt();
 				if (pickedAthlete != -1 && position != -1) {
 					Athlete athlete = market.getAthlete(pickedAthlete-1);
-					object.buy(athlete, positions[position-1], "Default");
+					object.buy(athlete, positions[position-1]);
 				}
 			} while (pickedAthlete != -1 && position != -1);
 		}

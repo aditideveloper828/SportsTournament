@@ -15,7 +15,6 @@ public class Purchase {
 			
 	}
 	
-	
 	public void displayOptions(boolean initializing) {
 		System.out.println("These are your options:");
 		if (type == "ATHLETE") {
@@ -42,12 +41,11 @@ public class Purchase {
 	}
 	
 	
-	public void buy(Athlete chosen, String position, String nickname) {
+	public void buy(Athlete chosen, String position) {
 		//deal with too many teams
 		if (game.getBalance() >= chosen.getContractPrice()){
 			purchasable.remove(chosen);
 			chosen.setPosition(position);
-			chosen.setNickname(nickname);
 			if (chosen.getPosition() == "RESERVE") {
 				game.addReserve(chosen);
 			}
@@ -86,7 +84,6 @@ public class Purchase {
 			game.removeTeamMember(chosen);
 		}
 		chosen.setPosition(null);
-		chosen.setNickname(chosen.getName());
 		purchasable.add(chosen);
 		game.increaseBalance(chosen.getSellBackPrice());
 		
