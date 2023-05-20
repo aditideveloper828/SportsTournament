@@ -15,11 +15,14 @@ public class Purchase {
 			
 	}
 	
-	
-	public void displayOptions() {
+	public void displayOptions(boolean initializing) {
 		System.out.println("These are your options:");
 		if (type == "ATHLETE") {
-			ArrayList<Athlete> athletes = purchasable.getSomeAthletes(14);
+			int toGet = 5;
+			if (initializing) {
+				toGet = 14;
+			}
+			ArrayList<Athlete> athletes = purchasable.getSomeAthletes(toGet);
 			for (int i = 0; i < athletes.size(); i++){
 				System.out.println("ID: "+(i+1));
 				System.out.println(athletes.get(i));

@@ -2,17 +2,22 @@ package main;
 
 public class ScreenManager {
 	
-	private static PurchasableManager data;
-	private static GameEnvironment game;
+	//private static PurchasableManager data;
+	//private static GameEnvironment game;
+	private Interaction implementation;
 	
 	public ScreenManager() {
-		
+		implementation = new Interaction();
 	}
 	
-	public void setGame(GameEnvironment game) {
-		this.game = game;
-		this.data = game.getMarket();
+	public void makeGame(String name, int duration, int difficulty) {
+		implementation.setUp(name, duration, difficulty);	
 	}
+	
+	public Interaction getImplementation() {
+		return implementation;
+	}
+	
 	
 	public void launchWelcomeScreen() {
 		WelcomeScreen screen = new WelcomeScreen(this);
@@ -22,16 +27,20 @@ public class ScreenManager {
 		SetUpScreen screen = new SetUpScreen(this);
 	}
 	
+	public void launchInitializeTeamScreen() {
+		InitializeTeam screen = new InitializeTeam(this);
+	}
+	
 	public void launchBuyTeamScreen() {
-		BuyTeamScreen screen = new BuyTeamScreen(data, this,  game);
+		BuyTeamScreen screen = new BuyTeamScreen(this);
 	}
 	
 	public void launchPurchaseScreen() {
-		PurchaseScreen screen = new PurchaseScreen(data, this);
+		PurchaseScreen screen = new PurchaseScreen(this);
 	}
 	
 	public void launchClubScreen() {
-		ClubScreen screen =  new ClubScreen(data, game, this);
+		ClubScreen screen =  new ClubScreen(this);
 	}
 	
 	public void launchMainScreen() {
@@ -39,11 +48,18 @@ public class ScreenManager {
 	}
 	
 	public void launchInitiateMatchScreen() {
-		InitiateMatchScreen screen = new InitiateMatchScreen(data, this, game);
+		InitiateMatchScreen screen = new InitiateMatchScreen(this);
 	}
 	
 	public void launchResultScreen() {
 		ResultScreen screen = new ResultScreen(this);
+	}
+	
+	public void launchByeWeekScreen() {
+		ByeWeekScreen screen = new ByeWeekScreen(this);
+	}
+	
+	public void launchFinishScreen() {
 	}
 	
 	public void closeWelcomeScreen(WelcomeScreen screen) {
@@ -51,9 +67,15 @@ public class ScreenManager {
 		launchSetUpScreen();
 	}
 	
+	
 	public void closeSetUpScreen(SetUpScreen screen) {
 		screen.closeWindow();
-		launchBuyTeamScreen();
+		launchInitializeTeamScreen();
+	}
+	
+	public void closeInitializeTeamScreen(InitializeTeam screen) {
+		screen.closeWindow();
+		launchMainScreen();
 	}
 	
 	public void closeBuyTeamScreen(BuyTeamScreen screen) {
@@ -61,9 +83,23 @@ public class ScreenManager {
 		launchMainScreen();
 	}
 	
-	public void closeMainScreen(MainScreen screen) {
+	public void closeByeWeekScreen(ByeWeekScreen screen) {
+		screen.closeWindow();
+		if (implementation.remainingWeeks() > 0) {
+			launchMainScreen();
+		}
+		else {
+			launchFinishScreen();
+		}
+	}
+	
+	public void closeClubScreen(ClubScreen screen) {
 		screen.closeWindow();
 	}
+	
+//	public void closeMainScreen(MainScreen screen) {
+//		screen.closeWindow();
+//	}
 	
 	public void closeInitiateMatchScreen() {
 		InitiateMatchScreen.closeWindow();
@@ -71,16 +107,16 @@ public class ScreenManager {
 	}
 	
 	public void goHome(ScreenCase state) {
-		switch (state) {
-        case PURCHASESCREEN:
-        	PurchaseScreen.closeWindow();
-            break;
-        case CLUBSCREEN:
-        	ClubScreen.closeWindow();
-            break;
-		default:
-			break;
-		}
+//		switch (state) {
+//        case PURCHASESCREEN:
+//        	PurchaseScreen.closeWindow();
+//            break;
+//        case CLUBSCREEN:
+//        	ClubScreen.closeWindow();
+//            break;
+//		default:
+//			break;
+//		}
 		
 		launchMainScreen();
 	}

@@ -5,9 +5,9 @@ public class Item implements Purchasable{
 	//change so that attributes cannot be changed after being set
 	//change input format to an array
 	String name;
-	public static int offenceBoost;
-	public static int defenceBoost;
-	public static int staminaBoost;
+	public int offenceBoost;
+	public int defenceBoost;
+	public int staminaBoost;
 	int contractCost;
 	int sellBackPrice;
 	
@@ -27,17 +27,17 @@ public class Item implements Purchasable{
 	}
 	
 	
-	public static int getOffenceBoost() {
+	public int getOffenceBoost() {
 		// pulls the offense boost of the item. Judged out of 100
 		return offenceBoost;
 	}
 	
-	public static int getDefenceBoost() {
+	public int getDefenceBoost() {
 		// pulls the defense boost of the item. Judged out of 100
 		return defenceBoost;
 	}
 	
-	public static int getStaminaBoost() {
+	public int getStaminaBoost() {
 		// pulls the stamina boost of the item
 		return staminaBoost;
 	}

@@ -11,14 +11,13 @@ package main;
 import java.util.*;
 
 public class GameEnvironment {
-	private static PurchasableManager market = new PurchasableManager();
 	private ArrayList<Athlete> team;
 	private ArrayList<Athlete> reserves;
 	private ArrayList<Item> items;
 	private int difficulty;
 	private String teamName;
 	private int weeks;
-	private int balance = 750;
+	private int balance = 1000;
 	private int points = 0;
 	private int teamSize = 0;
 	private int reserveSize = 0;
@@ -35,45 +34,9 @@ public class GameEnvironment {
 		
 	}
 	
-	public void setUp() {
-		//Move this to game environment
-		//change this method to remove duplicate code
-		FileRead athleteFile = new FileRead("AthleteProfiles");
-		ArrayList<String> athleteProfiles = athleteFile.getData();
-		for (int i = 1; i < athleteProfiles.size(); i++) {
-			String[] characterData = athleteProfiles.get(i).split(";",0);
-			int [] stats = new int[5];
-			for (int j = 0; j < 5; j++){
-				stats[j] = 	 Integer.parseInt(characterData[j+2]);
-			}
-			String name = characterData[0] + " " + characterData[1];
-			try {
-				market.add(new Athlete(name, stats));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//making items
-		FileRead itemFile = new FileRead("ItemDetails");
-		ArrayList<String> itemDetails = itemFile.getData();
-		for (int i = 1; i < itemDetails.size(); i++) {
-			String[] itemData = itemDetails.get(i).split(";",0);
-			int [] stats = new int[5];
-			for (int j = 0; j < 4; j++){
-				stats[j] = 	 Integer.parseInt(itemData[j+1]);
-			}
-			try {
-				market.add(new Item(itemData[0], stats));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}
-	}
 	
-	public PurchasableManager getMarket() {
-		return market;
+	public void resetBalance() {
+		balance = 100;
 	}
 	
 	public void addTeamMember(Athlete athlete) {
@@ -135,6 +98,8 @@ public class GameEnvironment {
 	}
 	
 	public void swap(Athlete activeMember, Athlete reserveMember) {
+		reserveMember.setPosition(activeMember.getPosition());
+		activeMember.setPosition("RESERVE");
 		this.addTeamMember(reserveMember);
 		this.addReserve(activeMember);
 		this.removeTeamMember(activeMember);
@@ -187,6 +152,11 @@ public class GameEnvironment {
 		for (i=0; i < team.size(); i++) {
 			team.get(i).staminaRefill();
 		}
+		for (i=0; i < reserves.size(); i++) {
+			reserves.get(i).staminaRefill();
+		}
+		
+		
 	}
 	
 	public int getBalance() {
@@ -218,6 +188,17 @@ public class GameEnvironment {
 			System.out.println(reserves.get(i));
 		}
 		
+	}
+	
+	public void useItem(int itemID, int athleteType, int athleteID) {
+		Item beingUsed = items.get(itemID);
+		this.removeItem(beingUsed);
+		if (athleteType == 1) {
+			team.get(athleteID).boost(beingUsed);
+		}
+		else {
+			reserves.get(athleteID).boost(beingUsed);
+		}
 	}
 	
 	

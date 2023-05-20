@@ -13,23 +13,8 @@ import java.awt.event.ActionEvent;
 public class MainScreen {
 
 	private JFrame frame;
-	private static ScreenManager manager;
+	private ScreenManager manager;
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					MainScreen window = new MainScreen();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the application.
@@ -56,8 +41,8 @@ public class MainScreen {
 		JButton goToClubBtn = new JButton("Go To Club");
 		goToClubBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				closeWindow();
 				manager.launchClubScreen();
+				closeWindow();
 			}
 		});
 		goToClubBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -67,8 +52,9 @@ public class MainScreen {
 		JButton goToMarketBtn = new JButton("Go To Market");
 		goToMarketBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				closeWindow();
 				manager.launchPurchaseScreen();
+				closeWindow();
+				
 			}
 		});
 		goToMarketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -78,8 +64,8 @@ public class MainScreen {
 		JButton playNxtMatchBtn = new JButton("Play Next Match");
 		playNxtMatchBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				closeWindow();
 				manager.launchInitiateMatchScreen();
+				closeWindow();
 			}
 		});
 		playNxtMatchBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -93,15 +79,21 @@ public class MainScreen {
 		frame.getContentPane().add(homeScreenTitle);
 		
 		JButton takeAByeBtn = new JButton("Take A Bye");
+		takeAByeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchByeWeekScreen();
+				closeWindow();
+			}
+		});
 		takeAByeBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		takeAByeBtn.setBounds(351, 302, 206, 42);
 		frame.getContentPane().add(takeAByeBtn);
 	}
 	
 	
-	public void finishedWindow() {
-		manager.closeMainScreen(this);
-	}
+//	public void finishedWindow() {
+//		manager.closeMainScreen(this);
+//	}
 	
 
 }

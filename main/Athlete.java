@@ -5,11 +5,9 @@ package main;
  *
  */
 
+///remove nicknames
 
 public class Athlete implements Purchasable{
-	//add in an id system?
-	//have a check stamina class somewhere
-	//change input format to an array
 	private String name;
 	private String nickname;
 	private int offenceRating;
@@ -22,7 +20,6 @@ public class Athlete implements Purchasable{
 	
 	public Athlete(String tempName, int[] stats) {
 		// Constructor class to grab each detail about the athlete
-		///if there's time, remove current stamina from athlete profiles.
 		name = tempName;
 		nickname = name;
 		offenceRating = stats[0];
@@ -32,7 +29,6 @@ public class Athlete implements Purchasable{
 		
 	}
 	
-	//add setter method choosing position && change display to not include position
 	
 	public void setPosition(String position) {
 		// pulls the position of the athlete
@@ -40,9 +36,33 @@ public class Athlete implements Purchasable{
 
 	}
 	
+	private void limitor() {
+		if (currentStamina > 100) {
+			currentStamina = 100;
+		}
+		if (offenceRating > 10) {
+			offenceRating = 10;
+		}
+		if (defenceRating > 10) {
+			defenceRating = 10;
+		}
+		if (currentStamina < 0) {
+			currentStamina = 0;
+		}
+		
+	}
+	
+	public void boost(Item beingUsed) {
+		this.currentStamina += beingUsed.getStaminaBoost();
+		this.offenceRating += beingUsed.getOffenceBoost();
+		this.defenceRating += beingUsed.getDefenceBoost();
+		limitor();
+
+	}
+	
 	public String getName() {
 		// pulls the name of the athlete
-		return nickname;
+		return name;
 	}
 	
 	public void setNickname(String name) {
@@ -50,12 +70,12 @@ public class Athlete implements Purchasable{
 	}
 	
 	public int getOffence() {
-		// pulls the offence rating of the Athlete. Judged out of 100
+		// pulls the offence rating of the Athlete. Judged out of 10
 		return offenceRating;
 	}
 	
 	public int getDefence() {
-		// pulls the defence rating of the Athlete. Judged out of 100
+		// pulls the defence rating of the Athlete. Judged out of 10
 		return defenceRating;
 	}
 	
@@ -71,28 +91,24 @@ public class Athlete implements Purchasable{
 
 	
 	public void staminaDecrease() {
-		currentStamina -= 10;
+		currentStamina -= 20;
+		limitor();
 		
 	}
 	
 	public String getDescription(){
         //returns description
-        return  "Athlete: "+name+"\nNickname: "+nickname+"\nOffence: "+offenceRating+"\nDefence: "+defenceRating+"\nPosition: "+position+" \nContract Cost: "+contractCost;
+        return  "Athlete: "+name+"\r\nOffence: "+offenceRating+"\r\nDefence: "+defenceRating+"\r\nPosition: "+position+" \r\nContract Cost: "+contractCost+"\r\nSell Back Price: "+sellBackPrice;
     }
 	
 	public String toString() {
-		return this.getDescription();
+		return name + " Offence: " + offenceRating + " Defence: " + defenceRating + " Cost: $" + contractCost + " Sell back: $" + sellBackPrice + " Position: " + position;
 	}
 	
 	public void statIncrease() {
 		offenceRating += 1;
 		defenceRating += 1;
-		if (offenceRating > 10){
-			offenceRating = 10;
-		}
-		if (defenceRating > 10){
-			defenceRating = 10;
-		}
+		limitor();
 	}
 
 	public void staminaRefill() {

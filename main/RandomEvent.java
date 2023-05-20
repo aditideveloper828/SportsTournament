@@ -58,7 +58,7 @@ public class RandomEvent {
 	public void newAthlete() {
 		Random randJoin = new Random();
 		int joiningProb = randJoin.nextInt(100); 
-		int barrier = 25 * event.getReserveSize();
+		int barrier = 20 * event.getReserveSize();
 		if (joiningProb > barrier) {
 			Athlete randPlayer = event.getMarket().getRandAthlete();
 			randPlayer.setPosition("RESERVE");

@@ -12,7 +12,6 @@ public class PurchasableManager extends IncorrectInput {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private ArrayList<Athlete> athletes;
 	private ArrayList<Item> items;
 	private int availableAthletes = 0;
@@ -73,23 +72,16 @@ public class PurchasableManager extends IncorrectInput {
 		return athletes;
 	}
 	
-	public ArrayList<Athlete> getSomeAthletes(int number) throws IncorrectInput {
+	public ArrayList<Athlete> getSomeAthletes(int number){
 		//pulls all athletes available
 		if (number > availableAthletes) {
 			number = availableAthletes;
 		}
-		ArrayList<Athlete> randomFew = new ArrayList<Athlete>();
-		ArrayList<Integer> alreadySelected = new ArrayList<Integer>();
-		while (number > 0) {
-			Random athleteInd = new Random();
-			int index = athleteInd.nextInt(availableAthletes);
-			if (alreadySelected.contains(index) != true) {
-				randomFew.add(athletes.get(index));
-				alreadySelected.add(index);
-				number -= 1;
-			}
+		ArrayList<Athlete> returnAthletes = new ArrayList<Athlete>();
+		for (int i = 0; i < number; i++) {
+			returnAthletes.add(athletes.get(i));
 		}
-		return randomFew;
+		return returnAthletes;
 	}
 	
 	
@@ -106,6 +98,16 @@ public class PurchasableManager extends IncorrectInput {
 		return availableItems;
 	}
 	
+	public int minimumContractPrice() {
+		int minimum = athletes.get(0).getContractPrice();
+		for (int i = 1; i < availableAthletes; i++) {
+			int price = athletes.get(i).getContractPrice();
+			if (minimum > price) {
+				minimum = price;
+			}
+		}
+		return minimum;
+	}
 	
 	
 	

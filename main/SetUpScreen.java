@@ -28,8 +28,6 @@ public class SetUpScreen {
 	String errorMessageLbl;
 	String teamName;
 	public int seasonDuration;
-	private static GameEnvironment game;
-	
 
 	/**
 	 * Create the application.
@@ -153,11 +151,8 @@ public class SetUpScreen {
                     dif = "Hard";
                     numDif = 2;
                 }
-				
+				manager.makeGame(teamName, seasonDuration, numDif);
 				finishedWindow();
-				game = new GameEnvironment(teamName, seasonDuration);
-				game.setUp();
-				manager.setGame(game);
 			}
 		});
 		createTeamBtn.setBackground(new Color(169, 170, 169));
