@@ -284,8 +284,7 @@ public class ClubScreen {
 			public void actionPerformed(ActionEvent e) {
 				if (selectedTeamMember != -1 && selectedReserve != -1) {
 					game.swap(game.getTeamMember(selectedTeamMember), game.getReserve(selectedReserve));
-					manager.goHome(ScreenCase.CLUBSCREEN);
-					closeWindow();
+					finishedWindow();
 				}
 				else {
 					JOptionPane.showMessageDialog(frame, "You need to select an active member then a reserve to swap them!");
@@ -356,8 +355,7 @@ public class ClubScreen {
 						athleteID = selectedReserve;
 					}
 					game.useItem(itemId, lastSelected, athleteID);
-					manager.goHome(ScreenCase.CLUBSCREEN);
-					closeWindow();
+					finishedWindow();
 					
 				}
 				else {
@@ -373,10 +371,10 @@ public class ClubScreen {
 		lblSelectAnActive.setBounds(289, 408, 405, 21);
 		frame.getContentPane().add(lblSelectAnActive);
 		
-		
-		
-		
-		
-		
 	}
+	
+	public void finishedWindow() {
+		manager.closeClubScreen(this);
+	}
+	
 }

@@ -93,6 +93,10 @@ public class ScreenManager {
 		}
 	}
 	
+	public void closeClubScreen(ClubScreen screen) {
+		screen.closeWindow();
+	}
+	
 //	public void closeMainScreen(MainScreen screen) {
 //		screen.closeWindow();
 //	}
