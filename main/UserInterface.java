@@ -349,6 +349,7 @@ public final class UserInterface{
 	    }
 	    thisGame.setDifficulty(difficulty);	    
 	    System.out.println("It's Time To Make Your Team!");
+	    ///done till this part
 	    initializeTeam();
 	   
 	    System.out.println("Let's Play!");
