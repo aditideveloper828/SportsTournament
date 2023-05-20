@@ -5,6 +5,7 @@ package main;
  *
  */
 
+///add in limitor method
 
 public class Athlete implements Purchasable{
 	private String name;
@@ -35,9 +36,33 @@ public class Athlete implements Purchasable{
 
 	}
 	
+	private void limitor() {
+		if (currentStamina > 100) {
+			currentStamina = 100;
+		}
+		if (offenceRating > 10) {
+			offenceRating = 10;
+		}
+		if (defenceRating > 10) {
+			defenceRating = 10;
+		}
+		if (currentStamina < 0) {
+			currentStamina = 0;
+		}
+		
+	}
+	
+	public void boost(Item beingUsed) {
+		this.currentStamina += beingUsed.getStaminaBoost();
+		this.offenceRating += beingUsed.getOffenceBoost();
+		this.defenceRating += beingUsed.getDefenceBoost();
+		limitor();
+
+	}
+	
 	public String getName() {
 		// pulls the name of the athlete
-		return nickname;
+		return name + " aka " + nickname;
 	}
 	
 	public void setNickname(String name) {
@@ -67,6 +92,7 @@ public class Athlete implements Purchasable{
 	
 	public void staminaDecrease() {
 		currentStamina -= 20;
+		limitor();
 		
 	}
 	
@@ -82,12 +108,7 @@ public class Athlete implements Purchasable{
 	public void statIncrease() {
 		offenceRating += 1;
 		defenceRating += 1;
-		if (offenceRating > 10){
-			offenceRating = 10;
-		}
-		if (defenceRating > 10){
-			defenceRating = 10;
-		}
+		limitor();
 	}
 
 	public void staminaRefill() {

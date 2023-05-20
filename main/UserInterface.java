@@ -209,6 +209,17 @@ public final class UserInterface{
 	    		Athlete reserveMember = thisGame.getReserve(reserveMemberID-1);
 	    		thisGame.swap(activeMember, reserveMember);
 	    	}
+	    	else {
+	    		thisGame.displayTeam();
+	    		thisGame.displayItems();
+	    		System.out.println("Enter in the ID of the item you want to use");
+	    		int itemToUse = userInput.nextInt();
+	    		System.out.println("Enter 1 if you want use the item for an active member and 2 for a reserve");
+				int athleteType = userInput.nextInt();
+				System.out.println("Enter in the ID of the athlete");
+				int athleteID = userInput.nextInt();
+				thisGame.useItem(itemToUse-1, athleteType, athleteID-1);	    		
+	    	}
 	    }
 	    
 	    

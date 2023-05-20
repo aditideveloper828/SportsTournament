@@ -231,6 +231,17 @@ public class GameEnvironment {
 		
 	}
 	
+	public void useItem(int itemID, int athleteType, int athleteID) {
+		Item beingUsed = items.get(itemID);
+		this.removeItem(beingUsed);
+		if (athleteType == 1) {
+			team.get(athleteID).boost(beingUsed);
+		}
+		else {
+			reserves.get(athleteID).boost(beingUsed);
+		}
+	}
+	
 	
 	public void displayItems() {
 		for (int i = 0; i < items.size(); i++) {
