@@ -349,17 +349,18 @@ public final class UserInterface{
 	    }
 	    thisGame.setDifficulty(difficulty);	    
 	    System.out.println("It's Time To Make Your Team!");
-	    ///done till this part
+	    
 	    initializeTeam();
 	   
 	    System.out.println("Let's Play!");
 
-
+	  ///done till this part 
 	    while (thisGame.getWeeks() > 0) {
 	    	System.out.println("What would you like to do? (Enter in number)");
 	    	System.out.println("1 View Club");
 			System.out.println("2 Go To Market" );
 			System.out.println("3 Play Game");	
+			
 	    	int goTo = userInput.nextInt();
 	    	
 	    	if (goTo == 1) {

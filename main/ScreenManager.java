@@ -55,10 +55,18 @@ public class ScreenManager {
 		ResultScreen screen = new ResultScreen(this);
 	}
 	
+	public void launchByeWeekScreen() {
+		ByeWeekScreen screen = new ByeWeekScreen(this);
+	}
+	
+	public void launchFinishScreen() {
+	}
+	
 	public void closeWelcomeScreen(WelcomeScreen screen) {
 		screen.closeWindow();
 		launchSetUpScreen();
 	}
+	
 	
 	public void closeSetUpScreen(SetUpScreen screen) {
 		screen.closeWindow();
@@ -75,9 +83,19 @@ public class ScreenManager {
 		launchMainScreen();
 	}
 	
-	public void closeMainScreen(MainScreen screen) {
+	public void closeByeWeekScreen(ByeWeekScreen screen) {
 		screen.closeWindow();
+		if (implementation.remainingWeeks() > 0) {
+			launchMainScreen();
+		}
+		else {
+			launchFinishScreen();
+		}
 	}
+	
+//	public void closeMainScreen(MainScreen screen) {
+//		screen.closeWindow();
+//	}
 	
 	public void closeInitiateMatchScreen() {
 		InitiateMatchScreen.closeWindow();

@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -191,12 +190,10 @@ public class InitializeTeam {
 		frame.getContentPane().add(reserveLb);
 		
 		
-		JLabel lblNewLabel = new JLabel("An Athlete may only have one position assigned to them");
+		JLabel lblNewLabel = new JLabel("An Athlete may only have one position assigned to them. Do not worry about cost at the moment, the initial balance will not change from $100");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		lblNewLabel.setBounds(30, 64, 284, 16);
 		frame.getContentPane().add(lblNewLabel);
-		
-		
 		
 	}
 	

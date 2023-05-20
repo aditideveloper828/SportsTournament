@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 public class WelcomeScreen {
 
 	private JFrame frame;
-	private static ScreenManager manager;
+	private ScreenManager manager;
 
 	/**
 	 * Create the application.

@@ -4,7 +4,7 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 /**
  * @author Aditi
@@ -84,6 +84,33 @@ public class Interaction {
 	
 	public ArrayList<Item> getItemOptions(){
 		return market.getAllItems();
+	}
+	
+	public int remainingWeeks() {
+		return game.getWeeks();
+	}
+	
+	public ArrayList<Athlete> getFullTeam(){
+		ArrayList<Athlete> team = game.getTeam();
+		team.addAll(game.getReserves());
+		return team;
+	}
+	
+	public void specialTraining(int index, String position) {
+		//also includes bye week functionality
+		game.teamStaminaRefill();
+		int repeat = 4/game.getDifficulty();
+		if (position != "RESERVE") {
+			for (int i = 0; i < repeat; i++) {
+				game.getTeamMember((index)).statIncrease();
+			}
+		}
+		else {
+			for (int i = 0; i < repeat; i++) {
+				game.getReserve(index).statIncrease();
+			}
+		}
+		game.reduceWeek();
 	}
 	
 	

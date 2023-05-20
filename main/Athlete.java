@@ -102,7 +102,7 @@ public class Athlete implements Purchasable{
     }
 	
 	public String toString() {
-		return name + " Offence: " + offenceRating + " Defence: " + defenceRating + " Cost: $" + contractCost + " Sell back: $" + sellBackPrice;
+		return name + " Offence: " + offenceRating + " Defence: " + defenceRating + " Cost: $" + contractCost + " Sell back: $" + sellBackPrice + " Position: " + position;
 	}
 	
 	public void statIncrease() {
