@@ -98,7 +98,7 @@ public class Athlete implements Purchasable{
 	
 	public String getDescription(){
         //returns description
-        return  "Athlete: "+name+"\nNickname: "+nickname+"\nOffence: "+offenceRating+"\nDefence: "+defenceRating+"\nPosition: "+position+" \nContract Cost: "+contractCost;
+        return  "Athlete: "+name+"\r\nOffence: "+offenceRating+"\r\nDefence: "+defenceRating+"\r\nPosition: "+position+" \r\nContract Cost: "+contractCost+"\r\nSell Back Price: "+sellBackPrice;
     }
 	
 	public String toString() {

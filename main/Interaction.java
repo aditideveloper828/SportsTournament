@@ -96,6 +96,14 @@ public class Interaction {
 		return team;
 	}
 	
+	public ArrayList<Item> getBoughtItems(){
+		return game.getItems();
+	}
+	
+	public GameEnvironment getGame() {
+		return game;
+	}
+	
 	public void specialTraining(int index, String position) {
 		//also includes bye week functionality
 		game.teamStaminaRefill();
@@ -112,6 +120,7 @@ public class Interaction {
 		}
 		game.reduceWeek();
 	}
+	
 	
 	
 	

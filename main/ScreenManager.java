@@ -103,16 +103,16 @@ public class ScreenManager {
 	}
 	
 	public void goHome(ScreenCase state) {
-		switch (state) {
-        case PURCHASESCREEN:
-        	PurchaseScreen.closeWindow();
-            break;
-        case CLUBSCREEN:
-        	ClubScreen.closeWindow();
-            break;
-		default:
-			break;
-		}
+//		switch (state) {
+//        case PURCHASESCREEN:
+//        	PurchaseScreen.closeWindow();
+//            break;
+//        case CLUBSCREEN:
+//        	ClubScreen.closeWindow();
+//            break;
+//		default:
+//			break;
+//		}
 		
 		launchMainScreen();
 	}

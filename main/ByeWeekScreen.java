@@ -46,6 +46,7 @@ public class ByeWeekScreen {
 			values[i] = options.get(i);
 		}
 		
+		
 		JLabel byeTitle = new JLabel("You took a Bye!");
 		byeTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		byeTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -64,8 +65,8 @@ public class ByeWeekScreen {
 			public void actionPerformed(ActionEvent e) {
 				int chosen = specialTraining.getSelectedIndex();
 				String position = options.get(chosen).getPosition();
-				if (chosen > 6) {
-					chosen -= 6;
+				if (position == "RESERVE") {
+					chosen -= manager.getImplementation().getGame().getTeamSize();
 				}
 				manager.getImplementation().specialTraining(chosen, position);
 				finishedWindow();

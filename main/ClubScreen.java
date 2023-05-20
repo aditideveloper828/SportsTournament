@@ -1,35 +1,45 @@
 package main;
-
+///use current athlete and make a current reserve to keep track of last clicks
+///issues with the enum
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 public class ClubScreen {
 
-	private static JFrame frame;
-	private static PurchasableManager data;
-	private static ScreenManager manager;
-	private static GameEnvironment game;
+	private JFrame frame;
+	private ScreenManager manager;
+	private Interaction implementation;
+	private GameEnvironment game;
+	private int selectedTeamMember = -1;
+	private int selectedReserve = -1;
+	private int lastSelected = -1;
 
 	/**
 	 * Create the application.
 	 */
-	public ClubScreen(PurchasableManager incomingData, GameEnvironment incomingGame, ScreenManager incomingManager) {
-		game = incomingGame;
-		data = incomingData;
+	public ClubScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
+		implementation = incomingManager.getImplementation();
+		game = implementation.getGame();
 		initialize();
 		frame.setVisible(true);
 	}
 	
-	public static void closeWindow() {
+	public void closeWindow() {
 		frame.dispose();
 	}
 
@@ -38,9 +48,22 @@ public class ClubScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 500);
+		frame.setBounds(100, 100, 755, 519);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		ArrayList<Athlete> team = game.getTeam();
+		ArrayList<Athlete> reserves = game.getReserves();
+		ArrayList<Item> itemOptions = implementation.getBoughtItems();
+		int activeMembers = game.getTeamSize();
+		Item[] items = new Item[0];
+		if (itemOptions.size() > 0) {
+			items = new Item[itemOptions.size()];
+			for (int i = 0; i < itemOptions.size(); i++) {
+				items[i] = itemOptions.get(i);
+			}
+		}
+		
+		
 		
 		JLabel clubTitle = new JLabel("Welcome to the Club!");
 		clubTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -52,15 +75,16 @@ public class ClubScreen {
 		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.goHome(ScreenCase.CLUBSCREEN);
+				closeWindow();
 			}
 		});
-		homeBtn.setBounds(6, 6, 69, 29);
+		homeBtn.setBounds(6, 6, 95, 29);
 		frame.getContentPane().add(homeBtn);
 		
 		JLabel teamNameLbl = new JLabel(game.getTeamName());
 		teamNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		teamNameLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		teamNameLbl.setBounds(226, 79, 219, 29);
+		teamNameLbl.setBounds(226, 62, 219, 29);
 		frame.getContentPane().add(teamNameLbl);
 		
 		JLabel currentBalanceLbl = new JLabel("Current Balance: $" + game.getBalance());
@@ -68,221 +92,286 @@ public class ClubScreen {
 		frame.getContentPane().add(currentBalanceLbl);
 		
 		JLabel displayTeamLbl = new JLabel("Your Team:");
-		displayTeamLbl.setBounds(55, 120, 87, 21);
+		displayTeamLbl.setBounds(49, 99, 87, 21);
 		frame.getContentPane().add(displayTeamLbl);
 		
-		JLabel athleteNameLbl = new JLabel("");
-		athleteNameLbl.setBounds(415, 174, 181, 16);
-		frame.getContentPane().add(athleteNameLbl);
-		
-		JLabel offenceLbl = new JLabel("");
-		offenceLbl.setBounds(415, 230, 181, 16);
-		frame.getContentPane().add(offenceLbl);
-		
-		JLabel staminaLbl = new JLabel("");
-		staminaLbl.setBounds(415, 202, 181, 16);
-		frame.getContentPane().add(staminaLbl);
-		
-		JLabel defenceLbl = new JLabel("");
-		defenceLbl.setBounds(415, 256, 181, 16);
-		frame.getContentPane().add(defenceLbl);
-		
-		JLabel positionLbl = new JLabel("");
-		positionLbl.setBounds(415, 284, 181, 16);
-		frame.getContentPane().add(positionLbl);
-		
-		JLabel healthLbl = new JLabel("");
-		healthLbl.setBounds(415, 312, 181, 16);
-		frame.getContentPane().add(healthLbl);
+		JLabel statsLbl = new JLabel("");
+		statsLbl.setBounds(394, 224, 181, 143);
+		frame.getContentPane().add(statsLbl);
 		
 		JButton athleteBtn = new JButton("");
-		athleteBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getTeam().get(0);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: " + currentAthlete.getPosition());
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn.setBounds(49, 169, 117, 29);
-		athleteBtn.setText(game.getTeam().get(0).getName());
+		if (team.size() > 0) {
+			athleteBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = team.get(0);
+					String description = currentAthlete.getDescription();
+					selectedTeamMember = 0;
+					lastSelected = 1;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn.setText(team.get(0).getName());
+		}
+		athleteBtn.setBounds(49, 146, 117, 29);
 		frame.getContentPane().add(athleteBtn);
 		
-		JButton athleteBtn_1 = new JButton("");
-		athleteBtn_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getTeam().get(1);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: " + currentAthlete.getPosition());
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_1.setBounds(178, 169, 117, 29);
-		athleteBtn_1.setText(game.getTeam().get(1).getName());
-		frame.getContentPane().add(athleteBtn_1);
+		JButton athleteBtn1 = new JButton("");
+		if (team.size() > 1) {
+			athleteBtn1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = team.get(1);
+					String description = currentAthlete.getDescription();
+					selectedTeamMember = 1;
+					lastSelected = 1;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn1.setText(team.get(1).getName());
+		}
+		athleteBtn1.setBounds(176, 146, 117, 29);
+		frame.getContentPane().add(athleteBtn1);
 		
-		JButton athleteBtn_2 = new JButton("");
-		athleteBtn_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getTeam().get(2);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: " + currentAthlete.getPosition());
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_2.setBounds(49, 333, 117, 29);
-		athleteBtn_2.setText(game.getTeam().get(2).getName());
-		frame.getContentPane().add(athleteBtn_2);
+		JButton athleteBtn7 = new JButton("");
+		if (reserves.size() > 0) {
+			athleteBtn7.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = reserves.get(0);
+					String description = currentAthlete.getDescription();
+					selectedReserve = 0;
+					lastSelected = 2;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn7.setText(reserves.get(0).getName());
+		}
+		athleteBtn7.setBounds(49, 330, 117, 29);
+		frame.getContentPane().add(athleteBtn7);
 		
-		JButton athleteBtn_3 = new JButton("");
-		athleteBtn_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getTeam().get(3);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: " + currentAthlete.getPosition());
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_3.setBounds(178, 210, 117, 29);
-		athleteBtn_3.setText(game.getTeam().get(3).getName());
-		frame.getContentPane().add(athleteBtn_3);
+		JButton athleteBtn3 = new JButton("");
+		if (team.size() > 3) {
+			athleteBtn3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = team.get(3);
+					String description = currentAthlete.getDescription();
+					selectedTeamMember = 3;
+					lastSelected = 1;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn3.setText(team.get(3).getName());
+		}
+		athleteBtn3.setBounds(176, 185, 117, 29);
+		frame.getContentPane().add(athleteBtn3);
 		
-		JButton athleteBtn_4 = new JButton("");
-		athleteBtn_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getTeam().get(4);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: " + currentAthlete.getPosition());
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_4.setBounds(49, 251, 117, 29);
-		athleteBtn_4.setText(game.getTeam().get(4).getName());
-		frame.getContentPane().add(athleteBtn_4);
+		JButton athleteBtn4 = new JButton("");
+		if (team.size() > 4) {
+			athleteBtn4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = team.get(4);
+					String description = currentAthlete.getDescription();
+					selectedTeamMember = 4;
+					lastSelected = 1;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn4.setText(team.get(4).getName());
+		}
+		athleteBtn4.setBounds(49, 224, 117, 29);
+		frame.getContentPane().add(athleteBtn4);
 		
-		JButton athleteBtn_5 = new JButton("");
-		athleteBtn_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getTeam().get(5);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: " + currentAthlete.getPosition());
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_5.setBounds(178, 333, 117, 29);
-		athleteBtn_5.setText(game.getTeam().get(5).getName());
-		frame.getContentPane().add(athleteBtn_5);
+		JButton athleteBtn8 = new JButton("");
+		if (reserves.size() > 1) {
+			athleteBtn8.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = reserves.get(1);
+					String description = currentAthlete.getDescription();
+					selectedReserve = 1;
+					lastSelected = 2;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn8.setText(reserves.get(1).getName());
+		}
+		athleteBtn8.setBounds(176, 330, 117, 29);
+		frame.getContentPane().add(athleteBtn8);
 		
-		JButton athleteBtn_6 = new JButton("");
-		athleteBtn_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getTeam().get(6);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: " + currentAthlete.getPosition());
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_6.setBounds(49, 292, 117, 29);
-		athleteBtn_6.setText(game.getTeam().get(6).getName());
-		frame.getContentPane().add(athleteBtn_6);
+		JButton athleteBtn6 = new JButton("");
+		if (team.size() > 6) {
+			athleteBtn6.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = team.get(6);
+					String description = currentAthlete.getDescription();
+					selectedTeamMember = 6;
+					lastSelected = 1;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");				}
+			});
+			athleteBtn6.setText(team.get(6).getName());
+		}
+		athleteBtn6.setBounds(114, 271, 117, 29);
+		frame.getContentPane().add(athleteBtn6);
 		
-		JButton athleteBtn_7 = new JButton("");
-		athleteBtn_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getReserves().get(0);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: Reserve");
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_7.setBounds(178, 251, 117, 29);
-		athleteBtn_7.setText(game.getReserves().get(0).getName());
-		frame.getContentPane().add(athleteBtn_7);
+		JButton athleteBtn5 = new JButton("");
+		if (team.size() > 5) {
+			athleteBtn5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = team.get(5);
+					String description = currentAthlete.getDescription();
+					selectedTeamMember = 5;
+					lastSelected = 1;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn5.setText(team.get(5).getName());
+		}
+		athleteBtn5.setBounds(176, 224, 117, 29);
+		frame.getContentPane().add(athleteBtn5);
 		
-		JButton athleteBtn_8 = new JButton("");
-		athleteBtn_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getReserves().get(1);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: Reserve");
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_8.setBounds(49, 210, 117, 29);
-		athleteBtn_8.setText(game.getReserves().get(1).getName());
-		frame.getContentPane().add(athleteBtn_8);
+		JButton athleteBtn2 = new JButton("");
+		if (team.size() > 2) {
+			athleteBtn2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = team.get(2);
+					String description = currentAthlete.getDescription();
+					selectedTeamMember = 2;
+					lastSelected = 1;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn2.setText(team.get(2).getName());
+		}
+		athleteBtn2.setBounds(49, 185, 117, 29);
+		frame.getContentPane().add(athleteBtn2);
 		
-		JButton athleteBtn_9 = new JButton("");
-		athleteBtn_9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getReserves().get(2);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: Reserve");
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_9.setBounds(178, 292, 117, 29);
-		athleteBtn_9.setText(game.getReserves().get(2).getName());
-		frame.getContentPane().add(athleteBtn_9);
+		JButton athleteBtn11 = new JButton("");
+		if (reserves.size() > 4) {
+			athleteBtn11.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = reserves.get(4);
+					String description = currentAthlete.getDescription();
+					selectedReserve = 4;
+					lastSelected = 2;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn11.setText(reserves.get(4).getName());
+		}
+		athleteBtn11.setBounds(114, 408, 117, 29);
+		frame.getContentPane().add(athleteBtn11);
 		
-		JButton athleteBtn_10 = new JButton("");
-		athleteBtn_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getReserves().get(3);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: Reserve");
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_10.setBounds(55, 374, 117, 29);
-		athleteBtn_10.setText(game.getReserves().get(3).getName());
-		frame.getContentPane().add(athleteBtn_10);
-		
-		JButton athleteBtn_11 = new JButton("");
-		athleteBtn_11.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Athlete currentAthlete = game.getReserves().get(4);
-				athleteNameLbl.setText("Current Stamina: " + currentAthlete.getName());
-				offenceLbl.setText("Offence Rating" + String.valueOf(currentAthlete.getOffence()));
-				defenceLbl.setText("Defence Rating: " + String.valueOf(currentAthlete.getDefence()));
-				positionLbl.setText("Position: Reserve");
-				healthLbl.setText("Health Status: Healthy");
-			}
-		});
-		athleteBtn_11.setBounds(178, 374, 117, 29);
-		frame.getContentPane().add(athleteBtn_11);
+		JButton athleteBtn9 = new JButton("");
+		if (reserves.size() > 2) {
+			athleteBtn9.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = reserves.get(2);
+					String description = currentAthlete.getDescription();
+					selectedReserve = 9;
+					lastSelected = 2;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn9.setText(reserves.get(2).getName());
+		}
+		athleteBtn9.setBounds(49, 369, 117, 29);
+		frame.getContentPane().add(athleteBtn9);
 		
 		JLabel lblNewLabel = new JLabel("Click on an athlete to display their statistics");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		lblNewLabel.setBounds(55, 140, 246, 16);
+		lblNewLabel.setBounds(59, 125, 246, 16);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton swapAthletesBtn = new JButton("Swap Athlete Positions");
+		swapAthletesBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (selectedTeamMember != -1 && selectedReserve != -1) {
+					game.swap(game.getTeamMember(selectedTeamMember), game.getReserve(selectedReserve));
+					manager.goHome(ScreenCase.CLUBSCREEN);
+					closeWindow();
+				}
+				else {
+					JOptionPane.showMessageDialog(frame, "You need to select an active member then a reserve to swap them!");
+				}
+			}
+		});
 		swapAthletesBtn.setBounds(518, 437, 176, 29);
 		frame.getContentPane().add(swapAthletesBtn);
 		
+		JButton athleteBtn10 = new JButton((String) null);
+		if (reserves.size() > 3) {
+			athleteBtn10.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Athlete currentAthlete = reserves.get(3);
+					String description = currentAthlete.getDescription();
+					selectedReserve = 3;
+					lastSelected = 2;
+					statsLbl.setText("<html>" + description.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+				}
+			});
+			athleteBtn10.setText(reserves.get(3).getName());
+		}
+		athleteBtn10.setBounds(176, 369, 117, 29);
+		frame.getContentPane().add(athleteBtn10);
+		
+		ButtonGroup teamBtnGrp = new ButtonGroup();
+		teamBtnGrp.add(athleteBtn);
+		teamBtnGrp.add(athleteBtn1);
+		teamBtnGrp.add(athleteBtn2);
+		teamBtnGrp.add(athleteBtn3);
+		teamBtnGrp.add(athleteBtn4);
+		teamBtnGrp.add(athleteBtn5);
+		teamBtnGrp.add(athleteBtn6);
+		
+		ButtonGroup reserveBtnGrp = new ButtonGroup();
+		reserveBtnGrp.add(athleteBtn7);
+		reserveBtnGrp.add(athleteBtn8);
+		reserveBtnGrp.add(athleteBtn9);
+		reserveBtnGrp.add(athleteBtn10);
+		reserveBtnGrp.add(athleteBtn11);
+		
+		JLabel lblYourReserves = new JLabel("Your Reserves:");
+		lblYourReserves.setBounds(49, 307, 107, 21);
+		frame.getContentPane().add(lblYourReserves);
+		
+		JLabel lblSelectAPlayer = new JLabel("Select a player and an item from the dropdown below to use the item.");
+		lblSelectAPlayer.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblSelectAPlayer.setBounds(315, 111, 366, 21);
+		frame.getContentPane().add(lblSelectAPlayer);
+		
+		JComboBox<Item> useItemDrpdwn = new JComboBox<Item>();
+		useItemDrpdwn.setModel(new DefaultComboBoxModel<Item>(items));
+		useItemDrpdwn.setMaximumRowCount(20);
+		useItemDrpdwn.setFont(new Font("Dialog", Font.PLAIN, 13));
+		useItemDrpdwn.setBounds(321, 148, 355, 27);
+		frame.getContentPane().add(useItemDrpdwn);
+		
+		JButton useItemBtn = new JButton("Use Item");
+		useItemBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int itemId = useItemDrpdwn.getSelectedIndex();
+				if (lastSelected != -1 && itemId != -1) {
+					int athleteID = -1;
+					if (lastSelected == 1) {
+						athleteID = selectedTeamMember;
+					}
+					else {
+						athleteID = selectedReserve;
+					}
+					game.useItem(itemId, lastSelected, athleteID);
+					manager.goHome(ScreenCase.CLUBSCREEN);
+					closeWindow();
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(frame, "You need to select an athlete and an item to use item on athlete!");
+				}
+			}
+		});
+		useItemBtn.setBounds(394, 185, 176, 29);
+		frame.getContentPane().add(useItemBtn);
+		
+		JLabel lblSelectAnActive = new JLabel("Select an active member, a reserve, then the swap athletes button to swap positions");
+		lblSelectAnActive.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblSelectAnActive.setBounds(289, 408, 405, 21);
+		frame.getContentPane().add(lblSelectAnActive);
 		
 		
 		
