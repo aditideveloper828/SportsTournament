@@ -10,7 +10,6 @@ package main;
 import java.util.*;
 //have to complete comments
 ///////////////add in method for taking input to avoid repeating code
-////////////////fix scanner names
 public final class UserInterface{
 	private static PurchasableManager market = new PurchasableManager();
 	private static GameEnvironment thisGame;
@@ -18,6 +17,7 @@ public final class UserInterface{
 	private static InitiateMatchScreen initiateMatch;
 	private static Scanner userInput = new Scanner(System.in);
 	private static int selectedSeasonDuration;
+	private static String[] positions = new String[] {"SEEKER", "KEEPER", "BEATER", "CHASER", "RESERVE"};
 	
 	private static void setUp() {
 		//Move this to game environment
@@ -97,40 +97,52 @@ public final class UserInterface{
 		}		
 	}
 	
-	private static void buy(String type) {
-		//making team had more options while market only has 3-5 options
-		//making team should not cost money
-		//change nickname of athlete <---fix this when the athlete is drafted back to purchasable
-		Purchase object = new Purchase(type, market,thisGame);
-		object.displayOptions();
-		if (type == "ATHLETE"){
-			String[] positions = new String[] {"SEEKER", "KEEPER", "BEATER", "BEATER", "CHASER", "CHASER", "CHASER"};
-			for (int i = 0; i < 7; i++) {
-				System.out.println("Choose your "+positions[i]+"! (Enter in ID or -1 if you do not want to pick a player)");
-				int pickedID = -1;
-				try {
-			    	pickedID = userInput.nextInt();
-			    }
-			    catch (Exception e) {
-			    	System.out.println(e);
-			    
-			    }
-				if (pickedID != -1) {
-					Athlete athlete = market.getAthlete(pickedID-1);
-					object.buy(athlete, positions[i]);			
-				}
+	private static void initializeTeam(){
+		Purchase object = new Purchase("ATHLETE", market, thisGame);
+		System.out.println("Do not worry about contract prices as balance will be reset to original before starting the game");
+		object.displayOptions(true);
+		String[] positions = new String[] {"SEEKER", "KEEPER", "BEATER", "BEATER", "CHASER", "CHASER", "CHASER"};
+		for (int i = 0; i < 7; i++) {
+			System.out.println("Choose your "+positions[i]+"! (Enter in ID to pick a player)");
+			int pickedID = -1;
+			try {
+		    	pickedID = userInput.nextInt();
+		    }
+		    catch (Exception e) {
+		    	System.out.println(e);
+		    }
+			if (pickedID != -1) {
+				Athlete athlete = market.getAthlete(pickedID-1);
+				object.buy(athlete, positions[i], "Default");
 			}
-			int reserve;
+		}
+		thisGame.resetBalance();
+		
+	}
+	
+	
+	
+	private static void buy(String type) {
+		//limiting the position of athlete can be done in gui
+		//change nickname of athlete <----need input box for this
+		Purchase object = new Purchase(type, market,thisGame);
+		object.displayOptions(false);
+		if (type == "ATHLETE"){
+			System.out.println("These are the positions that an athlete can be assigned:");
+			for (int i = 0; i < 5; i++) {
+				System.out.println((i+1)+" "+positions[i]);
+			}
+			int pickedAthlete;
+			int position;
 			do  {
-				System.out.println("Choose a reserve! (Enter in ID or -1 if you do not want to pick a reserve)");
-				reserve = userInput.nextInt();
-				if (reserve != -1) {
-					Athlete athlete = market.getAthlete(reserve-1);
-					object.buy(athlete, "RESERVE");
+				System.out.println("Choose an athlete and then the position you want to assign them! (Enter in ID and number of position OR -1 twice if you want to go to home)");
+				pickedAthlete = userInput.nextInt();
+				position = userInput.nextInt();
+				if (pickedAthlete != -1 && position != -1) {
+					Athlete athlete = market.getAthlete(pickedAthlete-1);
+					object.buy(athlete, positions[position-1], "Default");
 				}
-			} while (reserve != -1);
-			
-			
+			} while (pickedAthlete != -1 && position != -1);
 		}
 		else {
 			int picked;
@@ -182,10 +194,25 @@ public final class UserInterface{
 	    System.out.println("Your Items: ");
 	    thisGame.displayItems();
 	    
-	    //add in swapping (only have to do swapping and using item <--- do not have to change position of athletes in team)
+	    //and using item <--- do not have to change position of athletes in team)
 	    System.out.println("Would you like to: (Enter in number or -1 to go to home)");
 	    System.out.println("1 Swap the position of an active team member and a reserve?");
 	    System.out.println("2 Use an item for an athlete");
+	    int choice = userInput.nextInt();
+	    if (choice != -1) {
+	    	if (choice == 1) {
+	    		thisGame.displayTeam();
+	    		System.out.println("Enter in the IDs of the active member and the reserve");
+	    		int activeMemberID = userInput.nextInt();
+	    		int reserveMemberID = userInput.nextInt();
+	    		Athlete activeMember = thisGame.getTeamMember(activeMemberID-1);
+	    		Athlete reserveMember = thisGame.getReserve(reserveMemberID-1);
+	    		thisGame.swap(activeMember, reserveMember);
+	    	}
+	    }
+	    
+	    
+	    
 	    
 	    
 		
@@ -311,7 +338,7 @@ public final class UserInterface{
 	    }
 	    thisGame.setDifficulty(difficulty);	    
 	    System.out.println("It's Time To Make Your Team!");
-	    buy("ATHLETE");
+	    initializeTeam();
 	   
 	    System.out.println("Let's Play!");
 

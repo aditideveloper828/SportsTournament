@@ -18,7 +18,7 @@ public class GameEnvironment {
 	private int difficulty;
 	private String teamName;
 	private int weeks;
-	private int balance = 750;
+	private int balance = 1000;
 	private int points = 0;
 	private int teamSize = 0;
 	private int reserveSize = 0;
@@ -70,6 +70,10 @@ public class GameEnvironment {
 			}
 			
 		}
+	}
+	
+	public void resetBalance() {
+		balance = 100;
 	}
 	
 	public PurchasableManager getMarket() {
@@ -135,6 +139,8 @@ public class GameEnvironment {
 	}
 	
 	public void swap(Athlete activeMember, Athlete reserveMember) {
+		reserveMember.setPosition(activeMember.getPosition());
+		activeMember.setPosition("RESERVE");
 		this.addTeamMember(reserveMember);
 		this.addReserve(activeMember);
 		this.removeTeamMember(activeMember);

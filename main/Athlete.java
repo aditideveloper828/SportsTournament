@@ -7,9 +7,6 @@ package main;
 
 
 public class Athlete implements Purchasable{
-	//add in an id system?
-	//have a check stamina class somewhere
-	//change input format to an array
 	private String name;
 	private String nickname;
 	private int offenceRating;
@@ -22,7 +19,6 @@ public class Athlete implements Purchasable{
 	
 	public Athlete(String tempName, int[] stats) {
 		// Constructor class to grab each detail about the athlete
-		///if there's time, remove current stamina from athlete profiles.
 		name = tempName;
 		nickname = name;
 		offenceRating = stats[0];
@@ -32,7 +28,6 @@ public class Athlete implements Purchasable{
 		
 	}
 	
-	//add setter method choosing position && change display to not include position
 	
 	public void setPosition(String position) {
 		// pulls the position of the athlete
@@ -50,12 +45,12 @@ public class Athlete implements Purchasable{
 	}
 	
 	public int getOffence() {
-		// pulls the offence rating of the Athlete. Judged out of 100
+		// pulls the offence rating of the Athlete. Judged out of 10
 		return offenceRating;
 	}
 	
 	public int getDefence() {
-		// pulls the defence rating of the Athlete. Judged out of 100
+		// pulls the defence rating of the Athlete. Judged out of 10
 		return defenceRating;
 	}
 	

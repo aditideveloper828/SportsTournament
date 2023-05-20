@@ -16,10 +16,14 @@ public class Purchase {
 	}
 	
 	
-	public void displayOptions() {
+	public void displayOptions(boolean initializing) {
 		System.out.println("These are your options:");
 		if (type == "ATHLETE") {
-			ArrayList<Athlete> athletes = purchasable.getSomeAthletes(14);
+			int toGet = 5;
+			if (initializing) {
+				toGet = 14;
+			}
+			ArrayList<Athlete> athletes = purchasable.getSomeAthletes(toGet);
 			for (int i = 0; i < athletes.size(); i++){
 				System.out.println("ID: "+(i+1));
 				System.out.println(athletes.get(i));
@@ -38,11 +42,12 @@ public class Purchase {
 	}
 	
 	
-	public void buy(Athlete chosen, String position) {
+	public void buy(Athlete chosen, String position, String nickname) {
 		//deal with too many teams
 		if (game.getBalance() >= chosen.getContractPrice()){
 			purchasable.remove(chosen);
 			chosen.setPosition(position);
+			chosen.setNickname(nickname);
 			if (chosen.getPosition() == "RESERVE") {
 				game.addReserve(chosen);
 			}
@@ -81,6 +86,7 @@ public class Purchase {
 			game.removeTeamMember(chosen);
 		}
 		chosen.setPosition(null);
+		chosen.setNickname(chosen.getName());
 		purchasable.add(chosen);
 		game.increaseBalance(chosen.getSellBackPrice());
 		
