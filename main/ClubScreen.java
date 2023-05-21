@@ -83,7 +83,7 @@ public class ClubScreen {
 		JLabel teamNameLbl = new JLabel(game.getTeamName());
 		teamNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		teamNameLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		teamNameLbl.setBounds(226, 62, 219, 29);
+		teamNameLbl.setBounds(226, 60, 219, 29);
 		frame.getContentPane().add(teamNameLbl);
 		
 		JLabel currentBalanceLbl = new JLabel("Current Balance: $" + game.getBalance());
@@ -325,7 +325,6 @@ public class ClubScreen {
 					}
 					game.useItem(itemId, lastSelected, athleteID);
 					finishedWindow();
-					
 				}
 				else {
 					JOptionPane.showMessageDialog(frame, "You need to select an athlete and an item to use item on athlete!");
@@ -342,6 +341,10 @@ public class ClubScreen {
 					game.swap(game.getTeamMember(selectedTeamMember), game.getReserve(selectedReserve));
 					finishedWindow();
 				}
+				else if (selectedReserve != -1 && game.getTeamSize() < 7) {
+					implementation.fillPosition(game.getReserve(selectedReserve));
+					finishedWindow();
+				}
 				else {
 					JOptionPane.showMessageDialog(frame, "You need to select an active member then a reserve to swap them!");
 				}
@@ -354,6 +357,12 @@ public class ClubScreen {
 		lblSelectAnActive.setFont(new Font("Dialog", Font.PLAIN, 10));
 		lblSelectAnActive.setBounds(289, 408, 405, 21);
 		frame.getContentPane().add(lblSelectAnActive);
+		
+		JLabel currentWeeksLbl = new JLabel("Weeks Remaining: " + game.getWeeks());
+		currentWeeksLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		currentWeeksLbl.setFont(new Font("Dialog", Font.PLAIN, 13));
+		currentWeeksLbl.setBounds(512, 14, 219, 29);
+		frame.getContentPane().add(currentWeeksLbl);
 		
 	}
 	

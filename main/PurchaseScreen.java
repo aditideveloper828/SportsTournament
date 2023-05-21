@@ -116,7 +116,10 @@ public class PurchaseScreen {
 		JButton buyAthleteBtn = new JButton("Buy Athlete!");
 		buyAthleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//buy an athlete for set postions;
+				Athlete toBuyAthlete = (Athlete) buyAthleteDropdown.getItemAt(buyAthleteDropdown.getSelectedIndex());
+				String selectedPosition = positionDrpdwn.getItemAt(positionDrpdwn.getSelectedIndex());
+				JOptionPane.showMessageDialog(frame, implementation.buy(toBuyAthlete, selectedPosition));
+				closeWindow();
 			}
 		});
 		buyAthleteBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
@@ -131,7 +134,9 @@ public class PurchaseScreen {
 		JButton buyItemBtn = new JButton("Buy Item!");
 		buyItemBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//buy an item
+				Item toBuyItem = (Item) buyItemsDropdown.getItemAt(buyItemsDropdown.getSelectedIndex());
+				JOptionPane.showMessageDialog(frame, implementation.buy(toBuyItem));
+				finishedWindow();
 			}
 		});
 		buyItemBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
@@ -155,6 +160,10 @@ public class PurchaseScreen {
 		JButton sellAthleteBtn = new JButton("Sell Athlete!");
 		sellAthleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//check how its dealing with reserves
+				int toSellAthlete = sellDrpdwn.getSelectedIndex();
+				implementation.sell(toSellAthlete , 2, athleteSell[toSellAthlete].getPosition());
+				finishedWindow();
 			}
 		});
 		sellAthleteBtn.setFont(new Font("Dialog", Font.PLAIN, 17));
@@ -174,6 +183,9 @@ public class PurchaseScreen {
 		JButton sellItemBtn = new JButton("Sell Item!");
 		sellItemBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int toSellItem = itemSellDrpdwn.getSelectedIndex();
+				implementation.sell(toSellItem , 1, "");
+				finishedWindow();
 			}
 		});
 		sellItemBtn.setFont(new Font("Dialog", Font.PLAIN, 17));

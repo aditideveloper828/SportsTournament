@@ -2,12 +2,11 @@ package main;
 import java.util.ArrayList;
 
 public class Purchase {
-	//return what?
-	//add in try and except around if statements
 	private String type;
 	private PurchasableManager purchasable;
 	private GameEnvironment game;
 	
+	//type is only required for the command line application
 	public Purchase(String type, PurchasableManager purchasable, GameEnvironment game) {
 		this.type = type;
 		this.purchasable = purchasable;
@@ -42,28 +41,23 @@ public class Purchase {
 	
 	
 	public void buy(Athlete chosen, String position) {
-		//deal with too many teams
-		if (game.getBalance() >= chosen.getContractPrice()){
-			purchasable.remove(chosen);
-			chosen.setPosition(position);
-			if (chosen.getPosition() == "RESERVE") {
-				game.addReserve(chosen);
-			}
-			else {
-				game.addTeamMember(chosen);
-			}
-				
-			game.reduceBalance(chosen.getContractPrice());			
+		//assumes check of balance vs price has already occurred.
+		purchasable.remove(chosen);
+		chosen.setPosition(position);
+		if (position == "RESERVE") {
+			game.addReserve(chosen);
 		}
+		else {
+			game.addTeamMember(chosen);
+		}
+		game.reduceBalance(chosen.getContractPrice());			
 	}
 	
 	public void buy(Item chosen) {
-		if (game.getBalance() >= chosen.getContractPrice()){
-			purchasable.remove(chosen);
-			game.reduceBalance(chosen.getContractPrice());
-			game.addItem(chosen);
-		}	
-		
+		//assumes check of balance vs price has already occurred.
+		purchasable.remove(chosen);
+		game.reduceBalance(chosen.getContractPrice());
+		game.addItem(chosen);		
 	}
 	
 	public void sell(Athlete chosen) {

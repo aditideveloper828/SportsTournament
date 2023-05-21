@@ -34,6 +34,13 @@ public class GameEnvironment {
 		
 	}
 	
+	private ArrayList<Athlete> removeDuplicates(ArrayList<Athlete> duplicates){
+		Set<Athlete> removedDuplicates = new LinkedHashSet<Athlete>(duplicates);
+		ArrayList<Athlete> withoutDuplicates = new ArrayList<Athlete>();
+		withoutDuplicates.addAll(removedDuplicates);
+		return withoutDuplicates;
+	}
+	
 	
 	public void resetBalance() {
 		balance = 100;
@@ -41,6 +48,9 @@ public class GameEnvironment {
 	
 	public void addTeamMember(Athlete athlete) {
 		team.add(athlete);
+		ArrayList<Athlete> withoutDuplicates = removeDuplicates(team);
+		team.clear();
+		team.addAll(withoutDuplicates);
 		teamSize += 1;
 	}
 	
@@ -73,6 +83,9 @@ public class GameEnvironment {
 	
 	public void addReserve(Athlete athlete) {
 		reserves.add(athlete);
+		ArrayList<Athlete> withoutDuplicates = removeDuplicates(reserves);
+		reserves.clear();
+		reserves.addAll(withoutDuplicates);
 		reserveSize += 1;
 	}
 	
@@ -98,12 +111,12 @@ public class GameEnvironment {
 	}
 	
 	public void swap(Athlete activeMember, Athlete reserveMember) {
+		this.removeTeamMember(activeMember);
+		this.removeReserve(reserveMember);
 		reserveMember.setPosition(activeMember.getPosition());
 		activeMember.setPosition("RESERVE");
 		this.addTeamMember(reserveMember);
 		this.addReserve(activeMember);
-		this.removeTeamMember(activeMember);
-		this.removeReserve(reserveMember);
 	}
 	
 	
