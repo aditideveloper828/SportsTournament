@@ -12,7 +12,6 @@ package main;
  * 
  * @author Imogen Keeling
  */
-
 public class Athlete implements Purchasable{
 	private String name;
 	private int offenceRating;

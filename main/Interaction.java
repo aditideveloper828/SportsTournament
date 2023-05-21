@@ -24,13 +24,13 @@ public class Interaction {
 	
 	public void setUp() {
 		//change this method to remove duplicate code
-		FileRead athleteFile = new FileRead("AthleteProfiles");
+		FileRead athleteFile = new FileRead("AthleteMarket");
 		ArrayList<String> athleteProfiles = athleteFile.getData();
 		for (int i = 1; i < athleteProfiles.size(); i++) {
 			String[] characterData = athleteProfiles.get(i).split(";",0);
 			int [] stats = new int[5];
 			for (int j = 0; j < 5; j++){
-				stats[j] = 	 Integer.parseInt(characterData[j+2]);
+				stats[j] = Integer.parseInt(characterData[j+2]);
 			}
 			String name = characterData[0] + " " + characterData[1];
 			try {
@@ -57,6 +57,9 @@ public class Interaction {
 		}
 	}
 	
+	public PurchasableManager getMarket() {
+		return market;
+	}
 	
 	
 	public void setUp(String name, int duration, int difficulty) {
@@ -68,7 +71,7 @@ public class Interaction {
 	
 	public void initializeTeam(ArrayList<Athlete> athletes) {
 		Purchase initialize = new Purchase("ATHLETE", market, game);
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 8; i++) {
 			initialize.buy(athletes.get(i), athletes.get(i).getPosition());
 		}
 		game.resetBalance();
@@ -102,6 +105,10 @@ public class Interaction {
 	
 	public GameEnvironment getGame() {
 		return game;
+	}
+	
+	public void sell(int objectID, int type) {
+		
 	}
 	
 	public void specialTraining(int index, String position) {

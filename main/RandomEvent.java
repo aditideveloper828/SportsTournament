@@ -11,14 +11,18 @@ public class RandomEvent {
 	
 	private int athleteIdx;
 	private GameEnvironment event;
+	private PurchasableManager market;
+
 	
 	/**
      * Creates a random event in the game.
      *
      * @param game the game environment
+     * @param market where the available athletes are stored
      */
-	public RandomEvent(GameEnvironment game) {
+	public RandomEvent(GameEnvironment game, PurchasableManager market) {
 		event = game;
+		this.market = market;
 		
 		int methodNum;
 		Random randInt = new Random();
@@ -83,7 +87,7 @@ public class RandomEvent {
 		int joiningProb = randJoin.nextInt(100); 
 		int barrier = 20 * event.getReserveSize();
 		if (joiningProb > barrier) {
-			Athlete randPlayer = event.getMarket().getRandAthlete();
+			Athlete randPlayer = market.getRandAthlete();
 			randPlayer.setPosition("RESERVE");
 			event.addReserve(randPlayer);
 			System.out.println(randPlayer.getName() + " has randomly joined your team! \n They are currently in your reserves");

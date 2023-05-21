@@ -393,7 +393,7 @@ public final class UserInterface{
 	   
 	    System.out.println("Let's Play!");
 
-	  ///done till this part 
+	  
 	    while (thisGame.getWeeks() > 0) {
 	    	System.out.println("What would you like to do? (Enter in number)");
 	    	System.out.println("1 View Club");
@@ -404,7 +404,7 @@ public final class UserInterface{
 	    	
 	    	if (goTo == 1) {
 	    		viewGame();
-	    		
+	    		///done till this part 
 	    	}
 	    	else if (goTo == 2) {
 	    		goToMarket();
@@ -429,7 +429,7 @@ public final class UserInterface{
 			int eventOccurs = randomEvent.nextInt(100);
 			if (eventOccurs < 100/(thisGame.getDifficulty()*10)) {
 				@SuppressWarnings("unused")
-				RandomEvent event = new RandomEvent(thisGame);
+				RandomEvent event = new RandomEvent(thisGame, market);
 			}
 	    }
 

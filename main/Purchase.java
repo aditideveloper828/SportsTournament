@@ -95,9 +95,6 @@ public class Purchase {
 				
 			game.reduceBalance(chosen.getContractPrice());			
 		}
-		else {
-			System.out.println("You do not have enough points for this purchase.");
-		}
 	}
 	
 	/**
@@ -114,10 +111,8 @@ public class Purchase {
 			purchasable.remove(chosen);
 			game.reduceBalance(chosen.getContractPrice());
 			game.addItem(chosen);
-		}
-		else {
-			System.out.println("You do not have enough points for this purchase.");
-		}
+
+		}	
 	}
 	
 	/**
