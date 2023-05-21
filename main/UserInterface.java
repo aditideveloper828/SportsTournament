@@ -2,14 +2,19 @@
  * 
  */
 package main;
+import java.util.*;
+
+///////////////add in method for taking input to avoid repeating code
+
 
 /**
+ * The UserInterface class represents the user interface of a game.
+ * It allows the user to interact with the game environment, manage the team,
+ * buy and sell athletes and items, view game details, and play matches.
+ * The UserInterface class is the main entry point of the game for the command line application.
+ * 
  * @author Aditi Sharma
- *
  */
-import java.util.*;
-//have to complete comments
-///////////////add in method for taking input to avoid repeating code
 public final class UserInterface{
 	private static PurchasableManager market = new PurchasableManager();
 	private static GameEnvironment thisGame;
@@ -19,6 +24,10 @@ public final class UserInterface{
 	private static int selectedSeasonDuration;
 	private static String[] positions = new String[] {"SEEKER", "KEEPER", "BEATER", "CHASER", "RESERVE"};
 	
+	/**
+     * Sets up the game environment by reading athlete profiles and item details from files,
+     * creating Athlete and Item objects, and adding them to the market.
+     */
 	private static void setUp() {
 		//Move this to game environment
 		//change this method to remove duplicate code
@@ -52,12 +61,14 @@ public final class UserInterface{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
-		
-		
 	}
 	
+	/**
+	 * Performs the selling action for the specified type (athlete or item).
+	 * 
+	 * @param type the type of item to sell ("ATHLETE" or "ITEM")
+	 */
 	private static void sell(String type) {
 		Purchase sale = new Purchase(type, market, thisGame);
 		if (type == "ATHLETE"){
@@ -97,6 +108,12 @@ public final class UserInterface{
 		}		
 	}
 	
+	/**
+	 * Initializes the team by allowing the user to select athletes for different positions.
+	 * Uses the Purchase object to buy athletes from the market.
+	 * Resets the balance to its original value before starting the game as initialising 
+	 * the original team does not cost the user.
+	 */
 	private static void initializeTeam(){
 		Purchase object = new Purchase("ATHLETE", market, thisGame);
 		System.out.println("Do not worry about contract prices as balance will be reset to original before starting the game");
@@ -117,11 +134,13 @@ public final class UserInterface{
 			}
 		}
 		thisGame.resetBalance();
-		
 	}
 	
-	
-	
+	/**
+	 * Allows the user to purchase athletes or items based on the specified type.
+	 *
+	 * @param type the type of purchase (either "ATHLETE" or another item type)
+	 */
 	private static void buy(String type) {
 		//limiting the position of athlete can be done in gui
 		//change nickname of athlete <----need input box for this
@@ -156,7 +175,10 @@ public final class UserInterface{
 		}
 	}
 
-	
+	/**
+	 * Displays the market options and performs the corresponding action based on the user's input.
+	 * The user can choose to buy athletes, buy items, sell athletes, sell items, or go back to the home screen.
+	 */
 	private static void goToMarket() {
 		System.out.println("Welcome to the market");
 		System.out.println("What would you like to do? (Enter in number)");
@@ -164,7 +186,7 @@ public final class UserInterface{
 		System.out.println("2 Buy Items");
 		System.out.println("3 Sell Athletes");
 		System.out.println("4 Sell Items");
-		System.out.println("5 Go to Home");
+		System.out.println("5 Go Home");
 		int nextStep = userInput.nextInt();
 		if (nextStep == 1) {
 			buy("ATHLETE");
@@ -180,8 +202,11 @@ public final class UserInterface{
 		}
 	}
 	
-	
-	
+	/**
+	 * Displays the information about the current game, including the team name, balance, points, weeks remaining in the season,
+	 * team members, and items. Provides options to swap the position of an active team member and a reserve or use an item for an athlete.
+	 * User input is required to perform these actions.
+	 */
 	private static void viewGame() {
 		System.out.println("Welcome to the Club Room!");
 		System.out.println("Team Name: "+thisGame.getTeamName());
@@ -221,14 +246,13 @@ public final class UserInterface{
 				thisGame.useItem(itemToUse-1, athleteType, athleteID-1);	    		
 	    	}
 	    }
-	    
-	    
-	    
-	    
-	    
-		
 	}
 	
+	/**
+	 * Refills the stamina of the team and allows the player to give special training to an athlete during a bye week.
+	 * The player can choose to train either an active team member or a reserve.
+	 * The chosen athlete's offence and defence ratings will be increased by 1 for each training session.
+	 */
 	private static void byeWeek() {
 		thisGame.teamStaminaRefill();
 		System.out.println("You can give one of your athletes special training!");
@@ -253,9 +277,17 @@ public final class UserInterface{
 		}
 	}
 	
-
-	
-	
+	/**
+	 * Allows the player to choose an opposition team for the match.
+	 * Creates three opposition teams and presents the options to the player.
+	 * The player can choose to play against one of the three teams or take a bye.
+	 * If the team does not have enough athletes, the player is prompted to buy more athletes.
+	 * Throws the CannotPlay if the player does not have enough money to buy more 
+	 * athletes to create a complete team.
+	 *
+	 * @return true if the player successfully chooses an opposition team, false if they take a bye week
+	 * @throws CannotPlay if the player cannot buy any more players due to insufficient funds
+	 */
 	public static boolean chooseOpTeam() throws CannotPlay{
 		OppositionTeam team1 = new OppositionTeam(market, initiateMatch);
 		OppositionTeam team2 = new OppositionTeam(market, initiateMatch);
@@ -325,7 +357,14 @@ public final class UserInterface{
 
 	}
 		
-	
+	/**
+	 * The main entry point for the command line application of the game.
+	 * Initializes the game environment, sets up the team, and allows the player to interact with the game.
+	 *
+	 * @param args the command line arguments
+	 * @throws IncorrectInput if the player enters an incorrect input for the difficulty level
+	 * @throws CannotPlay if the player cannot play the game due to insufficient funds or other constraints
+	 */
 	public static void main(String[] args) throws IncorrectInput, CannotPlay {
 		setUp();
 		

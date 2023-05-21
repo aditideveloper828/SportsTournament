@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 /**
- * @author Aditi
+ * @author Aditi Sharma
  *
  */
 public class Interaction {
