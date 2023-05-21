@@ -1,6 +1,5 @@
 package main;
 
-
 /**
  * The ScreenCase enum represents different cases/screens in the application.
  * It is used to identify and handle different screens/states of the application.
@@ -15,8 +14,6 @@ package main;
  * - CHOOSEOPTEAMSCREEN: The choose opponent team screen of the application.
  * 
  * Note: The names of the screen cases are in uppercase and separated by commas.
- * 
- * @since [version]
  */
 public enum ScreenCase {
 	MAINSCREEN, WELCOMESCREEN, SETUPSCREEN, BUYTEAMSCREEN, PURCHASESCREEN, CLUBSCREEN, CHOOSEOPTEAMSCREEN

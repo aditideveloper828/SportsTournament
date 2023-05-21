@@ -10,6 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/*
+ * GUI implementation of the final results at completion of the game. 
+ * Displays the points gained, money gained, and the season duration
+ */
 public class FinishScreen {
 
 	private JFrame frame;
@@ -24,6 +28,9 @@ public class FinishScreen {
 		frame.setVisible(true);
 	}
 	
+	/*
+	 * Method to dispose of the current screen
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
@@ -78,6 +85,9 @@ public class FinishScreen {
 		frame.getContentPane().add(endBtn);
 	}
 	
+	/*
+	 * Method to initiate the disposal process of this screen and opening of the following screen.
+	 */
 	public void finishedWindow() {
 		manager.closeFinishScreen(this);
 	}
