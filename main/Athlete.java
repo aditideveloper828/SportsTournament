@@ -5,11 +5,9 @@ package main;
  *
  */
 
-///remove nicknames
 
 public class Athlete implements Purchasable{
 	private String name;
-	private String nickname;
 	private int offenceRating;
 	private int defenceRating;
 	private int currentStamina = 100;
@@ -21,7 +19,6 @@ public class Athlete implements Purchasable{
 	public Athlete(String tempName, int[] stats) {
 		// Constructor class to grab each detail about the athlete
 		name = tempName;
-		nickname = name;
 		offenceRating = stats[0];
 		defenceRating = stats[1];
 		contractCost = stats[3];
@@ -63,10 +60,6 @@ public class Athlete implements Purchasable{
 	public String getName() {
 		// pulls the name of the athlete
 		return name;
-	}
-	
-	public void setNickname(String name) {
-		nickname = name;
 	}
 	
 	public int getOffence() {

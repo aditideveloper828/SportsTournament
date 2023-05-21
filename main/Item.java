@@ -55,7 +55,7 @@ public class Item implements Purchasable{
 	
 	public String getDescription(){
         //returns description
-        return  "Item: "+name+"\nOffence Boost: "+offenceBoost+"\nDefence Boost: "+defenceBoost+"\nStamina Boost: "+staminaBoost+"\nContract Cost: "+contractCost;
+        return  "Item: "+name+"\n Offence Boost: "+offenceBoost+"\n Defence Boost: "+defenceBoost+"\n Stamina Boost: "+staminaBoost+"\n Contract Cost: "+contractCost;
     }
 	
 	public String toString() {

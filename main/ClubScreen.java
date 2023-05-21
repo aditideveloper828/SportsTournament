@@ -1,5 +1,4 @@
 package main;
-///use current athlete and make a current reserve to keep track of last clicks
 ///issues with the enum
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -279,20 +278,6 @@ public class ClubScreen {
 		lblNewLabel.setBounds(59, 125, 246, 16);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton swapAthletesBtn = new JButton("Swap Athlete Positions");
-		swapAthletesBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (selectedTeamMember != -1 && selectedReserve != -1) {
-					game.swap(game.getTeamMember(selectedTeamMember), game.getReserve(selectedReserve));
-					finishedWindow();
-				}
-				else {
-					JOptionPane.showMessageDialog(frame, "You need to select an active member then a reserve to swap them!");
-				}
-			}
-		});
-		swapAthletesBtn.setBounds(518, 437, 176, 29);
-		frame.getContentPane().add(swapAthletesBtn);
 		
 		JButton athleteBtn10 = new JButton((String) null);
 		if (reserves.size() > 3) {
@@ -309,22 +294,6 @@ public class ClubScreen {
 		}
 		athleteBtn10.setBounds(176, 369, 117, 29);
 		frame.getContentPane().add(athleteBtn10);
-		
-		ButtonGroup teamBtnGrp = new ButtonGroup();
-		teamBtnGrp.add(athleteBtn);
-		teamBtnGrp.add(athleteBtn1);
-		teamBtnGrp.add(athleteBtn2);
-		teamBtnGrp.add(athleteBtn3);
-		teamBtnGrp.add(athleteBtn4);
-		teamBtnGrp.add(athleteBtn5);
-		teamBtnGrp.add(athleteBtn6);
-		
-		ButtonGroup reserveBtnGrp = new ButtonGroup();
-		reserveBtnGrp.add(athleteBtn7);
-		reserveBtnGrp.add(athleteBtn8);
-		reserveBtnGrp.add(athleteBtn9);
-		reserveBtnGrp.add(athleteBtn10);
-		reserveBtnGrp.add(athleteBtn11);
 		
 		JLabel lblYourReserves = new JLabel("Your Reserves:");
 		lblYourReserves.setBounds(49, 307, 107, 21);
@@ -365,6 +334,21 @@ public class ClubScreen {
 		});
 		useItemBtn.setBounds(394, 185, 176, 29);
 		frame.getContentPane().add(useItemBtn);
+		
+		JButton swapAthletesBtn = new JButton("Swap Athlete Positions");
+		swapAthletesBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (selectedTeamMember != -1 && selectedReserve != -1) {
+					game.swap(game.getTeamMember(selectedTeamMember), game.getReserve(selectedReserve));
+					finishedWindow();
+				}
+				else {
+					JOptionPane.showMessageDialog(frame, "You need to select an active member then a reserve to swap them!");
+				}
+			}
+		});
+		swapAthletesBtn.setBounds(518, 437, 176, 29);
+		frame.getContentPane().add(swapAthletesBtn);
 		
 		JLabel lblSelectAnActive = new JLabel("Select an active member, a reserve, then the swap athletes button to swap positions");
 		lblSelectAnActive.setFont(new Font("Dialog", Font.PLAIN, 10));

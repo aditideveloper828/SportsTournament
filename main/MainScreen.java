@@ -42,7 +42,7 @@ public class MainScreen {
 		goToClubBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchClubScreen();
-				closeWindow();
+				finishedWindow();
 			}
 		});
 		goToClubBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -53,8 +53,7 @@ public class MainScreen {
 		goToMarketBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchPurchaseScreen();
-				closeWindow();
-				
+				finishedWindow();
 			}
 		});
 		goToMarketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -91,9 +90,9 @@ public class MainScreen {
 	}
 	
 	
-//	public void finishedWindow() {
-//		manager.closeMainScreen(this);
-//	}
+	public void finishedWindow() {
+		manager.closeMainScreen(this);
+	}
 	
 
 }

@@ -31,10 +31,6 @@ public class ScreenManager {
 		InitializeTeam screen = new InitializeTeam(this);
 	}
 	
-	public void launchBuyTeamScreen() {
-		BuyTeamScreen screen = new BuyTeamScreen(this);
-	}
-	
 	public void launchPurchaseScreen() {
 		PurchaseScreen screen = new PurchaseScreen(this);
 	}
@@ -95,11 +91,17 @@ public class ScreenManager {
 	
 	public void closeClubScreen(ClubScreen screen) {
 		screen.closeWindow();
+		launchMainScreen();
 	}
 	
-//	public void closeMainScreen(MainScreen screen) {
-//		screen.closeWindow();
-//	}
+	public void closePurchaseScreen(PurchaseScreen screen) {
+		screen.closeWindow();
+		launchMainScreen();
+	}
+	
+	public void closeMainScreen(MainScreen screen) {
+		screen.closeWindow();
+	}
 	
 	public void closeInitiateMatchScreen() {
 		InitiateMatchScreen.closeWindow();
@@ -138,5 +140,7 @@ public class ScreenManager {
 		manager.launchWelcomeScreen();
 		
 	}
+	
+	
 	
 }
