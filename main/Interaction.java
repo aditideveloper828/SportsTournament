@@ -8,7 +8,7 @@ import java.util.Hashtable;
 
 
 /**
- * @author Aditi
+ * @author Aditi Sharma
  *
  */
 public class Interaction {
