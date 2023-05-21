@@ -63,8 +63,8 @@ public class MainScreen {
 		JButton playNxtMatchBtn = new JButton("Play Next Match");
 		playNxtMatchBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
 				manager.launchInitiateMatchScreen();
-				closeWindow();
 			}
 		});
 		playNxtMatchBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -81,7 +81,7 @@ public class MainScreen {
 		takeAByeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchByeWeekScreen();
-				closeWindow();
+				finishedWindow();
 			}
 		});
 		takeAByeBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

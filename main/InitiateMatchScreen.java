@@ -26,13 +26,12 @@ import java.awt.Color;
 
 public class InitiateMatchScreen {
 
-	private static JFrame frame;
+	private JFrame frame;
 	private ScreenManager manager;
 	private PurchasableManager data;
 	private GameEnvironment game;
 	private Interaction implementation;
-	public ArrayList<String> opTeamNames= new ArrayList<String>();
-	public String opTeamName;
+	private ArrayList<String> names;
 	
 
 	/**
@@ -43,43 +42,19 @@ public class InitiateMatchScreen {
 		implementation = incomingManager.getImplementation();
 		game = implementation.getGame();
 		data = implementation.getMarket();
+		names = implementation.getOpTeamName();
 		initialize();
 		frame.setVisible(true);
 	}
 	
-	public static void closeWindow() {
+	public void closeWindow() {
 		frame.dispose();
 	}
 	
-	public String getOpTeamName() {
-		opTeamNames.add("Stinky Soldiers");
-		opTeamNames.add("Blue Bottles");
-		opTeamNames.add("Rabbit Runners");
-		opTeamNames.add("Wing Warriors");
-		opTeamNames.add("Raging Rangers");
-		opTeamNames.add("Potter Squatters");
-		opTeamNames.add("Snape Shapes");
-		opTeamNames.add("Broomful Bunnies");
-		opTeamNames.add("Arranged Arrows");
-		opTeamNames.add("Smiley Smokers");
-		opTeamNames.add("Beautiful Bubbles");
-		opTeamNames.add("Lacrosse Lovers");
-		opTeamNames.add("Coffee Addicts");
-		opTeamNames.add("Neat Freaks");
-		opTeamNames.add("Whiz Kids");
-		opTeamNames.add("Geek Squad");
-		opTeamNames.add("College Dropouts");
-		opTeamNames.add("Fire Extinguishers");
-		opTeamNames.add("Trailblazers");
-		opTeamNames.add("Lethal Weapons");
-		
-		int randTeamIndex;
-		Random randInt = new Random();
-		randTeamIndex = randInt.nextInt(opTeamNames.size()); 
-		opTeamName = opTeamNames.get(randTeamIndex);
-		opTeamNames.remove(randTeamIndex);
-		return opTeamName;
+	public ArrayList<String> getNames(){
+		return names;
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -90,6 +65,7 @@ public class InitiateMatchScreen {
 		frame.setBounds(100, 100, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
 		
 		JLabel opTeamTitle = new JLabel("Pick your Opposition!");
 		opTeamTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -166,15 +142,6 @@ public class InitiateMatchScreen {
 		PickTeam.add(team2RdBtn);
 		PickTeam.add(team3RdBtn);
 		
-		JButton backBtn = new JButton("<BACK");
-		backBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				manager.goBack(ScreenCase.CHOOSEOPTEAMSCREEN);
-			}
-		});
-		backBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-		backBtn.setBounds(6, 6, 95, 29);
-		frame.getContentPane().add(backBtn);
 		
 		JLabel teamSlctDetaillLbl = new JLabel("Select a team to play against");
 		teamSlctDetaillLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
@@ -207,6 +174,6 @@ public class InitiateMatchScreen {
 	}
 	
 	public void finishedWindow() {
-		manager.closeInitiateMatchScreen();
+		manager.closeInitiateMatchScreen(this);
 	}
 }

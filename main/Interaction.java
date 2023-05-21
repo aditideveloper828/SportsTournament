@@ -4,8 +4,11 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 
 /**
@@ -18,8 +21,12 @@ public class Interaction {
 	private Match match;
 	private int selectedSeasonDuration;	
 	private String resultMessage;
+	private String randomEventMessage = "";
 	private boolean endGame = false;
+	private boolean takeBye = false;
 	private String[] POSITIONS = new String[] {"SEEKER", "KEEPER", "BEATER", "CHASER"};
+	public ArrayList<String> opTeamNames= new ArrayList<String>();
+	public String opTeamName;
 	
 	public Interaction() {
 		market = new PurchasableManager();
@@ -68,6 +75,21 @@ public class Interaction {
 		return endGame;
 	}
 	
+	public boolean shouldTakeBye() {
+		return takeBye;
+	}
+	
+	public String getResultMessage() {
+		return resultMessage;
+	}
+	
+	public String getRandomEventMessage() {
+		return randomEventMessage;
+	}
+	
+	public int getSeasonDuration() {
+		return selectedSeasonDuration;
+	}
 	
 	public void setUp(String name, int duration, int difficulty) {
 		this.setUp();
@@ -116,7 +138,7 @@ public class Interaction {
 	public GameEnvironment getGame() {
 		return game;
 	}
-	//not fixed
+	
 	public void sell(int objectID, int type, String position) {
 		//type 1 is item, 2 is athlete
 		if (type == 1) {
@@ -153,10 +175,10 @@ public class Interaction {
 				notUsed = false;
 			}
 		}
-		
 	}
 	
 	public void playGame(OppositionTeam opTeam) {
+		randomEventMessage = "";
 		boolean insufficientPlayers = false;
 	    long playersInjured = game.getTeam().stream().filter(x -> x.injured() == true).count();
 	    playersInjured += game.getReserves().stream().filter(x -> x.injured() == true).count();
@@ -164,22 +186,19 @@ public class Interaction {
 	    	insufficientPlayers = true;
 	    }
 	    
-	    game.reduceWeek();
-	    resultMessage = "Your team does not have enough members, you have to take a buy this week";
 	    if (insufficientPlayers && game.getReserveSize() == 0) {
 	    	if (market.minimumContractPrice() > game.getBalance()) {
-	    		////need to end game here
-	    		resultMessage = "You cannot buy any more players and you have insufficient players to play matches.";
+	    		endGame = true;
+	    		resultMessage = "You have insufficient players and balance to continue playing";
 	    	}
     	}
 	    else if (insufficientPlayers){
-	    	//go to bye
-	    	resultMessage = "Your team does not have enough members, you have to take a buy this week";
+	    	takeBye = true;
+	    	resultMessage = "Your team has insufficient members, you must take a bye this week";
 	    }
 	    else if (playersInjured == game.getReserveSize() + game.getTeamSize()) {
-	    	//go to bye
-	    	//end game if no more weeks remaining after bye
-	    	resultMessage = "All of the players are injured. You have to take a bye to heal.";
+	    	takeBye = true;
+	    	resultMessage = "All your players are injured. You must take a bye to heal";
 	    }
 	    else {
 	    	game.reduceWeek();
@@ -187,27 +206,57 @@ public class Interaction {
 	    	boolean matchResult = match.matchWon();
 	    	if (matchResult == true) {
 	    		resultMessage = "Congratulations! You won this weeks's match!";
-	    		game.increaseBalance(25*match.getTeamTotal()/game.getDifficulty()); 
+	    		game.increaseBalance((10*match.getTeamTotal())/game.getDifficulty()); 
 	    		game.increasePoints(10*match.getTeamTotal()/game.getDifficulty());
 	    	}
 	    	else {
 	    		resultMessage = "You lost. Better luck next time!";
 	    	}
 	    	Random randomEvent = new Random();
-			int eventOccurs = randomEvent.nextInt(100);
-			if (eventOccurs < 100/(game.getDifficulty()*10)) {
-				RandomEvent event = new RandomEvent(game, market);
-				resultMessage += 
-				
-			}
+	 		int eventOccurs = randomEvent.nextInt(100);
+	 		if (eventOccurs < 100/(game.getDifficulty()*10)) {
+	 			RandomEvent event = new RandomEvent(game, market);
+	 			randomEventMessage = event.getEventMessage();
+	 		}
 	    }
-	    
-		
-		
-		
-		
 	}
 	
+	public ArrayList<String> getOpTeamName() {
+		opTeamNames.add("Stinky Soldiers");
+		opTeamNames.add("Blue Bottles");
+		opTeamNames.add("Rabbit Runners");
+		opTeamNames.add("Wing Warriors");
+		opTeamNames.add("Raging Rangers");
+		opTeamNames.add("Potter Squatters");
+		opTeamNames.add("Snape Shapes");
+		opTeamNames.add("Broomful Bunnies");
+		opTeamNames.add("Arranged Arrows");
+		opTeamNames.add("Smiley Smokers");
+		opTeamNames.add("Beautiful Bubbles");
+		opTeamNames.add("Lacrosse Lovers");
+		opTeamNames.add("Coffee Addicts");
+		opTeamNames.add("Neat Freaks");
+		opTeamNames.add("Whiz Kids");
+		opTeamNames.add("Geek Squad");
+		opTeamNames.add("College Dropouts");
+		opTeamNames.add("Fire Extinguishers");
+		opTeamNames.add("Trailblazers");
+		opTeamNames.add("Lethal Weapons");
+		
+		Set<Integer> randTeamIndex = new HashSet<Integer>();
+		while (randTeamIndex.size() < 3) {
+			Random randInt = new Random();
+			randTeamIndex.add(randInt.nextInt(opTeamNames.size())); 
+		}
+		ArrayList<String> returnNames = new ArrayList<String>();
+		Iterator<Integer> itr = randTeamIndex.iterator();
+		int i = 0;
+		while(itr.hasNext()){
+			returnNames.add(opTeamNames.get(itr.next()));
+			i++;
+		}
+		return returnNames;
+	}
 	
 	public String buy(Athlete athlete, String position) {
 		if (athlete.getContractPrice() <= game.getBalance()){
@@ -272,7 +321,7 @@ public class Interaction {
 	
 	
 	public void specialTraining(int index, String position) {
-		//also includes bye week functionality
+		takeBye = false;
 		game.teamStaminaRefill();
 		int repeat = 4/game.getDifficulty();
 		if (position != "RESERVE") {
@@ -286,6 +335,9 @@ public class Interaction {
 			}
 		}
 		game.reduceWeek();
+		if (game.getWeeks() == 0) {
+			endGame = true;
+		}
 	}
 	
 	

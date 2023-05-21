@@ -56,6 +56,7 @@ public class ScreenManager {
 	}
 	
 	public void launchFinishScreen() {
+		FinishScreen screen = new FinishScreen(this);
 	}
 	
 	public void closeWelcomeScreen(WelcomeScreen screen) {
@@ -89,6 +90,12 @@ public class ScreenManager {
 		}
 	}
 	
+	
+	public void closeFinishScreen(FinishScreen screen) {
+		screen.closeWindow();
+	}
+	
+	
 	public void closeClubScreen(ClubScreen screen) {
 		screen.closeWindow();
 		launchMainScreen();
@@ -99,12 +106,26 @@ public class ScreenManager {
 		launchMainScreen();
 	}
 	
+	public void closeResultScreen(ResultScreen screen) {
+		screen.closeWindow();
+		if (implementation.shouldEndGame() || implementation.remainingWeeks() <= 0) {
+			launchFinishScreen();
+		}
+		else if (implementation.shouldTakeBye()){
+			launchByeWeekScreen();
+		} 
+		else {
+			launchMainScreen();
+		}
+	}
+	
+	
 	public void closeMainScreen(MainScreen screen) {
 		screen.closeWindow();
 	}
 	
-	public void closeInitiateMatchScreen() {
-		InitiateMatchScreen.closeWindow();
+	public void closeInitiateMatchScreen(InitiateMatchScreen screen) {
+		screen.closeWindow();
 		launchResultScreen();
 	}
 	
@@ -123,17 +144,6 @@ public class ScreenManager {
 		launchMainScreen();
 	}
 	
-	public void goBack(ScreenCase state) {
-		switch (state) {
-		case CHOOSEOPTEAMSCREEN:
-			InitiateMatchScreen.closeWindow();
-			launchMainScreen();
-		default:
-			break;
-		}
-		
-		
-	}
 	
 	public static void main(String[] args) {
 		ScreenManager manager = new ScreenManager();

@@ -358,7 +358,7 @@ public class ClubScreen {
 		lblSelectAnActive.setBounds(289, 408, 405, 21);
 		frame.getContentPane().add(lblSelectAnActive);
 		
-		JLabel currentWeeksLbl = new JLabel("Weeks Remaining: " + game.getWeeks());
+		JLabel currentWeeksLbl = new JLabel("Weeks Remaining: " + implementation.remainingWeeks());
 		currentWeeksLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		currentWeeksLbl.setFont(new Font("Dialog", Font.PLAIN, 13));
 		currentWeeksLbl.setBounds(512, 14, 219, 29);

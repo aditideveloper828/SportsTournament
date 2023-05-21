@@ -12,6 +12,7 @@ public class RandomEvent {
 	private int athleteIdx;
 	private GameEnvironment event;
 	private PurchasableManager market;
+	private String message = "";
 
 	
 	/**
@@ -56,7 +57,7 @@ public class RandomEvent {
      */
 	public void statIncrease() {
 		Athlete randTeamMember = selectAthlete();
-		System.out.println("Exciting News!!" + randTeamMember.getName() + " has had a Stat increase!");
+		message = "Exciting News!!" + randTeamMember.getName() + " has had a Stat increase!";
 		randTeamMember.statIncrease();
 	}
 	
@@ -74,7 +75,7 @@ public class RandomEvent {
 		}
 		if (quittingProb > barrier) {
 			event.removeTeamMember(randAthlete);
-			System.out.println(randAthlete.getName() + " has quit your team! \n Please make sure you have 6 active players before you play another match");
+			message = randAthlete.getName() + " has quit your team! \n Please make sure you have 6 active players before you play another match";
 		}
 	}
 	
@@ -90,7 +91,11 @@ public class RandomEvent {
 			Athlete randPlayer = market.getRandAthlete();
 			randPlayer.setPosition("RESERVE");
 			event.addReserve(randPlayer);
-			System.out.println(randPlayer.getName() + " has randomly joined your team! \n They are currently in your reserves");
+			message = randPlayer.getName() + " has randomly joined your team! \n They are currently in your reserves";
 		}
+	}
+	
+	public String getEventMessage() {
+		return message;
 	}
 }

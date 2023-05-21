@@ -119,7 +119,7 @@ public class PurchaseScreen {
 				Athlete toBuyAthlete = (Athlete) buyAthleteDropdown.getItemAt(buyAthleteDropdown.getSelectedIndex());
 				String selectedPosition = positionDrpdwn.getItemAt(positionDrpdwn.getSelectedIndex());
 				JOptionPane.showMessageDialog(frame, implementation.buy(toBuyAthlete, selectedPosition));
-				closeWindow();
+				finishedWindow();
 			}
 		});
 		buyAthleteBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));

@@ -71,7 +71,8 @@ public class OppositionTeam {
 	 * @return the name of the opposition team
 	 */
 	public String getName() {
-		teamName = name.getOpTeamName();
+		ArrayList<String> names = name.getNames();
+		teamName = names.remove(0);
 		return teamName;
 	}
 	
