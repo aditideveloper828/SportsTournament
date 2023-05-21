@@ -404,15 +404,17 @@ public final class UserInterface{
 	    	
 	    	if (goTo == 1) {
 	    		viewGame();
-	    		///done till this part 
+	    		
 	    	}
 	    	else if (goTo == 2) {
 	    		goToMarket();
 
 	    	}
+	    	
 	    	else if (goTo == 3){
 	    		thisGame.reduceWeek();
 	    		boolean playedGame = chooseOpTeam();
+	    		///done till this part 
 			    if (playedGame) {
 			    	boolean result = thisMatch.matchWon();
 			    	if (result) {

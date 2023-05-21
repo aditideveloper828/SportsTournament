@@ -5,6 +5,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Random;
 
 
 /**
@@ -16,6 +17,8 @@ public class Interaction {
 	private GameEnvironment game;
 	private Match match;
 	private int selectedSeasonDuration;	
+	private String resultMessage;
+	private boolean endGame = false;
 	private String[] POSITIONS = new String[] {"SEEKER", "KEEPER", "BEATER", "CHASER"};
 	
 	public Interaction() {
@@ -59,6 +62,10 @@ public class Interaction {
 	
 	public PurchasableManager getMarket() {
 		return market;
+	}
+	
+	public boolean shouldEndGame() {
+		return endGame;
 	}
 	
 	
@@ -148,6 +155,59 @@ public class Interaction {
 		}
 		
 	}
+	
+	public void playGame(OppositionTeam opTeam) {
+		boolean insufficientPlayers = false;
+	    long playersInjured = game.getTeam().stream().filter(x -> x.injured() == true).count();
+	    playersInjured += game.getReserves().stream().filter(x -> x.injured() == true).count();
+	    if (game.getTeamSize() < 7){
+	    	insufficientPlayers = true;
+	    }
+	    
+	    game.reduceWeek();
+	    resultMessage = "Your team does not have enough members, you have to take a buy this week";
+	    if (insufficientPlayers && game.getReserveSize() == 0) {
+	    	if (market.minimumContractPrice() > game.getBalance()) {
+	    		////need to end game here
+	    		resultMessage = "You cannot buy any more players and you have insufficient players to play matches.";
+	    	}
+    	}
+	    else if (insufficientPlayers){
+	    	//go to bye
+	    	resultMessage = "Your team does not have enough members, you have to take a buy this week";
+	    }
+	    else if (playersInjured == game.getReserveSize() + game.getTeamSize()) {
+	    	//go to bye
+	    	//end game if no more weeks remaining after bye
+	    	resultMessage = "All of the players are injured. You have to take a bye to heal.";
+	    }
+	    else {
+	    	game.reduceWeek();
+	    	match = new Match(game, opTeam);
+	    	boolean matchResult = match.matchWon();
+	    	if (matchResult == true) {
+	    		resultMessage = "Congratulations! You won this weeks's match!";
+	    		game.increaseBalance(25*match.getTeamTotal()/game.getDifficulty()); 
+	    		game.increasePoints(10*match.getTeamTotal()/game.getDifficulty());
+	    	}
+	    	else {
+	    		resultMessage = "You lost. Better luck next time!";
+	    	}
+	    	Random randomEvent = new Random();
+			int eventOccurs = randomEvent.nextInt(100);
+			if (eventOccurs < 100/(game.getDifficulty()*10)) {
+				RandomEvent event = new RandomEvent(game, market);
+				resultMessage += 
+				
+			}
+	    }
+	    
+		
+		
+		
+		
+	}
+	
 	
 	public String buy(Athlete athlete, String position) {
 		if (athlete.getContractPrice() <= game.getBalance()){

@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
@@ -29,6 +30,7 @@ public class InitiateMatchScreen {
 	private ScreenManager manager;
 	private PurchasableManager data;
 	private GameEnvironment game;
+	private Interaction implementation;
 	public ArrayList<String> opTeamNames= new ArrayList<String>();
 	public String opTeamName;
 	
@@ -36,10 +38,11 @@ public class InitiateMatchScreen {
 	/**
 	 * Create the application.
 	 */
-	public InitiateMatchScreen(PurchasableManager incomingData, ScreenManager incomingManager, GameEnvironment incomingGame) {
-		game = incomingGame;
-		data = incomingData;
+	public InitiateMatchScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
+		implementation = incomingManager.getImplementation();
+		game = implementation.getGame();
+		data = implementation.getMarket();
 		initialize();
 		frame.setVisible(true);
 	}
@@ -70,8 +73,11 @@ public class InitiateMatchScreen {
 		opTeamNames.add("Trailblazers");
 		opTeamNames.add("Lethal Weapons");
 		
-		opTeamName = opTeamNames.get(0);
-		opTeamNames.remove(0);
+		int randTeamIndex;
+		Random randInt = new Random();
+		randTeamIndex = randInt.nextInt(opTeamNames.size()); 
+		opTeamName = opTeamNames.get(randTeamIndex);
+		opTeamNames.remove(randTeamIndex);
 		return opTeamName;
 	}
 
@@ -93,7 +99,7 @@ public class InitiateMatchScreen {
 		
 		JList opTeamList = new JList();
 		opTeamList.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-		opTeamList.setBounds(334, 169, 215, 170);
+		opTeamList.setBounds(334, 169, 274, 170);
 		frame.getContentPane().add(opTeamList);
 		
 		JLabel opTeamLbl = new JLabel("Team Details: ");
@@ -102,7 +108,7 @@ public class InitiateMatchScreen {
 		frame.getContentPane().add(opTeamLbl);
 		
 		OppositionTeam team1 = new OppositionTeam(data, this);
-		ArrayList<String> team1String = team1.getNames();
+		ArrayList<String> team1String = team1.getInfo();
 		JRadioButton team1RdBtn = new JRadioButton(team1.getName());
 		team1RdBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,7 +126,7 @@ public class InitiateMatchScreen {
 		frame.getContentPane().add(team1RdBtn);
 		
 		OppositionTeam team2 = new OppositionTeam(data, this);
-		ArrayList<String> team2String = team2.getNames();
+		ArrayList<String> team2String = team2.getInfo();
 		JRadioButton team2RdBtn = new JRadioButton(team2.getName());
 		team2RdBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,11 +140,11 @@ public class InitiateMatchScreen {
 				});
 			}
 		});
-		team2RdBtn.setBounds(34, 240, 141, 23);
+		team2RdBtn.setBounds(34, 242, 141, 23);
 		frame.getContentPane().add(team2RdBtn);
 		
 		OppositionTeam team3 = new OppositionTeam(data, this);
-		ArrayList<String> team3String = team3.getNames();
+		ArrayList<String> team3String = team3.getInfo();
 		JRadioButton team3RdBtn = new JRadioButton(team3.getName());
 		team3RdBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,7 +173,7 @@ public class InitiateMatchScreen {
 			}
 		});
 		backBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-		backBtn.setBounds(6, 6, 69, 29);
+		backBtn.setBounds(6, 6, 95, 29);
 		frame.getContentPane().add(backBtn);
 		
 		JLabel teamSlctDetaillLbl = new JLabel("Select a team to play against");
@@ -179,17 +185,19 @@ public class InitiateMatchScreen {
 		playGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (team1RdBtn.isSelected()) {
-					Match playMatch = new Match(game, team1);
+					implementation.playGame(team1);
 				}
 				
 				else if (team2RdBtn.isSelected()) {
-					Match playMatch = new Match(game, team2);
+					implementation.playGame(team2);;
 				}
 				
 				else if (team3RdBtn.isSelected()) {
-					Match playMatch = new Match(game, team3);
+					implementation.playGame(team3);;
 				}
-				
+				team1.disposeOpTeam();
+				team2.disposeOpTeam();
+				team3.disposeOpTeam();
 				finishedWindow();
 			}
 		});

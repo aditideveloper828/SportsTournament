@@ -57,9 +57,10 @@ public class OppositionTeam {
 	 *
 	 * @return the list of athlete names
 	 */
-	public ArrayList<String> getNames() {
+	public ArrayList<String> getInfo() {
 		for (int i=0; i < opTeam.size(); i++) {
-			nameString.add(String.valueOf(opTeam.get(i).getName()));
+			String details = opTeam.get(i).getName()+", Offence: "+opTeam.get(i).getOffence()+" Defence: "+opTeam.get(i).getDefence();
+			nameString.add(details);
 		}
 		return nameString;
 	}
