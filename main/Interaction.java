@@ -188,15 +188,6 @@ public class Interaction {
 	}
 	
 	/**
-     * Retrieves the remaining weeks in the game season.
-     * 
-     * @return The remaining weeks.
-     */
-	public int remainingWeeks() {
-		return game.getWeeks();
-	}
-	
-	/**
      * Retrieves the full team, including team members and reserves.
      * 
      * @return The full team.
@@ -227,6 +218,59 @@ public class Interaction {
 	public GameEnvironment getGame() {
 		return game;
 	}
+	
+	/**
+     * Generates a list of random opposition team names.
+     * 
+     * @return The list of random opposition team names.
+     */
+	public ArrayList<String> getOpTeamName() {
+		opTeamNames.add("Stinky Soldiers");
+		opTeamNames.add("Blue Bottles");
+		opTeamNames.add("Rabbit Runners");
+		opTeamNames.add("Wing Warriors");
+		opTeamNames.add("Raging Rangers");
+		opTeamNames.add("Potter Squatters");
+		opTeamNames.add("Snape Shapes");
+		opTeamNames.add("Broomful Bunnies");
+		opTeamNames.add("Arranged Arrows");
+		opTeamNames.add("Smiley Smokers");
+		opTeamNames.add("Beautiful Bubbles");
+		opTeamNames.add("Lacrosse Lovers");
+		opTeamNames.add("Coffee Addicts");
+		opTeamNames.add("Neat Freaks");
+		opTeamNames.add("Whiz Kids");
+		opTeamNames.add("Geek Squad");
+		opTeamNames.add("College Dropouts");
+		opTeamNames.add("Fire Extinguishers");
+		opTeamNames.add("Trailblazers");
+		opTeamNames.add("Lethal Weapons");
+		
+		Set<Integer> randTeamIndex = new HashSet<Integer>();
+		while (randTeamIndex.size() < 3) {
+			Random randInt = new Random();
+			randTeamIndex.add(randInt.nextInt(opTeamNames.size())); 
+		}
+		ArrayList<String> returnNames = new ArrayList<String>();
+		Iterator<Integer> itr = randTeamIndex.iterator();
+		int i = 0;
+		while(itr.hasNext()){
+			returnNames.add(opTeamNames.get(itr.next()));
+			i++;
+		}
+		return returnNames;
+	}
+	
+	/**
+     * Retrieves the remaining weeks in the game season.
+     * 
+     * @return The remaining weeks.
+     */
+	public int remainingWeeks() {
+		return game.getWeeks();
+	}
+	
+	
 	
 	/**
      * Sells the specified object based on the object ID, type, and position.
@@ -332,47 +376,6 @@ public class Interaction {
 	    }
 	}
 	
-	/**
-     * Generates a list of random opposition team names.
-     * 
-     * @return The list of random opposition team names.
-     */
-	public ArrayList<String> getOpTeamName() {
-		opTeamNames.add("Stinky Soldiers");
-		opTeamNames.add("Blue Bottles");
-		opTeamNames.add("Rabbit Runners");
-		opTeamNames.add("Wing Warriors");
-		opTeamNames.add("Raging Rangers");
-		opTeamNames.add("Potter Squatters");
-		opTeamNames.add("Snape Shapes");
-		opTeamNames.add("Broomful Bunnies");
-		opTeamNames.add("Arranged Arrows");
-		opTeamNames.add("Smiley Smokers");
-		opTeamNames.add("Beautiful Bubbles");
-		opTeamNames.add("Lacrosse Lovers");
-		opTeamNames.add("Coffee Addicts");
-		opTeamNames.add("Neat Freaks");
-		opTeamNames.add("Whiz Kids");
-		opTeamNames.add("Geek Squad");
-		opTeamNames.add("College Dropouts");
-		opTeamNames.add("Fire Extinguishers");
-		opTeamNames.add("Trailblazers");
-		opTeamNames.add("Lethal Weapons");
-		
-		Set<Integer> randTeamIndex = new HashSet<Integer>();
-		while (randTeamIndex.size() < 3) {
-			Random randInt = new Random();
-			randTeamIndex.add(randInt.nextInt(opTeamNames.size())); 
-		}
-		ArrayList<String> returnNames = new ArrayList<String>();
-		Iterator<Integer> itr = randTeamIndex.iterator();
-		int i = 0;
-		while(itr.hasNext()){
-			returnNames.add(opTeamNames.get(itr.next()));
-			i++;
-		}
-		return returnNames;
-	}
 	
 	/**
      * Buys an athlete and assigns them to the specified position in the game.
