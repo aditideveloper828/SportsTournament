@@ -32,6 +32,10 @@ public class Interaction {
 	 * ArrayList holding the names of all the opposition teams
 	 */
 	public ArrayList<String> opTeamNames= new ArrayList<String>();
+	
+	/**
+	 * string that stores the name of the opposition team
+	 */
 	public String opTeamName;
 	
 	/**

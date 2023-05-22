@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Test;
 import main.Athlete;
 import main.Interaction;
 
+/**
+ * Test class to test the method in the interaction class
+ *
+ */
 public class InteractionTest {
 	private static Interaction implementation = new Interaction();
 	private static ArrayList<Athlete> athletes = implementation.getMarket().getAllAthletes();

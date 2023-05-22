@@ -11,6 +11,10 @@ public class Item implements Purchasable{
 	//change input format to an array
 	String name;
 	public int offenceBoost;
+	
+	/**
+	 * the defence boost of the athlete
+	 */
 	public int defenceBoost;
 	public int staminaBoost;
 	int contractCost;
