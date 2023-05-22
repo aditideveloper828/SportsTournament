@@ -1,5 +1,4 @@
 /package-info.class
-/*.class
 /Athlete.class
 /CalculateScores.class
 /GameEnvironment.class
@@ -20,7 +19,7 @@
 /OppositionTeam.class
 /WelcomeScreen$1.class
 /WelcomeScreen.class
-/SetupScreen.class
+/SetUpScreen.class
 /PurchaseScreen.class
 /PurchaseScreen$1.class
 /SetupScreen.class
