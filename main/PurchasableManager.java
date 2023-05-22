@@ -2,17 +2,6 @@ package main;
 import java.util.ArrayList;
 import java.util.Random;
 
-/*
- * Unused Code:
- * 
- * public int numAthletes() {
-		return availableAthletes;
-	}
-	
-	public int numItems() {
-		return availableItems;
-	}
- */
 
 /**
  * The PurchasableManager class is responsible for managing athletes and items that can be purchased.

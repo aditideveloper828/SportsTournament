@@ -36,16 +36,6 @@ public class Item implements Purchasable{
 	}
 	
 	/**
-     * Retrieves the name of the item.
-     *
-     * @return the name of the item
-     */
-	public String getName() {
-		// pulls the name of the item
-		return this.name;
-	}
-	
-	/**
      * Retrieves the offensive boost provided by the item.
      *
      * @return the offensive boost of the item (measured on a scale of 0 to 100)

@@ -152,7 +152,7 @@ public class PurchaseScreen {
 		JButton homeBtn = new JButton("HOME");
 		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.goHome(ScreenCase.PURCHASESCREEN);
+				manager.goHome();
 				finishedWindow();
 			}
 		});
