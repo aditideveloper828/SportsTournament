@@ -8,6 +8,11 @@ package main;
 public class CannotPlay extends Exception{
 	
 	/**
+	 * The serial version UID for this class
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Constructs a new CannotPlay exception with no specified detail message.
      */
 	public CannotPlay() {

@@ -7,12 +7,14 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
 import main.Athlete;
 import main.FileRead;
 import main.GameEnvironment;
 
+/**
+ * test class to test the methods in the GameEnvironment class
+ */
 public class GameEnvironmentTest {
 	private static GameEnvironment game = new GameEnvironment("Default", 2);
 	private static ArrayList<Athlete> athletes = new ArrayList<Athlete>();

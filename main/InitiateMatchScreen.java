@@ -1,28 +1,17 @@
 package main;
 
-import java.awt.EventQueue;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.AbstractListModel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
 
 /**
  * GUI implementation for picking an opposition team for the next match
@@ -32,7 +21,6 @@ public class InitiateMatchScreen {
 	private JFrame frame;
 	private ScreenManager manager;
 	private PurchasableManager data;
-	private GameEnvironment game;
 	private Interaction implementation;
 	private ArrayList<String> names;
 	
@@ -45,7 +33,6 @@ public class InitiateMatchScreen {
 	public InitiateMatchScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
 		implementation = incomingManager.getImplementation();
-		game = implementation.getGame();
 		data = implementation.getMarket();
 		names = implementation.getOpTeamName();
 		initialize();
@@ -61,6 +48,8 @@ public class InitiateMatchScreen {
 	
 	/**
 	 * Method to retrieve and return the names of the Opposition Teams
+	 * 
+	 * @return the names of the opposition team's athletes
 	 */
 	public ArrayList<String> getNames(){
 		return names;
@@ -84,6 +73,7 @@ public class InitiateMatchScreen {
 		opTeamTitle.setBounds(235, 48, 215, 25);
 		frame.getContentPane().add(opTeamTitle);
 		
+		@SuppressWarnings("rawtypes")
 		JList opTeamList = new JList();
 		opTeamList.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		opTeamList.setBounds(334, 169, 274, 170);
@@ -98,6 +88,7 @@ public class InitiateMatchScreen {
 		ArrayList<String> team1String = team1.getInfo();
 		JRadioButton team1RdBtn = new JRadioButton(team1.getName());
 		team1RdBtn.addActionListener(new ActionListener() {
+			@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 			public void actionPerformed(ActionEvent e) {
 				opTeamList.setModel(new AbstractListModel() {
 					public int getSize() {
@@ -116,6 +107,7 @@ public class InitiateMatchScreen {
 		ArrayList<String> team2String = team2.getInfo();
 		JRadioButton team2RdBtn = new JRadioButton(team2.getName());
 		team2RdBtn.addActionListener(new ActionListener() {
+			@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
 			public void actionPerformed(ActionEvent e) {
 				opTeamList.setModel(new AbstractListModel() {
 					public int getSize() {
@@ -134,6 +126,7 @@ public class InitiateMatchScreen {
 		ArrayList<String> team3String = team3.getInfo();
 		JRadioButton team3RdBtn = new JRadioButton(team3.getName());
 		team3RdBtn.addActionListener(new ActionListener() {
+			@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
 			public void actionPerformed(ActionEvent e) {
 				opTeamList.setModel(new AbstractListModel() {
 					public int getSize() {

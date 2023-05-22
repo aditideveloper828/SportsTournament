@@ -1,22 +1,14 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.Athlete;
-import main.FileRead;
-import main.GameEnvironment;
 import main.Interaction;
-import main.OppositionTeam;
-import main.ScreenManager;
 
 public class InteractionTest {
 	private static Interaction implementation = new Interaction();

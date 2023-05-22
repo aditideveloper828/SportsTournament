@@ -1,11 +1,8 @@
 package main;
-///issues with the enum
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,7 +12,6 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 
 /**
  * GUI implementation of the "club" where a user can swap athlete positions, 
@@ -62,7 +58,6 @@ public class ClubScreen {
 		ArrayList<Athlete> team = game.getTeam();
 		ArrayList<Athlete> reserves = game.getReserves();
 		ArrayList<Item> itemOptions = implementation.getBoughtItems();
-		int activeMembers = game.getTeamSize();
 		Item[] items = new Item[0];
 		if (itemOptions.size() > 0) {
 			items = new Item[itemOptions.size()];

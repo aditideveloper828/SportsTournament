@@ -5,7 +5,6 @@ package main;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
@@ -28,6 +27,10 @@ public class Interaction {
 	private boolean endGame = false;
 	private boolean takeBye = false;
 	private String[] POSITIONS = new String[] {"SEEKER", "KEEPER", "BEATER", "CHASER"};
+	
+	/**
+	 * ArrayList holding the names of all the opposition teams
+	 */
 	public ArrayList<String> opTeamNames= new ArrayList<String>();
 	public String opTeamName;
 	
@@ -251,6 +254,7 @@ public class Interaction {
 		}
 		ArrayList<String> returnNames = new ArrayList<String>();
 		Iterator<Integer> itr = randTeamIndex.iterator();
+		@SuppressWarnings("unused")
 		int i = 0;
 		while(itr.hasNext()){
 			returnNames.add(opTeamNames.get(itr.next()));
@@ -267,7 +271,6 @@ public class Interaction {
 	public int remainingWeeks() {
 		return game.getWeeks();
 	}
-	
 	/**
      * Buys an athlete and assigns them to the specified position in the game.
      * Checks if the balance is sufficient and if the position is already filled.
