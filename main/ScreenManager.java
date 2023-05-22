@@ -3,6 +3,7 @@ package main;
 /**
  * The manager class that interacts with all the screens in the GUI application
  */
+@SuppressWarnings("unused")
 public class ScreenManager {
 	private Interaction implementation;
 	

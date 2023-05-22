@@ -1,8 +1,10 @@
 package main;
 
+
 import java.io.*;  
 import java.util.Scanner; 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Represents a utility class for reading data from a file.

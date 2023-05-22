@@ -13,6 +13,7 @@ public class PurchasableManager{
 	private ArrayList<Athlete> athletes;
 	private ArrayList<Item> items;
 	private int availableAthletes = 0;
+	@SuppressWarnings("unused")
 	private int availableItems = 0;
 	
 	/**

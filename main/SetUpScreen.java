@@ -1,9 +1,6 @@
 package main;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -16,8 +13,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JFormattedTextField;
-import javax.swing.JToolBar;
 
 /**
  * GUI implementation of the set up where the user creates a team name, selects season duration, and selects difficulty
@@ -27,9 +22,9 @@ public class SetUpScreen {
 	private JFrame frame;
 	private ScreenManager manager;
 	private JTextField teamNameInput;
+	@SuppressWarnings("unused")
 	private String dif;
 	public int numDif;
-	private String errorMessageLbl;
 	private String teamName;
 	public int seasonDuration;
 

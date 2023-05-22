@@ -8,6 +8,11 @@ package main;
 public class IncorrectInput extends IllegalArgumentException{
 
 	/**
+	 * The serial version UID for this class
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Constructs a new IncorrectInput object with no detail message.
      */
 	public IncorrectInput() {

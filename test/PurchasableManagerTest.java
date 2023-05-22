@@ -11,7 +11,6 @@ import main.Athlete;
 import main.FileRead;
 import main.Interaction;
 import main.PurchasableManager;
-import main.ScreenManager;
 
 /**
  * JUnit test class for the PurchasableManager class.

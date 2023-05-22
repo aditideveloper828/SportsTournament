@@ -18,6 +18,7 @@ public class GameEnvironment {
 	private int points = 0;
 	private int teamSize = 0;
 	private int reserveSize = 0;
+	@SuppressWarnings("unused")
 	private int itemSize = 0;
 	
 	//add in throw errors if there are too many members in team or reserves;
