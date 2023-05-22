@@ -57,14 +57,14 @@ public class ByeWeekScreen {
 		JLabel byeTitle = new JLabel("You took a Bye!");
 		byeTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		byeTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		byeTitle.setBounds(260, 59, 155, 30);
+		byeTitle.setBounds(260, 59, 250, 30);
 		frame.getContentPane().add(byeTitle);
 		
 		JComboBox<Athlete> specialTraining = new JComboBox<Athlete>();
 		specialTraining.setModel(new DefaultComboBoxModel<Athlete>(values));
 		specialTraining.setMaximumRowCount(20);
 		specialTraining.setFont(new Font("Dialog", Font.PLAIN, 13));
-		specialTraining.setBounds(116, 157, 496, 27);
+		specialTraining.setBounds(100, 157, 550, 27);
 		frame.getContentPane().add(specialTraining);
 		
 		JButton btnNewButton = new JButton("Return To Club");
@@ -83,7 +83,7 @@ public class ByeWeekScreen {
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("You can select one of your athletes to go through special training!");
-		lblNewLabel.setBounds(189, 115, 464, 13);
+		lblNewLabel.setBounds(189, 100, 600, 20);
 		frame.getContentPane().add(lblNewLabel);
 	}
 	

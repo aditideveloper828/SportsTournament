@@ -85,6 +85,7 @@ public class PurchaseScreen {
 		JComboBox<Athlete> buyAthleteDropdown = new JComboBox<Athlete>();
 		buyAthleteDropdown.setModel(new DefaultComboBoxModel<Athlete>(athleteBuy));
 		buyAthleteDropdown.setBounds(42, 133, 538, 33);
+		buyAthleteDropdown.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		buyAthleteDropdown.setMaximumRowCount(20);
 		buyAthleteDropdown.setToolTipText("");
 		frame.getContentPane().add(buyAthleteDropdown);
@@ -97,7 +98,8 @@ public class PurchaseScreen {
 
 		JComboBox<Item> buyItemsDropdown = new JComboBox<Item>();
 		buyItemsDropdown.setModel(new DefaultComboBoxModel<Item>(itemBuy));
-		buyItemsDropdown.setBounds(42, 244, 538, 33);
+		buyItemsDropdown.setBounds(42, 244, 600, 33);
+		buyItemsDropdown.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		buyItemsDropdown.setMaximumRowCount(20);
 		buyItemsDropdown.setToolTipText("");
 		frame.getContentPane().add(buyItemsDropdown);
@@ -106,14 +108,16 @@ public class PurchaseScreen {
 		itemSellDrpdwn.setModel(new DefaultComboBoxModel<Item>(itemSell));
 		itemSellDrpdwn.setToolTipText("");
 		itemSellDrpdwn.setMaximumRowCount(20);
-		itemSellDrpdwn.setBounds(42, 440, 538, 33);
+		itemSellDrpdwn.setBounds(42, 440, 600, 33);
+		itemSellDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		frame.getContentPane().add(itemSellDrpdwn);
 		
 		
 		JComboBox<Athlete> sellDrpdwn = new JComboBox<Athlete>();
 		sellDrpdwn.setModel(new DefaultComboBoxModel<Athlete>(athleteSell));
 		sellDrpdwn.setMaximumRowCount(20);
-		sellDrpdwn.setBounds(42, 329, 538, 33);
+		sellDrpdwn.setBounds(42, 329, 600, 33);
+		sellDrpdwn.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		frame.getContentPane().add(sellDrpdwn);
 		
 		JLabel buyAthleteLbl = new JLabel("Athletes on the Market...");
@@ -131,7 +135,7 @@ public class PurchaseScreen {
 			}
 		});
 		buyAthleteBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		buyAthleteBtn.setBounds(647, 176, 142, 40);
+		buyAthleteBtn.setBounds(647, 176, 142, 33);
 		frame.getContentPane().add(buyAthleteBtn);
 		
 		JLabel itemMarketLbl = new JLabel("Items to buy...");
@@ -148,7 +152,7 @@ public class PurchaseScreen {
 			}
 		});
 		buyItemBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		buyItemBtn.setBounds(647, 237, 142, 40);
+		buyItemBtn.setBounds(647, 244, 142, 33);
 		frame.getContentPane().add(buyItemBtn);
 		
 		JButton homeBtn = new JButton("HOME");
@@ -175,7 +179,7 @@ public class PurchaseScreen {
 			}
 		});
 		sellAthleteBtn.setFont(new Font("Dialog", Font.PLAIN, 17));
-		sellAthleteBtn.setBounds(647, 322, 142, 40);
+		sellAthleteBtn.setBounds(647, 329, 142, 33);
 		frame.getContentPane().add(sellAthleteBtn);
 		
 		JLabel sellLbl = new JLabel("Athletes you can sell...");
@@ -197,7 +201,7 @@ public class PurchaseScreen {
 			}
 		});
 		sellItemBtn.setFont(new Font("Dialog", Font.PLAIN, 17));
-		sellItemBtn.setBounds(647, 433, 142, 40);
+		sellItemBtn.setBounds(647, 440, 142, 33);
 		frame.getContentPane().add(sellItemBtn);
 		
 		JLabel positionLbl = new JLabel("Set position....");

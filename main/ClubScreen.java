@@ -116,6 +116,7 @@ public class ClubScreen {
 			athleteBtn.setText(team.get(0).getName());
 		}
 		athleteBtn.setBounds(49, 146, 117, 29);
+		athleteBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn);
 		
 		JButton athleteBtn1 = new JButton("");
@@ -132,6 +133,7 @@ public class ClubScreen {
 			athleteBtn1.setText(team.get(1).getName());
 		}
 		athleteBtn1.setBounds(176, 146, 117, 29);
+		athleteBtn1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn1);
 		
 		JButton athleteBtn7 = new JButton("");
@@ -148,6 +150,7 @@ public class ClubScreen {
 			athleteBtn7.setText(reserves.get(0).getName());
 		}
 		athleteBtn7.setBounds(49, 330, 117, 29);
+		athleteBtn7.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn7);
 		
 		JButton athleteBtn3 = new JButton("");
@@ -164,6 +167,7 @@ public class ClubScreen {
 			athleteBtn3.setText(team.get(3).getName());
 		}
 		athleteBtn3.setBounds(176, 185, 117, 29);
+		athleteBtn3.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn3);
 		
 		JButton athleteBtn4 = new JButton("");
@@ -180,6 +184,7 @@ public class ClubScreen {
 			athleteBtn4.setText(team.get(4).getName());
 		}
 		athleteBtn4.setBounds(49, 224, 117, 29);
+		athleteBtn4.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn4);
 		
 		JButton athleteBtn8 = new JButton("");
@@ -196,6 +201,7 @@ public class ClubScreen {
 			athleteBtn8.setText(reserves.get(1).getName());
 		}
 		athleteBtn8.setBounds(176, 330, 117, 29);
+		athleteBtn8.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn8);
 		
 		JButton athleteBtn6 = new JButton("");
@@ -211,6 +217,7 @@ public class ClubScreen {
 			athleteBtn6.setText(team.get(6).getName());
 		}
 		athleteBtn6.setBounds(114, 271, 117, 29);
+		athleteBtn6.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn6);
 		
 		JButton athleteBtn5 = new JButton("");
@@ -227,6 +234,7 @@ public class ClubScreen {
 			athleteBtn5.setText(team.get(5).getName());
 		}
 		athleteBtn5.setBounds(176, 224, 117, 29);
+		athleteBtn5.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn5);
 		
 		JButton athleteBtn2 = new JButton("");
@@ -243,6 +251,7 @@ public class ClubScreen {
 			athleteBtn2.setText(team.get(2).getName());
 		}
 		athleteBtn2.setBounds(49, 185, 117, 29);
+		athleteBtn2.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn2);
 		
 		JButton athleteBtn11 = new JButton("");
@@ -259,6 +268,7 @@ public class ClubScreen {
 			athleteBtn11.setText(reserves.get(4).getName());
 		}
 		athleteBtn11.setBounds(114, 408, 117, 29);
+		athleteBtn11.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn11);
 		
 		JButton athleteBtn9 = new JButton("");
@@ -275,6 +285,7 @@ public class ClubScreen {
 			athleteBtn9.setText(reserves.get(2).getName());
 		}
 		athleteBtn9.setBounds(49, 369, 117, 29);
+		athleteBtn9.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn9);
 		
 		JLabel lblNewLabel = new JLabel("Click on an athlete to display their statistics");
@@ -297,6 +308,7 @@ public class ClubScreen {
 			athleteBtn10.setText(reserves.get(3).getName());
 		}
 		athleteBtn10.setBounds(176, 369, 117, 29);
+		athleteBtn10.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		frame.getContentPane().add(athleteBtn10);
 		
 		JLabel lblYourReserves = new JLabel("Your Reserves:");
@@ -354,7 +366,7 @@ public class ClubScreen {
 				}
 			}
 		});
-		swapAthletesBtn.setBounds(518, 437, 176, 29);
+		swapAthletesBtn.setBounds(518, 437, 200, 29);
 		frame.getContentPane().add(swapAthletesBtn);
 		
 		JLabel lblSelectAnActive = new JLabel("Select an active member, a reserve, then the swap athletes button to swap positions");
