@@ -3,8 +3,6 @@ package main;
 /**
  * Represents an item that can be purchased.
  * Implements the Purchasable interface.
- * 
- * @author Aditi Sharma
  */
 
 public class Item implements Purchasable{

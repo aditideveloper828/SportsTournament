@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 
-/*
+/**
  * GUI for the instance in which a user chooses for their team to take a bye week
  */
 public class ByeWeekScreen {
@@ -25,6 +25,8 @@ public class ByeWeekScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public ByeWeekScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -32,7 +34,7 @@ public class ByeWeekScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -87,7 +89,7 @@ public class ByeWeekScreen {
 		frame.getContentPane().add(lblNewLabel);
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

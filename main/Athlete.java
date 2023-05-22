@@ -10,7 +10,6 @@ package main;
  * such as getting the name, offence rating, defence rating, and current stamina,
  * setting the position, boosting the athlete's stats, and more.
  * 
- * @author Imogen Keeling
  */
 public class Athlete implements Purchasable{
 	private String name;

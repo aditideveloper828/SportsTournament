@@ -7,7 +7,6 @@ import java.util.Random;
  * The PurchasableManager class is responsible for managing athletes and items that can be purchased.
  * It provides methods to add, remove, and retrieve athletes and items.
  * 
- * @author Aditi Sharma
  */
 public class PurchasableManager{	
 	
@@ -156,9 +155,5 @@ public class PurchasableManager{
 			}
 		}
 		return minimum;
-	}
-	
-	
-	
-
+	}	
 }

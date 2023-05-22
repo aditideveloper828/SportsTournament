@@ -17,8 +17,6 @@ import java.util.Set;
  * Provides methods for setting up the game, initializing the team, retrieving options, playing matches, and more.
  * Also manages game balance, weeks, random events, and opposition team names.
  *
- * @author Aditi Sharma
- *
  */
 public class Interaction {
 	private PurchasableManager market;

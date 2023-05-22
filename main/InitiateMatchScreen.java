@@ -24,7 +24,7 @@ import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-/*
+/**
  * GUI implementation for picking an opposition team for the next match
  */
 public class InitiateMatchScreen {
@@ -39,6 +39,8 @@ public class InitiateMatchScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public InitiateMatchScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -50,14 +52,14 @@ public class InitiateMatchScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
-	/*
+	/**
 	 * Method to retrieve and return the names of the Opposition Teams
 	 */
 	public ArrayList<String> getNames(){
@@ -182,7 +184,7 @@ public class InitiateMatchScreen {
 		frame.getContentPane().add(playGameBtn);
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

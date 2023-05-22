@@ -19,6 +19,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JToolBar;
 
+/**
+ * GUI implementation of the set up where the user creates a team name, selects season duration, and selects difficulty
+ */
 public class SetUpScreen {
 
 	private JFrame frame;
@@ -32,6 +35,8 @@ public class SetUpScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public SetUpScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -39,7 +44,7 @@ public class SetUpScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -165,7 +170,7 @@ public class SetUpScreen {
 		
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

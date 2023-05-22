@@ -95,6 +95,10 @@ public class RandomEvent {
 		}
 	}
 	
+	/**
+	 * Returns the random event message, telling the user what has happened
+	 * @return the random event message
+	 */
 	public String getEventMessage() {
 		return message;
 	}

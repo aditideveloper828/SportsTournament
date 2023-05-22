@@ -1,9 +1,9 @@
 package main;
 
+/**
+ * The manager class that interacts with all the screens in the GUI application
+ */
 public class ScreenManager {
-	
-	//private static PurchasableManager data;
-	//private static GameEnvironment game;
 	private Interaction implementation;
 	
 	/**
@@ -216,11 +216,17 @@ public class ScreenManager {
 		launchResultScreen();
 	}
 	
+	/**
+	 * takes the user to the home screen from wherever they click the home button
+	 */
 	public void goHome() {
 		launchMainScreen();
 	}
 	
-	
+	/**
+	 * Calls the screenManager class to begin its process
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		ScreenManager manager = new ScreenManager();
 		manager.launchWelcomeScreen();

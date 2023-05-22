@@ -10,6 +10,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 
+ * GUI implementation for showing the match results to the user
+ *
+ */
 public class ResultScreen {
 
 	private JFrame frame;
@@ -17,6 +22,8 @@ public class ResultScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public ResultScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -24,7 +31,7 @@ public class ResultScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -81,7 +88,7 @@ public class ResultScreen {
 		frame.getContentPane().add(weeksRemaining);
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

@@ -4,8 +4,6 @@ package main;
  * The PairFight class represents a face-off between two athletes in a game.
  * It determines the outcome of the face-off based on the positions and attributes
  * of the athletes involved.
- * 
- * @author imogenkeeling
  */
 
 public class PairFight {

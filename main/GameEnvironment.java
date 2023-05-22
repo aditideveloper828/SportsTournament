@@ -5,15 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Unused Methods:
- * 
- * 
- */
-
-/**
  * This class represents the game environment for managing a team, reserves, items, and game progress.
- * 
- * @author Aditi Sharma
  */
 public class GameEnvironment {
 	private ArrayList<Athlete> team;

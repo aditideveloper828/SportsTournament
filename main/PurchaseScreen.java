@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-/*
+/**
  * GUI implementation of the market to buy athletes and items
  */
 public class PurchaseScreen {
@@ -19,6 +19,8 @@ public class PurchaseScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public PurchaseScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -28,7 +30,7 @@ public class PurchaseScreen {
 		
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -204,7 +206,7 @@ public class PurchaseScreen {
 		frame.getContentPane().add(positionLbl);
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {
