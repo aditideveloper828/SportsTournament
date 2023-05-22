@@ -17,8 +17,6 @@ import main.FileRead;
  * The AthleteTest class initialises tests for the Athlete class to ensure 
  * that the methods are working correctly
  * 
- * @author Aditi
- * @author imogenkeeling
  *
  */
 class AthleteTest {
