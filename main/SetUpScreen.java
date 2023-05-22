@@ -24,8 +24,16 @@ public class SetUpScreen {
 	private JTextField teamNameInput;
 	@SuppressWarnings("unused")
 	private String dif;
+	
+	/**
+	 * holding the integer assigned to the difficulty of the game
+	 */
 	public int numDif;
 	private String teamName;
+	
+	/**
+	 * integer holding the length of the season that the user has selected
+	 */
 	public int seasonDuration;
 
 	/**

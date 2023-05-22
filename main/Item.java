@@ -10,12 +10,20 @@ public class Item implements Purchasable{
 	//change so that attributes cannot be changed after being set
 	//change input format to an array
 	String name;
+	
+	/**
+	 * the offence boost provided to the athlete
+	 */
 	public int offenceBoost;
 	
 	/**
-	 * the defence boost of the athlete
+	 * the defence boost provided to the athlete
 	 */
 	public int defenceBoost;
+	
+	/**
+	 * the stamina boost provided to the athlete
+	 */
 	public int staminaBoost;
 	int contractCost;
 	int sellBackPrice;

@@ -226,7 +226,7 @@ public class ScreenManager {
 	
 	/**
 	 * Calls the screenManager class to begin its process
-	 * @param args
+	 * @param args calls the screen manager class to begin
 	 */
 	public static void main(String[] args) {
 		ScreenManager manager = new ScreenManager();
