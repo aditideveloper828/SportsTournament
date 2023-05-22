@@ -1,0 +1,13 @@
+name;defenceBoost;offenceBoost;staminaBoost;contractCost;sellBackPrice
+skills session;2;2;20;50;40
+defence skills;2;0;30;30;20
+offence skills;0;2;30;30;20
+training session;1;1;10;40;30
+restoring massage;0;0;50;40;30
+training camp;3;3;0;10;50
+energy drink;0;0;10;20;10
+immunity boost;0;0;10;30;20
+yoga class;0;0;20;40;30
+training session;1;1;10;40;30
+offence skills;0;2;30;30;20
+defence skills;2;0;30;30;20

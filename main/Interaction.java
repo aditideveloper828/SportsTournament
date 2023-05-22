@@ -51,7 +51,7 @@ public class Interaction {
      */
 	public void setUp() {
 		//change this method to remove duplicate code
-		FileRead athleteFile = new FileRead("AthleteMarket");
+		FileRead athleteFile = new FileRead("/main/resources/AthleteMarket");
 		ArrayList<String> athleteProfiles = athleteFile.getData();
 		for (int i = 1; i < athleteProfiles.size(); i++) {
 			String[] characterData = athleteProfiles.get(i).split(";",0);
@@ -68,7 +68,7 @@ public class Interaction {
 		}
 		
 		//making items
-		FileRead itemFile = new FileRead("ItemDetails");
+		FileRead itemFile = new FileRead("/main/resources/ItemDetails");
 		ArrayList<String> itemDetails = itemFile.getData();
 		for (int i = 1; i < itemDetails.size(); i++) {
 			String[] itemData = itemDetails.get(i).split(";",0);

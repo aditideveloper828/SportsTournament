@@ -1,10 +1,8 @@
 package main;
 
 
-import java.io.*;  
-import java.util.Scanner; 
+import java.io.*;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * Represents a utility class for reading data from a file.
@@ -29,8 +27,7 @@ public class FileRead {
 	 */
 	private void read() {
 		try {
-			File file = new File(fileName);
-			FileInputStream inputStream = new FileInputStream(file);
+			InputStream inputStream = this.getClass().getResourceAsStream(fileName);
 			InputStreamReader streamReader = new InputStreamReader(inputStream);
 			BufferedReader buffer = new BufferedReader(streamReader);
 
