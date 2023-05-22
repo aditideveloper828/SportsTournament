@@ -32,6 +32,9 @@ public class ByeWeekScreen {
 		frame.setVisible(true);
 	}
 	
+	/*
+	 * Method to dispose of the current screen
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}

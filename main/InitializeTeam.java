@@ -10,6 +10,9 @@ import java.util.Set;
 
 import javax.swing.*;
 
+/*
+ * GUI implementation of selecting a team for the Quadball tournament
+ */
 public class InitializeTeam {
 
 	private JFrame frame;
@@ -25,10 +28,12 @@ public class InitializeTeam {
 		frame.setVisible(true);
 	}
 	
+	/*
+	 * Method to dispose of the current screen
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -198,6 +203,9 @@ public class InitializeTeam {
 		
 	}
 	
+	/*
+	 * Method to initiate the disposal process of this screen and opening of the following screen.
+	 */
 	public void finishedWindow() {
 		manager.closeInitializeTeamScreen(this);
 	}

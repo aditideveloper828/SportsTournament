@@ -25,6 +25,9 @@ public class WelcomeScreen {
 		frame.setVisible(true);
 	}
 	
+	/*
+	 * Method to dispose of the current screen
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
@@ -62,6 +65,9 @@ public class WelcomeScreen {
 		frame.getContentPane().add(startSsnBtn);
 	}
 	
+	/*
+	 * Method to initiate the disposal process of this screen and opening of the following screen.
+	 */
 	public void finishedWindow() {
 		manager.closeWelcomeScreen(this);
 	}

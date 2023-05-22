@@ -38,6 +38,9 @@ public class SetUpScreen {
 		frame.setVisible(true);
 	}
 	
+	/*
+	 * Method to dispose of the current screen
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
@@ -172,6 +175,9 @@ public class SetUpScreen {
 		
 	}
 	
+	/*
+	 * Method to initiate the disposal process of this screen and opening of the following screen.
+	 */
 	public void finishedWindow() {
 		manager.closeSetUpScreen(this);
 	}

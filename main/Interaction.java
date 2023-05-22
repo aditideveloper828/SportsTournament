@@ -12,6 +12,11 @@ import java.util.Set;
 
 
 /**
+ * Represents the interaction between the user and the game environment.
+ * Manages the game flow, team management, purchasing, and playing matches.
+ * Provides methods for setting up the game, initializing the team, retrieving options, playing matches, and more.
+ * Also manages game balance, weeks, random events, and opposition team names.
+ *
  * @author Aditi Sharma
  *
  */
@@ -28,10 +33,17 @@ public class Interaction {
 	public ArrayList<String> opTeamNames= new ArrayList<String>();
 	public String opTeamName;
 	
+	/**
+     * Constructs a new Interaction object.
+     * Initializes the PurchasableManager.
+     */
 	public Interaction() {
 		market = new PurchasableManager();
 	}
 	
+	/**
+     * Sets up the game environment by loading athlete and item data from files.
+     */
 	public void setUp() {
 		//change this method to remove duplicate code
 		FileRead athleteFile = new FileRead("AthleteMarket");
@@ -67,30 +79,32 @@ public class Interaction {
 		}
 	}
 	
-	public PurchasableManager getMarket() {
-		return market;
-	}
-	
+	/**
+     * Checks if the game should end.
+     *
+     * @return true if the game should end, false otherwise.
+     */
 	public boolean shouldEndGame() {
 		return endGame;
 	}
 	
+	/**
+     * Checks if the user's team should take a bye.
+     *
+     * @return true if the team should take a bye, false otherwise.
+     */
 	public boolean shouldTakeBye() {
 		return takeBye;
 	}
 	
-	public String getResultMessage() {
-		return resultMessage;
-	}
-	
-	public String getRandomEventMessage() {
-		return randomEventMessage;
-	}
-	
-	public int getSeasonDuration() {
-		return selectedSeasonDuration;
-	}
-	
+	/**
+     * Sets up the game environment with the specified name, duration, and difficulty.
+     * Calls the setUp() method and initializes the game environment.
+     * 
+     * @param name       The name of the game environment.
+     * @param duration   The duration of the game season.
+     * @param difficulty The difficulty level of the game.
+     */
 	public void setUp(String name, int duration, int difficulty) {
 		this.setUp();
 		selectedSeasonDuration = duration;
@@ -98,6 +112,13 @@ public class Interaction {
 		game.setDifficulty(difficulty);
 	}
 	
+	/**
+     * Initializes the team with the specified list of athletes.
+     * Uses the Purchase class to buy athletes and assigns them to the team.
+     * Resets the game balance after initializing the team.
+     * 
+     * @param athletes The list of athletes to initialize the team with.
+     */
 	public void initializeTeam(ArrayList<Athlete> athletes) {
 		Purchase initialize = new Purchase("ATHLETE", market, game);
 		for (int i = 0; i < 8; i++) {
@@ -106,6 +127,49 @@ public class Interaction {
 		game.resetBalance();
 	}
 	
+	/**
+     * Returns the PurchasableManager.
+     *
+     * @return The PurchasableManager object.
+     */
+	public PurchasableManager getMarket() {
+		return market;
+	}
+	
+	/**
+     * Returns the result message of the last match.
+     *
+     * @return The result message.
+     */
+	public String getResultMessage() {
+		return resultMessage;
+	}
+	
+	/**
+     * Returns the random event message.
+     *
+     * @return The random event message.
+     */
+	public String getRandomEventMessage() {
+		return randomEventMessage;
+	}
+	 
+	/**
+     * Returns the selected season duration.
+     * 
+     * @return The selected season duration
+     */
+	public int getSeasonDuration() {
+		return selectedSeasonDuration;
+	}
+	
+	/**
+     * Retrieves a list of athlete options for the team initialization.
+     * Returns a specified number of athlete options based on whether it is the initial team setup.
+     * 
+     * @param initializing A boolean value indicating whether it is the initial team setup.
+     * @return The list of athlete options.
+     */
 	public ArrayList<Athlete> getAthleteOptions(boolean initializing) {
 		int toGet = 5;
 		if (initializing) {
@@ -114,14 +178,29 @@ public class Interaction {
 		return market.getSomeAthletes(toGet);
 	}
 	
+	/**
+     * Retrieves a list of item options available in the market.
+     * 
+     * @return The list of item options.
+     */
 	public ArrayList<Item> getItemOptions(){
 		return market.getAllItems();
 	}
 	
+	/**
+     * Retrieves the remaining weeks in the game season.
+     * 
+     * @return The remaining weeks.
+     */
 	public int remainingWeeks() {
 		return game.getWeeks();
 	}
 	
+	/**
+     * Retrieves the full team, including team members and reserves.
+     * 
+     * @return The full team.
+     */
 	public ArrayList<Athlete> getFullTeam(){
 		ArrayList<Athlete> team = new ArrayList<Athlete>(game.getTeam());
 		ArrayList<Athlete> reserves = new ArrayList<Athlete>(game.getReserves());
@@ -131,14 +210,32 @@ public class Interaction {
 		return team;
 	}
 	
+	/**
+     * Retrieves the list of bought items by the team.
+     * 
+     * @return The list of bought items.
+     */
 	public ArrayList<Item> getBoughtItems(){
 		return game.getItems();
 	}
 	
+	/**
+     * Retrieves the game environment object.
+     * 
+     * @return The game environment object.
+     */
 	public GameEnvironment getGame() {
 		return game;
 	}
 	
+	/**
+     * Sells the specified object based on the object ID, type, and position.
+     * Uses the Purchase class to sell items or athletes from the game environment.
+     * 
+     * @param objectID  The ID of the object to be sold.
+     * @param type      The type of the object (1 for item, 2 for athlete).
+     * @param position  The position of the athlete to be sold.
+     */
 	public void sell(int objectID, int type, String position) {
 		//type 1 is item, 2 is athlete
 		if (type == 1) {
@@ -157,6 +254,13 @@ public class Interaction {
 		}
 	}
 	
+	/**
+     * Fills the specified position with the given reserve athlete.
+     * Determines the required numbers for each position and checks if the position is not already filled.
+     * Removes the reserve athlete, assigns the position, and adds the athlete to the team.
+     * 
+     * @param reserve The reserve athlete to be assigned to a position.
+     */
 	public void fillPosition(Athlete reserve) {
 		long[] count = new long[4];
 		long[] requiredNums = new long[] {1, 1, 2, 3};
@@ -177,6 +281,13 @@ public class Interaction {
 		}
 	}
 	
+	/**
+     * Plays a game against the specified opposition team.
+     * Manages game logic, including checking for insufficient players, injuries, and match results.
+     * Handles random events during gameplay.
+     * 
+     * @param opTeam The opposition team to play against.
+     */
 	public void playGame(OppositionTeam opTeam) {
 		randomEventMessage = "";
 		boolean insufficientPlayers = false;
@@ -221,6 +332,11 @@ public class Interaction {
 	    }
 	}
 	
+	/**
+     * Generates a list of random opposition team names.
+     * 
+     * @return The list of random opposition team names.
+     */
 	public ArrayList<String> getOpTeamName() {
 		opTeamNames.add("Stinky Soldiers");
 		opTeamNames.add("Blue Bottles");
@@ -258,6 +374,14 @@ public class Interaction {
 		return returnNames;
 	}
 	
+	/**
+     * Buys an athlete and assigns them to the specified position in the game.
+     * Checks if the balance is sufficient and if the position is already filled.
+     * 
+     * @param athlete   The athlete to buy.
+     * @param position  The position to assign the athlete to.
+     * @return          A message indicating the success or failure of the purchase.
+     */
 	public String buy(Athlete athlete, String position) {
 		if (athlete.getContractPrice() <= game.getBalance()){
 			Purchase buying = new Purchase("ATHLETE", market, game);
@@ -307,6 +431,13 @@ public class Interaction {
 		
 	}
 	
+	/**
+	 * Buys an item from the market and adds it to the game.
+	 * Checks if the player's balance is sufficient to buy the item.
+	 * 
+	 * @param item The item to be bought.
+	 * @return A message indicating the success or failure of the purchase.
+	 */
 	public String buy(Item item) {
 		if (item.getContractPrice() <= game.getBalance()) {
 			Purchase buying = new Purchase("ITEM", market, game);
@@ -319,7 +450,14 @@ public class Interaction {
 		
 	}
 	
-	
+	/**
+	 * Performs special training on an athlete at the specified index and position.
+	 * Refills the team's stamina, increases the athlete's stats based on the difficulty level,
+	 * and reduces the week. Checks if the week count reaches zero to end the game.
+	 * 
+	 * @param index    The index of the athlete.
+	 * @param position The position of the athlete.
+	 */
 	public void specialTraining(int index, String position) {
 		takeBye = false;
 		game.teamStaminaRefill();
@@ -339,12 +477,5 @@ public class Interaction {
 			endGame = true;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

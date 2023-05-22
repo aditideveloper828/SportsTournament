@@ -10,6 +10,11 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/*
+ * GUI implementation for the home screen. Allows a user to choose what to do next
+ * 
+ * @author Imogen Keeling
+ */
 public class MainScreen {
 
 	private JFrame frame;
@@ -25,6 +30,9 @@ public class MainScreen {
 		frame.setVisible(true);
 	}
 	
+	/*
+	 * Method to dispose of the current screen
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
@@ -89,7 +97,9 @@ public class MainScreen {
 		frame.getContentPane().add(takeAByeBtn);
 	}
 	
-	
+	/*
+	 * Method to initiate the disposal process of this screen and opening of the following screen.
+	 */
 	public void finishedWindow() {
 		manager.closeMainScreen(this);
 	}

@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+/*
+ * GUI implementation of the market to buy athletes and items
+ */
 public class PurchaseScreen {
 
 	private JFrame frame;
@@ -25,6 +28,9 @@ public class PurchaseScreen {
 		
 	}
 	
+	/*
+	 * Method to dispose of the current screen
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
@@ -198,6 +204,9 @@ public class PurchaseScreen {
 		frame.getContentPane().add(positionLbl);
 	}
 	
+	/*
+	 * Method to initiate the disposal process of this screen and opening of the following screen.
+	 */
 	public void finishedWindow() {
 		manager.closePurchaseScreen(this);
 	}
