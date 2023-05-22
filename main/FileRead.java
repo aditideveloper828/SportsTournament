@@ -1,7 +1,8 @@
 package main;
 
 import java.io.*;  
-import java.util.Scanner; 
+import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 /**
@@ -22,31 +23,31 @@ public class FileRead {
 		this.read();
 	}
 	
+	public String readAllLinesWithStream(BufferedReader reader) {
+	    return reader.lines()
+	      .collect(Collectors.joining(System.lineSeparator()));
+	} 
+	
 	/**
 	 * Reads data from a file and populates the 'data' ArrayList.
 	 */
 	private void read() {
-		try {
-			File file = new File(fileName);
-			FileInputStream inputStream = new FileInputStream(file);
-			InputStreamReader streamReader = new InputStreamReader(inputStream);
-			BufferedReader buffer = new BufferedReader(streamReader);
-
-			String line;
-			while((line = buffer.readLine()) != null){
-				data.add(line);
-			}
-			buffer.close();
-		}
-		catch (FileNotFoundException e) {
-			System.out.println("Error in FileRead:");
-			e.printStackTrace();
-		} 
-		catch (IOException e) {
-			System.out.println("Error in FileRead:");
-			e.printStackTrace();
-		}
+		//File file = new File(fileName);
+		//FileInputStream inputStream = new FileInputStream(file);
+		//InputStreamReader streamReader = new InputStreamReader(inputStream);
+		//BufferedReader buffer = new BufferedReader(streamReader);
+		
+		InputStream in = getClass().getResourceAsStream(fileName);
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		System.out.println("Up to this point");
+		String allData = readAllLinesWithStream(reader);
+		System.out.println(allData);
 	}
+	
+	
+
+	
 	
 	/**
      * Returns the data read from the file as an ArrayList of strings.
