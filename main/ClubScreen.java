@@ -80,7 +80,7 @@ public class ClubScreen {
 		JButton homeBtn = new JButton("HOME");
 		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.goHome(ScreenCase.CLUBSCREEN);
+				manager.goHome();
 				closeWindow();
 			}
 		});

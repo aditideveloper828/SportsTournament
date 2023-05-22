@@ -7,9 +7,7 @@ import java.util.Set;
 /**
  * Unused Methods:
  * 
- * public int getItemSize(){
-		return itemSize;
-	}
+ * 
  */
 
 /**
