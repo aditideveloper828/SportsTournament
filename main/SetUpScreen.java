@@ -21,12 +21,12 @@ import javax.swing.JToolBar;
 public class SetUpScreen {
 
 	private JFrame frame;
-	private static ScreenManager manager;
+	private ScreenManager manager;
 	private JTextField teamNameInput;
-	String dif;
+	private String dif;
 	public int numDif;
-	String errorMessageLbl;
-	String teamName;
+	private String errorMessageLbl;
+	private String teamName;
 	public int seasonDuration;
 
 	/**
