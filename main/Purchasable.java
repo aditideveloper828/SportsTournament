@@ -9,8 +9,25 @@ package main;
  */
 public interface Purchasable {
 	
+   /**
+	* Returns the contract price of the athlete
+	* 
+	* @return the contract price of the athlete
+	*/
 	public int getContractPrice();
+	
+   /**
+	* Returns the sell back price of the athlete
+	* 
+	* @return the sell back price of the athlete
+	*/
 	public int getSellBackPrice();
+	
+   /**
+    * Returns a description of the athlete.
+    *
+    * @return a description of the athlete
+    */
 	public String getDescription();
 
 }

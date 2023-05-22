@@ -270,7 +270,62 @@ public class Interaction {
 		return game.getWeeks();
 	}
 	
-	
+	/**
+     * Buys an athlete and assigns them to the specified position in the game.
+     * Checks if the balance is sufficient and if the position is already filled.
+     * 
+     * @param athlete   The athlete to buy.
+     * @param position  The position to assign the athlete to.
+     * @return          A message indicating the success or failure of the purchase.
+     */
+	public String buy(Athlete athlete, String position) {
+		if (athlete.getContractPrice() <= game.getBalance()){
+			Purchase buying = new Purchase("ATHLETE", market, game);
+			switch(position) {
+			case "SEEKER":
+				long seekers = game.getTeam().stream().filter(x -> x.getPosition() == "SEEKER" ).count();
+				if (seekers < 1) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+				
+			case "BEATER":
+				long beaters = game.getTeam().stream().filter(x -> x.getPosition() == "BEATER" ).count();
+				if (beaters < 2) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			case "CHASER":
+				long chasers = game.getTeam().stream().filter(x -> x.getPosition() == "CHASER" ).count();
+				if (chasers < 3) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			case "KEEPER":
+				long keepers = game.getTeam().stream().filter(x -> x.getPosition() == "KEEPER" ).count();
+				if (keepers < 1) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			case "RESERVE":
+				if (game.getReserveSize() < 5) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			}
+			return "You have too many athletes in this position!";
+			
+		}
+		else{
+			return "Your balance is too low to buy this athlete.";
+		}
+		
+	}
 	
 	/**
      * Sells the specified object based on the object ID, type, and position.
@@ -296,6 +351,25 @@ public class Interaction {
 				selling.sell(game.getTeamMember(objectID));
 			}
 		}
+	}
+	
+	/**
+	 * Buys an item from the market and adds it to the game.
+	 * Checks if the player's balance is sufficient to buy the item.
+	 * 
+	 * @param item The item to be bought.
+	 * @return A message indicating the success or failure of the purchase.
+	 */
+	public String buy(Item item) {
+		if (item.getContractPrice() <= game.getBalance()) {
+			Purchase buying = new Purchase("ITEM", market, game);
+			buying.buy(item);
+			return "Item bought!";
+		}
+		else {
+			return "Your balance is too low to buy this item.";
+		}
+		
 	}
 	
 	/**
@@ -374,83 +448,6 @@ public class Interaction {
 	 			randomEventMessage = event.getEventMessage();
 	 		}
 	    }
-	}
-	
-	
-	/**
-     * Buys an athlete and assigns them to the specified position in the game.
-     * Checks if the balance is sufficient and if the position is already filled.
-     * 
-     * @param athlete   The athlete to buy.
-     * @param position  The position to assign the athlete to.
-     * @return          A message indicating the success or failure of the purchase.
-     */
-	public String buy(Athlete athlete, String position) {
-		if (athlete.getContractPrice() <= game.getBalance()){
-			Purchase buying = new Purchase("ATHLETE", market, game);
-			switch(position) {
-			case "SEEKER":
-				long seekers = game.getTeam().stream().filter(x -> x.getPosition() == "SEEKER" ).count();
-				if (seekers < 1) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-				
-			case "BEATER":
-				long beaters = game.getTeam().stream().filter(x -> x.getPosition() == "BEATER" ).count();
-				if (beaters < 2) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			case "CHASER":
-				long chasers = game.getTeam().stream().filter(x -> x.getPosition() == "CHASER" ).count();
-				if (chasers < 3) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			case "KEEPER":
-				long keepers = game.getTeam().stream().filter(x -> x.getPosition() == "KEEPER" ).count();
-				if (keepers < 1) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			case "RESERVE":
-				if (game.getReserveSize() < 5) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			}
-			return "You have too many athletes in this position!";
-			
-		}
-		else{
-			return "Your balance is too low to buy this athlete.";
-		}
-		
-	}
-	
-	/**
-	 * Buys an item from the market and adds it to the game.
-	 * Checks if the player's balance is sufficient to buy the item.
-	 * 
-	 * @param item The item to be bought.
-	 * @return A message indicating the success or failure of the purchase.
-	 */
-	public String buy(Item item) {
-		if (item.getContractPrice() <= game.getBalance()) {
-			Purchase buying = new Purchase("ITEM", market, game);
-			buying.buy(item);
-			return "Item bought!";
-		}
-		else {
-			return "Your balance is too low to buy this item.";
-		}
-		
 	}
 	
 	/**

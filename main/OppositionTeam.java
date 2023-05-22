@@ -24,7 +24,7 @@ public class OppositionTeam {
 	
 	public ArrayList<Athlete> opTeam = new ArrayList<Athlete>();
 	public ArrayList<String> nameString = new ArrayList<String>();
-	private static PurchasableManager freeAthletes;
+	private PurchasableManager freeAthletes;
 	private InitiateMatchScreen name;
 	public String teamName;
 	

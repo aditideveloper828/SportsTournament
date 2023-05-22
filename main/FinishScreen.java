@@ -44,7 +44,7 @@ public class FinishScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel finalResultTitle = new JLabel("You Final Status!");
+		JLabel finalResultTitle = new JLabel("Your Final Status!");
 		finalResultTitle.setBounds(33, 37, 634, 51);
 		finalResultTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		finalResultTitle.setHorizontalAlignment(SwingConstants.CENTER);

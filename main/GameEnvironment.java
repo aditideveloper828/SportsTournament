@@ -256,7 +256,7 @@ public class GameEnvironment {
 	 * Resets the user's balance to the initial value of 100.
 	 */
 	public void resetBalance() {
-		balance = 100;
+		balance = 10;
 	}
 	
 

@@ -51,30 +51,15 @@ class AthleteTest {
 		}
 		
 	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
 	/**
 	 * Test method for {@link main.Athlete#staminaDecrease()}.
 	 */
 	@Test
 	void testStaminaDecrease() {
-		int prev_stamina = athletes.get(0).getStamina();
+		int prevStamina = athletes.get(0).getStamina();
 		athletes.get(0).staminaDecrease();
-		int new_stamina = athletes.get(0).getStamina();
-		int difference = prev_stamina - new_stamina;
+		int newStamina = athletes.get(0).getStamina();
+		int difference = prevStamina - newStamina;
 		assertEquals(20, difference);
 
 	}
@@ -86,13 +71,13 @@ class AthleteTest {
 	 */
 	@Test
 	void testStatIncrease() {
-		int prev_offence = athletes.get(0).getOffence();
-		int prev_defence = athletes.get(0).getDefence();
+		int prevOffence = athletes.get(0).getOffence();
+		int prevDefence = athletes.get(0).getDefence();
 		athletes.get(0).statIncrease();
-		int new_offence = athletes.get(0).getOffence();
-		int new_defence = athletes.get(0).getDefence();
-		int offence_diff = new_offence - prev_offence;
-		int defence_diff = new_defence - prev_defence;
+		int newOffence = athletes.get(0).getOffence();
+		int newDefence = athletes.get(0).getDefence();
+		int offence_diff = newOffence - prevOffence;
+		int defence_diff = newDefence - prevDefence;
 		assertEquals(1, offence_diff, defence_diff);
 	}
 	
@@ -104,8 +89,8 @@ class AthleteTest {
 	@Test
 	void testStaminaRefill() {
 		athletes.get(0).staminaRefill();
-		int new_stamina = athletes.get(0).getStamina();
-		assertEquals(100, new_stamina);
+		int newStamina = athletes.get(0).getStamina();
+		assertEquals(100, newStamina);
 	}
 	
 	/*

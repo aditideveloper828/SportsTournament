@@ -9,7 +9,7 @@ import java.util.Random;
  * 
  * @author Aditi Sharma
  */
-public class PurchasableManager extends IncorrectInput {	
+public class PurchasableManager{	
 	
 	private ArrayList<Athlete> athletes;
 	private ArrayList<Item> items;

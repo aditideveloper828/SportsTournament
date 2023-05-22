@@ -107,7 +107,7 @@ public class InitiateMatchScreen {
 				});
 			}
 		});
-		team1RdBtn.setBounds(34, 170, 141, 23);
+		team1RdBtn.setBounds(34, 170, 215, 23);
 		frame.getContentPane().add(team1RdBtn);
 		
 		OppositionTeam team2 = new OppositionTeam(data, this);
@@ -125,7 +125,7 @@ public class InitiateMatchScreen {
 				});
 			}
 		});
-		team2RdBtn.setBounds(34, 242, 141, 23);
+		team2RdBtn.setBounds(34, 242, 252, 23);
 		frame.getContentPane().add(team2RdBtn);
 		
 		OppositionTeam team3 = new OppositionTeam(data, this);
@@ -143,7 +143,7 @@ public class InitiateMatchScreen {
 				});
 			}
 		});
-		team3RdBtn.setBounds(34, 205, 141, 23);
+		team3RdBtn.setBounds(34, 205, 215, 23);
 		frame.getContentPane().add(team3RdBtn);
 		
 		ButtonGroup PickTeam = new ButtonGroup();

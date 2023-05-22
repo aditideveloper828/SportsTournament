@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -109,53 +110,42 @@ public class SetUpScreen {
 		difficultyLbl.setBounds(94, 329, 81, 27);
 		frame.getContentPane().add(difficultyLbl);
 		
-		JLabel stringLenErrorLbl = new JLabel("");
-		stringLenErrorLbl.setForeground(new Color(184, 12, 0));
-		stringLenErrorLbl.setBounds(181, 206, 513, 16);
-		frame.getContentPane().add(stringLenErrorLbl);
-		
-		JLabel specCharErrorLbl = new JLabel("");
-		specCharErrorLbl.setForeground(new Color(184, 12, 0));
-		specCharErrorLbl.setBounds(181, 189, 513, 16);
-		frame.getContentPane().add(specCharErrorLbl);
-		
 		JButton createTeamBtn = new JButton("Create Team");
 		createTeamBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				stringLenErrorLbl.setText("");
-				specCharErrorLbl.setText("");
+				boolean specialChars = false;
 				String inputText = teamNameInput.getText();
-				if (inputText.length() < 3 || inputText.length() > 15) {
-					stringLenErrorLbl.setText("Error! Your team name must have 3-15 characters");
-					throw new IncorrectInput("Error! Your team name must have 3-15 characters");
-				}
 				
-		        String specialCharactersString = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
-		        for (int i=0; i < inputText.length() ; i++)
-		        {
+				String specialCharactersString = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
+		        for (int i=0; i < inputText.length() ; i++){
 		            char ch = inputText.charAt(i);
 		            
 		            if(specialCharactersString.contains(Character.toString(ch))) {
-		            	specCharErrorLbl.setText("Error! Your team name must not have any special characters!");
-		            	throw new IncorrectInput("Error! Your team name must not have any special characters!");
+		            	specialChars = true;
 		            }
 		        }
-				
-				// create an if statement for special characters in the team name
-				
-				teamName = inputText;
-				seasonDuration = seasonSlider.getValue();
-				
-				if (easyRdBtn.isSelected()) {
-                    dif = "Easy";
-                    numDif = 1;
-                }
-                else if (hardRdBtn.isSelected()) {
-                    dif = "Hard";
-                    numDif = 2;
-                }
-				manager.makeGame(teamName, seasonDuration, numDif);
-				finishedWindow();
+		        
+				if (inputText.length() < 3 || inputText.length() > 15) {
+					JOptionPane.showMessageDialog(frame, "Error! Your team name must have 3-15 characters");
+				}
+				else if (specialChars){ 
+					JOptionPane.showMessageDialog(frame, "Error! Your team name must not have any special characters");
+					
+				} else {
+					teamName = inputText;
+					seasonDuration = seasonSlider.getValue();
+					
+					if (easyRdBtn.isSelected()) {
+	                    dif = "Easy";
+	                    numDif = 1;
+	                }
+	                else if (hardRdBtn.isSelected()) {
+	                    dif = "Hard";
+	                    numDif = 2;
+	                }
+					manager.makeGame(teamName, seasonDuration, numDif);
+					finishedWindow();
+				}
 			}
 		});
 		createTeamBtn.setBackground(new Color(169, 170, 169));
