@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package main;
 import java.util.*;
 
@@ -13,7 +11,6 @@ import java.util.*;
  * buy and sell athletes and items, view game details, and play matches.
  * The UserInterface class is the main entry point of the game for the command line application.
  * 
- * @author Aditi Sharma
  */
 public final class UserInterface{
 	private static PurchasableManager market = new PurchasableManager();

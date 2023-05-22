@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-/*
+/**
  * GUI implementation of the final results at completion of the game. 
  * Displays the points gained, money gained, and the season duration
  */
@@ -21,6 +21,8 @@ public class FinishScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public FinishScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -28,7 +30,7 @@ public class FinishScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -44,7 +46,7 @@ public class FinishScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel finalResultTitle = new JLabel("You Final Status!");
+		JLabel finalResultTitle = new JLabel("Your Final Status!");
 		finalResultTitle.setBounds(33, 37, 634, 51);
 		finalResultTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		finalResultTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -85,7 +87,7 @@ public class FinishScreen {
 		frame.getContentPane().add(endBtn);
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

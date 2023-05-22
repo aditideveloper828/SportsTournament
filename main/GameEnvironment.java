@@ -5,15 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Unused Methods:
- * 
- * 
- */
-
-/**
  * This class represents the game environment for managing a team, reserves, items, and game progress.
- * 
- * @author Aditi Sharma
  */
 public class GameEnvironment {
 	private ArrayList<Athlete> team;
@@ -256,7 +248,7 @@ public class GameEnvironment {
 	 * Resets the user's balance to the initial value of 100.
 	 */
 	public void resetBalance() {
-		balance = 100;
+		balance = 10;
 	}
 	
 

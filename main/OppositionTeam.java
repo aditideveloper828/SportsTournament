@@ -2,17 +2,6 @@
 
 import java.util.*;
 
-/*
- * Unused Methods:
- * 
- * public void displayOpTeam() {
-		System.out.println("Active Members: ");
-		for (int i = 0; i < opTeam.size(); i++) {
-			System.out.println(opTeam.get(i));
-		}
-	}
- */
-
 /**
  * Represents an opposition team in a match.
  * Manages the creation, retrieval, and disposal of the opposition team.
@@ -22,10 +11,21 @@ import java.util.*;
 
 public class OppositionTeam {
 	
+	/**
+	 * The ArrayList that stores the opposition team athletes
+	 */
 	public ArrayList<Athlete> opTeam = new ArrayList<Athlete>();
+	
+	/**
+	 * ArrayList that stores the names of the athletes from the opposition team
+	 */
 	public ArrayList<String> nameString = new ArrayList<String>();
-	private static PurchasableManager freeAthletes;
+	private PurchasableManager freeAthletes;
 	private InitiateMatchScreen name;
+	
+	/**
+	 * The opposition team's team name
+	 */
 	public String teamName;
 	
 	/**

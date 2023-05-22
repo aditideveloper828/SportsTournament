@@ -10,6 +10,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 
+ * GUI implementation for showing the match results to the user
+ *
+ */
 public class ResultScreen {
 
 	private JFrame frame;
@@ -17,6 +22,8 @@ public class ResultScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public ResultScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -24,7 +31,7 @@ public class ResultScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -48,7 +55,7 @@ public class ResultScreen {
 		
 		JLabel randomEventMessage = new JLabel(manager.getImplementation().getRandomEventMessage());
 		randomEventMessage.setBounds(22, 151, 634, 51);
-		randomEventMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		randomEventMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		randomEventMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(randomEventMessage);
 		
@@ -64,24 +71,24 @@ public class ResultScreen {
 		
 		JLabel currentPoints = new JLabel("Current Points: "+ manager.getImplementation().getGame().getPoints());
 		currentPoints.setHorizontalAlignment(SwingConstants.CENTER);
-		currentPoints.setFont(new Font("Dialog", Font.PLAIN, 10));
+		currentPoints.setFont(new Font("Dialog", Font.PLAIN, 13));
 		currentPoints.setBounds(22, 233, 634, 51);
 		frame.getContentPane().add(currentPoints);
 		
 		JLabel currentBalance = new JLabel("Current Balance: "+ manager.getImplementation().getGame().getBalance());
 		currentBalance.setHorizontalAlignment(SwingConstants.CENTER);
-		currentBalance.setFont(new Font("Dialog", Font.PLAIN, 10));
+		currentBalance.setFont(new Font("Dialog", Font.PLAIN, 13));
 		currentBalance.setBounds(22, 294, 634, 51);
 		frame.getContentPane().add(currentBalance);
 		
 		JLabel weeksRemaining = new JLabel("Weeks Remaining: "+ manager.getImplementation().remainingWeeks());
 		weeksRemaining.setHorizontalAlignment(SwingConstants.CENTER);
-		weeksRemaining.setFont(new Font("Dialog", Font.PLAIN, 10));
+		weeksRemaining.setFont(new Font("Dialog", Font.PLAIN, 13));
 		weeksRemaining.setBounds(22, 355, 634, 51);
 		frame.getContentPane().add(weeksRemaining);
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

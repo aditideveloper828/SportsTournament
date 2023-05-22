@@ -14,8 +14,6 @@ import java.util.ArrayList;
  * 
  * Note: The comparison of strings using the == operator may not be reliable.
  * It is recommended to use the equals() method for string comparison instead.
- * 
- * @author Aditi Sharma
  */
 
 public class Purchase {

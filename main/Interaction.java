@@ -17,8 +17,6 @@ import java.util.Set;
  * Provides methods for setting up the game, initializing the team, retrieving options, playing matches, and more.
  * Also manages game balance, weeks, random events, and opposition team names.
  *
- * @author Aditi Sharma
- *
  */
 public class Interaction {
 	private PurchasableManager market;
@@ -188,15 +186,6 @@ public class Interaction {
 	}
 	
 	/**
-     * Retrieves the remaining weeks in the game season.
-     * 
-     * @return The remaining weeks.
-     */
-	public int remainingWeeks() {
-		return game.getWeeks();
-	}
-	
-	/**
      * Retrieves the full team, including team members and reserves.
      * 
      * @return The full team.
@@ -229,6 +218,114 @@ public class Interaction {
 	}
 	
 	/**
+     * Generates a list of random opposition team names.
+     * 
+     * @return The list of random opposition team names.
+     */
+	public ArrayList<String> getOpTeamName() {
+		opTeamNames.add("Stinky Soldiers");
+		opTeamNames.add("Blue Bottles");
+		opTeamNames.add("Rabbit Runners");
+		opTeamNames.add("Wing Warriors");
+		opTeamNames.add("Raging Rangers");
+		opTeamNames.add("Potter Squatters");
+		opTeamNames.add("Snape Shapes");
+		opTeamNames.add("Broomful Bunnies");
+		opTeamNames.add("Arranged Arrows");
+		opTeamNames.add("Smiley Smokers");
+		opTeamNames.add("Beautiful Bubbles");
+		opTeamNames.add("Lacrosse Lovers");
+		opTeamNames.add("Coffee Addicts");
+		opTeamNames.add("Neat Freaks");
+		opTeamNames.add("Whiz Kids");
+		opTeamNames.add("Geek Squad");
+		opTeamNames.add("College Dropouts");
+		opTeamNames.add("Fire Extinguishers");
+		opTeamNames.add("Trailblazers");
+		opTeamNames.add("Lethal Weapons");
+		
+		Set<Integer> randTeamIndex = new HashSet<Integer>();
+		while (randTeamIndex.size() < 3) {
+			Random randInt = new Random();
+			randTeamIndex.add(randInt.nextInt(opTeamNames.size())); 
+		}
+		ArrayList<String> returnNames = new ArrayList<String>();
+		Iterator<Integer> itr = randTeamIndex.iterator();
+		int i = 0;
+		while(itr.hasNext()){
+			returnNames.add(opTeamNames.get(itr.next()));
+			i++;
+		}
+		return returnNames;
+	}
+	
+	/**
+     * Retrieves the remaining weeks in the game season.
+     * 
+     * @return The remaining weeks.
+     */
+	public int remainingWeeks() {
+		return game.getWeeks();
+	}
+	
+	/**
+     * Buys an athlete and assigns them to the specified position in the game.
+     * Checks if the balance is sufficient and if the position is already filled.
+     * 
+     * @param athlete   The athlete to buy.
+     * @param position  The position to assign the athlete to.
+     * @return          A message indicating the success or failure of the purchase.
+     */
+	public String buy(Athlete athlete, String position) {
+		if (athlete.getContractPrice() <= game.getBalance()){
+			Purchase buying = new Purchase("ATHLETE", market, game);
+			switch(position) {
+			case "SEEKER":
+				long seekers = game.getTeam().stream().filter(x -> x.getPosition() == "SEEKER" ).count();
+				if (seekers < 1) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+				
+			case "BEATER":
+				long beaters = game.getTeam().stream().filter(x -> x.getPosition() == "BEATER" ).count();
+				if (beaters < 2) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			case "CHASER":
+				long chasers = game.getTeam().stream().filter(x -> x.getPosition() == "CHASER" ).count();
+				if (chasers < 3) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			case "KEEPER":
+				long keepers = game.getTeam().stream().filter(x -> x.getPosition() == "KEEPER" ).count();
+				if (keepers < 1) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			case "RESERVE":
+				if (game.getReserveSize() < 5) {
+					buying.buy(athlete, position);
+					return "The athlete has been bought";
+				}
+				break;
+			}
+			return "You have too many athletes in this position!";
+			
+		}
+		else{
+			return "Your balance is too low to buy this athlete.";
+		}
+		
+	}
+	
+	/**
      * Sells the specified object based on the object ID, type, and position.
      * Uses the Purchase class to sell items or athletes from the game environment.
      * 
@@ -252,6 +349,25 @@ public class Interaction {
 				selling.sell(game.getTeamMember(objectID));
 			}
 		}
+	}
+	
+	/**
+	 * Buys an item from the market and adds it to the game.
+	 * Checks if the player's balance is sufficient to buy the item.
+	 * 
+	 * @param item The item to be bought.
+	 * @return A message indicating the success or failure of the purchase.
+	 */
+	public String buy(Item item) {
+		if (item.getContractPrice() <= game.getBalance()) {
+			Purchase buying = new Purchase("ITEM", market, game);
+			buying.buy(item);
+			return "Item bought!";
+		}
+		else {
+			return "Your balance is too low to buy this item.";
+		}
+		
 	}
 	
 	/**
@@ -330,124 +446,6 @@ public class Interaction {
 	 			randomEventMessage = event.getEventMessage();
 	 		}
 	    }
-	}
-	
-	/**
-     * Generates a list of random opposition team names.
-     * 
-     * @return The list of random opposition team names.
-     */
-	public ArrayList<String> getOpTeamName() {
-		opTeamNames.add("Stinky Soldiers");
-		opTeamNames.add("Blue Bottles");
-		opTeamNames.add("Rabbit Runners");
-		opTeamNames.add("Wing Warriors");
-		opTeamNames.add("Raging Rangers");
-		opTeamNames.add("Potter Squatters");
-		opTeamNames.add("Snape Shapes");
-		opTeamNames.add("Broomful Bunnies");
-		opTeamNames.add("Arranged Arrows");
-		opTeamNames.add("Smiley Smokers");
-		opTeamNames.add("Beautiful Bubbles");
-		opTeamNames.add("Lacrosse Lovers");
-		opTeamNames.add("Coffee Addicts");
-		opTeamNames.add("Neat Freaks");
-		opTeamNames.add("Whiz Kids");
-		opTeamNames.add("Geek Squad");
-		opTeamNames.add("College Dropouts");
-		opTeamNames.add("Fire Extinguishers");
-		opTeamNames.add("Trailblazers");
-		opTeamNames.add("Lethal Weapons");
-		
-		Set<Integer> randTeamIndex = new HashSet<Integer>();
-		while (randTeamIndex.size() < 3) {
-			Random randInt = new Random();
-			randTeamIndex.add(randInt.nextInt(opTeamNames.size())); 
-		}
-		ArrayList<String> returnNames = new ArrayList<String>();
-		Iterator<Integer> itr = randTeamIndex.iterator();
-		int i = 0;
-		while(itr.hasNext()){
-			returnNames.add(opTeamNames.get(itr.next()));
-			i++;
-		}
-		return returnNames;
-	}
-	
-	/**
-     * Buys an athlete and assigns them to the specified position in the game.
-     * Checks if the balance is sufficient and if the position is already filled.
-     * 
-     * @param athlete   The athlete to buy.
-     * @param position  The position to assign the athlete to.
-     * @return          A message indicating the success or failure of the purchase.
-     */
-	public String buy(Athlete athlete, String position) {
-		if (athlete.getContractPrice() <= game.getBalance()){
-			Purchase buying = new Purchase("ATHLETE", market, game);
-			switch(position) {
-			case "SEEKER":
-				long seekers = game.getTeam().stream().filter(x -> x.getPosition() == "SEEKER" ).count();
-				if (seekers < 1) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-				
-			case "BEATER":
-				long beaters = game.getTeam().stream().filter(x -> x.getPosition() == "BEATER" ).count();
-				if (beaters < 2) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			case "CHASER":
-				long chasers = game.getTeam().stream().filter(x -> x.getPosition() == "CHASER" ).count();
-				if (chasers < 3) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			case "KEEPER":
-				long keepers = game.getTeam().stream().filter(x -> x.getPosition() == "KEEPER" ).count();
-				if (keepers < 1) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			case "RESERVE":
-				if (game.getReserveSize() < 5) {
-					buying.buy(athlete, position);
-					return "The athlete has been bought";
-				}
-				break;
-			}
-			return "You have too many athletes in this position!";
-			
-		}
-		else{
-			return "Your balance is too low to buy this athlete.";
-		}
-		
-	}
-	
-	/**
-	 * Buys an item from the market and adds it to the game.
-	 * Checks if the player's balance is sufficient to buy the item.
-	 * 
-	 * @param item The item to be bought.
-	 * @return A message indicating the success or failure of the purchase.
-	 */
-	public String buy(Item item) {
-		if (item.getContractPrice() <= game.getBalance()) {
-			Purchase buying = new Purchase("ITEM", market, game);
-			buying.buy(item);
-			return "Item bought!";
-		}
-		else {
-			return "Your balance is too low to buy this item.";
-		}
-		
 	}
 	
 	/**

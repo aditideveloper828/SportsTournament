@@ -3,8 +3,6 @@ package main;
 /**
  * An exception class representing incorrect input.
  * Extends the IllegalArgumentException class.
- * 
- * @author Aditi Sharma
  */
 
 public class IncorrectInput extends IllegalArgumentException{

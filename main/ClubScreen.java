@@ -17,7 +17,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
-/*
+/**
  * GUI implementation of the "club" where a user can swap athlete positions, 
  * and use items on the athletes to improve their stats
  */
@@ -33,6 +33,8 @@ public class ClubScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public ClubScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -42,7 +44,7 @@ public class ClubScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -373,7 +375,7 @@ public class ClubScreen {
 		
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

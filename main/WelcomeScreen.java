@@ -11,6 +11,9 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * GUI Implementation of the welcome screen where the user starts a new tournament
+ */
 public class WelcomeScreen {
 
 	private JFrame frame;
@@ -18,6 +21,8 @@ public class WelcomeScreen {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param incomingManager calling the screenManager class
 	 */
 	public WelcomeScreen(ScreenManager incomingManager) {
 		manager = incomingManager;
@@ -25,7 +30,7 @@ public class WelcomeScreen {
 		frame.setVisible(true);
 	}
 	
-	/*
+	/**
 	 * Method to dispose of the current screen
 	 */
 	public void closeWindow() {
@@ -65,7 +70,7 @@ public class WelcomeScreen {
 		frame.getContentPane().add(startSsnBtn);
 	}
 	
-	/*
+	/**
 	 * Method to initiate the disposal process of this screen and opening of the following screen.
 	 */
 	public void finishedWindow() {

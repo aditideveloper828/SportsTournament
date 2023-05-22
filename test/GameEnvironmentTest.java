@@ -45,7 +45,6 @@ public class GameEnvironmentTest {
 	 */
 	@BeforeAll
 	static void setUpTeam() {
-		int prevSize = athletes.size();
 		for (int i=0; i<7; i++) {
 			Athlete athlete = athletes.get(i);
 			game.addTeamMember(athlete);
@@ -55,8 +54,6 @@ public class GameEnvironmentTest {
 			Athlete athlete = athletes.get(x);
 			game.addReserve(athlete);
 		}
-		int finalSize = athletes.size();
-		int sizeDifference = prevSize - finalSize;
 	}
 	
 	/*

@@ -10,7 +10,7 @@ package main;
  * such as getting the name, offence rating, defence rating, and current stamina,
  * setting the position, boosting the athlete's stats, and more.
  * 
- * @author Imogen Keeling
+ * hi how are you
  */
 public class Athlete implements Purchasable{
 	private String name;
@@ -25,7 +25,7 @@ public class Athlete implements Purchasable{
 	/**
      * Constructs an Athlete object with the given name and statistics.
      *
-     * @param  the name of the athlete
+     * @param tempName the name of the athlete
      * @param stats an array containing the athlete's statistics in the following order:
      *              [0] - offence rating
      *              [1] - defence rating
@@ -144,7 +144,7 @@ public class Athlete implements Purchasable{
 		limitor();
 		
 	}
-	
+ 
 	/**
      * Increases the athlete's offence and defence ratings by 1 and limits the stats to the valid range.
      */
@@ -183,12 +183,22 @@ public class Athlete implements Purchasable{
 		return name + " Offence: " + offenceRating + " Defence: " + defenceRating + " Cost: $" + contractCost + " Sell back: $" + sellBackPrice + " Position: " + position;
 	}
 
+   /**
+	* Returns the contract price of the athlete
+	* 
+	* @return the contract price of the athlete
+	*/
 	@Override
 	public int getContractPrice() {
 		// TODO Auto-generated method stub
 		return contractCost;
 	}
 
+   /**
+	* Returns the sell back price of the athlete
+	* 
+	* @return the sell back price of the athlete
+	*/
 	@Override
 	public int getSellBackPrice() {
 		// TODO Auto-generated method stub

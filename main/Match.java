@@ -5,8 +5,6 @@ package main;
  * Keeps track of the team's total wins and determines if the match is won.
  * If the team has won: matchResult() will return 1
  * If the team has lost: matchResult() will return 0
- * 
- * @author Imogen Keeling
  */
 
 public class Match {
