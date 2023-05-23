@@ -132,14 +132,14 @@ public class Athlete implements Purchasable{
      */
 	public String getDescription(){
         //returns description
-        return  "Athlete: "+name+"\r\nOffence: "+offenceRating+"\r\nDefence: "+defenceRating+"\r\nPosition: "+position+" \r\nContract Cost: "+contractCost+"\r\nSell Back Price: "+sellBackPrice;
+        return  "Athlete: "+name+"\r\nOffence: "+offenceRating+"\r\nDefence: "+defenceRating+"\r\nPosition: "+position+" \r\nContract Cost: "+contractCost+"\r\nSell Back Price: "+sellBackPrice+"\r\nStamina: "+currentStamina;
     }
 	
 	/**
      * Decreases the athlete's stamina by 20.
      */
 	public void staminaDecrease() {
-		currentStamina -= 20;
+		currentStamina -= 10;
 		limitor();
 		
 	}

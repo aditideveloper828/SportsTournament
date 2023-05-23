@@ -14,3 +14,4 @@ Game: Quadball
 2. Ensure you have the unzip command installed on your machine. To do this, use the command "sudo apt -get install unzip".
 3. Open the zip folder in the terminal. To do this, navigate to the destination folder through the terminal where you would like to save the files. Then, type in the command "unzip ike24_ash313_SportsTournament.zip".
 4. Finally, run the project's JAR file using the command "java -jar ike24_ash313_QuadballTournament.jar". This should run the Quadball Tournament.
+

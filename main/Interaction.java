@@ -258,11 +258,8 @@ public class Interaction {
 		}
 		ArrayList<String> returnNames = new ArrayList<String>();
 		Iterator<Integer> itr = randTeamIndex.iterator();
-		@SuppressWarnings("unused")
-		int i = 0;
 		while(itr.hasNext()){
 			returnNames.add(opTeamNames.get(itr.next()));
-			i++;
 		}
 		return returnNames;
 	}
@@ -430,7 +427,7 @@ public class Interaction {
 	    	takeBye = true;
 	    	resultMessage = "Your team has insufficient members, you must take a bye this week";
 	    }
-	    else if (playersInjured == game.getReserveSize() + game.getTeamSize()) {
+	    else if (playersInjured >= game.getTeamSize()) {
 	    	takeBye = true;
 	    	resultMessage = "All your players are injured. You must take a bye to heal";
 	    }
