@@ -46,8 +46,8 @@ public class ResultScreen {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel finalResultTitle = new JLabel(manager.getImplementation().getResultMessage());
-		finalResultTitle.setBounds(22, 56, 634, 51);
-		finalResultTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		finalResultTitle.setBounds(22, 56, 750, 51);
+		finalResultTitle.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		finalResultTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(finalResultTitle);
 		

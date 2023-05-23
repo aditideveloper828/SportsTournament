@@ -149,7 +149,7 @@ public class PurchasableManager{
 	 */
 	public int minimumContractPrice() {
 		int minimum = athletes.get(0).getContractPrice();
-		for (int i = 1; i < availableAthletes; i++) {
+		for (int i = 1; i < 5; i++) {
 			int price = athletes.get(i).getContractPrice();
 			if (minimum > price) {
 				minimum = price;
