@@ -36,7 +36,9 @@ public class PairFight {
 		if (player.getPosition() == "CHASER" || player.getPosition() == "SEEKER") {
 			if (player.getOffence() - opPlayer.getDefence() >=0) {
 				match.fightWon(player);
+				player.staminaDecrease();
 			} else {
+				player.staminaDecrease();
 				player.staminaDecrease();
 			}
 		}
@@ -56,7 +58,9 @@ public class PairFight {
 		if (player.getPosition() == "BEATER" || player.getPosition() == "KEEPER") {
 			if (player.getDefence() - opPlayer.getOffence() >=0) {
 				match.fightWon(player);
+				player.staminaDecrease();
 			} else {
+				player.staminaDecrease();
 				player.staminaDecrease();
 			}
 		}

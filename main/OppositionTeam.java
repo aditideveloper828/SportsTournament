@@ -39,6 +39,7 @@ public class OppositionTeam {
 		freeAthletes = data;
 		opTeam = new ArrayList <Athlete>();
 		createOpTeam();
+		setName();
 	}
 	
 	/**
@@ -71,9 +72,17 @@ public class OppositionTeam {
 	 * @return the name of the opposition team
 	 */
 	public String getName() {
+		return teamName;
+	}
+	
+	/**
+	 * Sets the name of the opposition team.
+	 *
+	 * @return null
+	 */
+	public void setName() {
 		ArrayList<String> names = name.getNames();
 		teamName = names.remove(0);
-		return teamName;
 	}
 	
 	/**
