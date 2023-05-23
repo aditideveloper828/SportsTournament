@@ -1,6 +1,8 @@
 # SportsTournament
 Game: Quadball
 
+Please Note: Our compiled Javadoc files are in the SportsTournament folder with our source code files
+
 To Import the Source Code to Eclipse:
 1. Create a new empty Java Project in your Eclipse workspace. To do this, you need to select File > New > Java Project.
 2. Right click on the "src" folder and select Import > General > File system. From this, select the game's files. This will make a copy of the game's files into the project
