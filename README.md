@@ -1,6 +1,6 @@
 # SportsTournament
 Game: Quadball
-<b> Authors: Aditi Sharma, Imogen Keeling
+<br> Authors: Aditi Sharma, Imogen Keeling
 
 <b>To Import the Source Code to Eclipse:</b>
 1. Create a new empty Java Project in your Eclipse workspace. To do this, you need to select File > New > Java Project.
