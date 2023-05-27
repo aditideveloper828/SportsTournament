@@ -28,7 +28,7 @@ public final class UserInterface{
 	private static void setUp() {
 		//Move this to game environment
 		//change this method to remove duplicate code
-		FileRead athleteFile = new FileRead("AthleteProfiles");
+		FileRead athleteFile = new FileRead("/main/resources/AthleteMarket");
 		ArrayList<String> athleteProfiles = athleteFile.getData();
 		for (int i = 1; i < athleteProfiles.size(); i++) {
 			String[] characterData = athleteProfiles.get(i).split(";",0);
@@ -45,7 +45,7 @@ public final class UserInterface{
 		}
 		
 		//making items
-		FileRead itemFile = new FileRead("ItemDetails");
+		FileRead itemFile = new FileRead("/main/resources/ItemDetails");
 		ArrayList<String> itemDetails = itemFile.getData();
 		for (int i = 1; i < itemDetails.size(); i++) {
 			String[] itemData = itemDetails.get(i).split(";",0);
