@@ -1,8 +1,6 @@
-
 package main;
 import java.util.*;
 
-///////////////add in method for taking input to avoid repeating code
 
 
 /**
@@ -139,8 +137,6 @@ public final class UserInterface{
 	 * @param type the type of purchase (either "ATHLETE" or another item type)
 	 */
 	private static void buy(String type) {
-		//limiting the position of athlete can be done in gui
-		//change nickname of athlete <----need input box for this
 		Purchase object = new Purchase(type, market,thisGame);
 		object.displayOptions(false);
 		if (type == "ATHLETE"){
@@ -216,7 +212,7 @@ public final class UserInterface{
 	    System.out.println("Your Items: ");
 	    thisGame.displayItems();
 	    
-	    //and using item <--- do not have to change position of athletes in team)
+	    //and using item
 	    System.out.println("Would you like to: (Enter in number or -1 to go to home)");
 	    System.out.println("1 Swap the position of an active team member and a reserve?");
 	    System.out.println("2 Use an item for an athlete");
@@ -411,7 +407,6 @@ public final class UserInterface{
 	    	else if (goTo == 3){
 	    		thisGame.reduceWeek();
 	    		boolean playedGame = chooseOpTeam();
-	    		///done till this part 
 			    if (playedGame) {
 			    	boolean result = thisMatch.matchWon();
 			    	if (result) {

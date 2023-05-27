@@ -78,7 +78,6 @@ public class OppositionTeam {
 	/**
 	 * Sets the name of the opposition team.
 	 *
-	 * @return null
 	 */
 	public void setName() {
 		ArrayList<String> names = name.getNames();
